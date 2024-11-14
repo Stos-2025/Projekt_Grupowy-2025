@@ -1,0 +1,7 @@
+{
+    "compiler/interpreter": "python3",
+    "code": "print('hello world!')",
+    "input": "",
+    "memoryLimitMB": 1024,
+    "timeLimitMillis": 1000
+}
