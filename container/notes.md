@@ -4,7 +4,8 @@
 # funkcjonalności
 - [ ] grupowanie zadań
 - [x] zbieranie statystyk dt. zasobów
-- [ ] obsługa specyficznych błędów
+- [ ] prekompilacja: pyInstaller
+- [ ] obsługa specyficznych błędów: runtime, compilation, other(process, contener)
 # izolacja na poziomie procesu
 - [ ] seccomp dla procesu
 - [ ] [opcjonalne, mało prawdopodobne] Chroot Jail dla zadan wymagających systemu plików
