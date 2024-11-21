@@ -1,8 +1,0 @@
-FROM alpine:latest
-RUN apk update && apk add --no-cache python3
-
-WORKDIR /app
-EXPOSE 8080
-
-COPY main.py .
-CMD ["python", "main.py"]
