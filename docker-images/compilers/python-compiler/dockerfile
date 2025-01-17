@@ -1,0 +1,14 @@
+FROM python:3.9-alpine
+
+RUN addgroup -S compgroup
+RUN adduser -S compuser -G compgroup
+USER compuser
+
+RUN apk update && apk add --no-cache build-base musl-dev libffi-dev
+#todo cython
+RUN pip install pyinstaller 
+
+WORKDIR /app
+COPY comp.sh .
+
+ENTRYPOINT ["./comp.sh"]

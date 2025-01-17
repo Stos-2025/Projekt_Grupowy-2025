@@ -1,0 +1,16 @@
+FROM python-alpine
+
+RUN addgroup -S execgroup
+RUN adduser -S execuser -G execgroup
+USER execuser
+
+WORKDIR /app
+COPY exec.py .
+COPY main.py .
+COPY judge.py .
+# RUN apk add --no-cache python3
+
+ENTRYPOINT ["python3", "-u", "main.py"]
+
+# docker build -t exec .\docker-images\exec-python\
+# docker run --rm -v "$(pwd)/containers/example/exec-in:/data/in:ro" -v "$(pwd)/containers/example/exec-out:/data/out" exec

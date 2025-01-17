@@ -1,0 +1,35 @@
+warning: unused variable: `i`
+ --> /tmp/in/main.rs:9:9
+  |
+9 |     for i in 1..=n {
+  |         ^ help: if this is intentional, prefix it with an underscore: `_i`
+  |
+  = note: `#[warn(unused_variables)]` on by default
+
+warning: unused `Result` that must be used
+ --> /tmp/in/main.rs:5:5
+  |
+5 |     io::stdin().read_line(&mut input);
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: this `Result` may be an `Err` variant, which should be handled
+  = note: `#[warn(unused_must_use)]` on by default
+help: use `let _ = ...` to ignore the resulting value
+  |
+5 |     let _ = io::stdin().read_line(&mut input);
+  |     +++++++
+
+warning: unused `Result` that must be used
+  --> /tmp/in/main.rs:11:9
+   |
+11 |         io::stdin().read_line(&mut input);
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: this `Result` may be an `Err` variant, which should be handled
+help: use `let _ = ...` to ignore the resulting value
+   |
+11 |         let _ = io::stdin().read_line(&mut input);
+   |         +++++++
+
+warning: 3 warnings emitted
+

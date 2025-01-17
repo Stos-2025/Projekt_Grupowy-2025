@@ -1,0 +1,10 @@
+FROM rust:alpine
+
+RUN addgroup -S compgroup
+RUN adduser -S compuser -G compgroup
+USER compuser
+
+WORKDIR /app
+COPY comp.sh .
+
+ENTRYPOINT ["./comp.sh"]
