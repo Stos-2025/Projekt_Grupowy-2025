@@ -1,4 +1,0 @@
-/tmp/in/main.cpp: In function 'int main()':
-/tmp/in/main.cpp:8:9: warning: unused variable 'neverUsed' [-Wunused-variable]
-    8 |     int neverUsed;
-      |         ^~~~~~~~~

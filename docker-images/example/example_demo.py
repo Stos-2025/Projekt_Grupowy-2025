@@ -2,12 +2,12 @@ import subprocess
 import shutil
 import time
 
-def run_example(build = True, compile = True):
-    exmp_path = r".\\docker-images\example"
+def run_example(build = False, compile = True):
+    exmp_path = r".\docker-images\example"
     # comp_path = r".\\docker-images\compilers\python-compiler"
-    comp_path = r".\\docker-images\compilers\cpp-compiler"
+    comp_path = r".\docker-images\compilers\cpp-compiler"
     # comp_path = r".\\docker-images\compilers\rust-compiler"
-    exec_path = r".\\docker-images\exec-python"
+    exec_path = r".\docker-images\exec-python"
     # exec_path = r".\\docker-images\exec-legacy"
 
     exec_in = exmp_path+"\\exec-in"
@@ -45,7 +45,6 @@ def run_example(build = True, compile = True):
     if compile:
         start_time = time.time()
         subprocess.run(comp_command, check=True)
-        print("\n------------------------")
         print(f" Compilation time: {round(time.time() - start_time, 2)}")
         shutil.copy(comp_out+"\\program", exec_in) 
 
@@ -54,7 +53,6 @@ def run_example(build = True, compile = True):
     print(f" Starting exec container")
     subprocess.run(["docker", "start", "-i", f"{container_id}"], check=True)
     print(f" Execution time: {round(time.time() - start_time, 2)}")
-    print("------------------------\n")
 
 if __name__ == "__main__":
     run_example()

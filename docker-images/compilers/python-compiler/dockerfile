@@ -1,15 +1,17 @@
 FROM python:3.9-alpine
 
+WORKDIR /app
+
 RUN apk update && apk add --no-cache build-base musl-dev libffi-dev
-#todo cython
 RUN pip install pyinstaller 
 
 RUN addgroup -S compgroup
 RUN adduser -S compuser -G compgroup
+RUN chown compuser .
 USER compuser
 
-WORKDIR /app
 COPY comp.sh .
+RUN chmod +x comp.sh
 RUN mkdir /tmp/out
 RUN mkdir /tmp/in
 

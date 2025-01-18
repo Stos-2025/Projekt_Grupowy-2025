@@ -1,11 +1,11 @@
 FROM alpine:latest
 # FROM comp-cpp
 
-# RUN apk add --no-cache g++ 
-# //build-base
+RUN apk add --no-cache build-base
 
 RUN addgroup -S compgroup
 RUN adduser -S compuser -G compgroup
+RUN chown compuser .
 USER compuser
 
 WORKDIR /app

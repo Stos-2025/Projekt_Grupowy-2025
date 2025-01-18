@@ -4,6 +4,7 @@ RUN apk add --no-cache python3
 
 RUN addgroup -S execgroup
 RUN adduser -S execuser -G execgroup
+RUN chown execuser .
 USER execuser
 
 WORKDIR /app
