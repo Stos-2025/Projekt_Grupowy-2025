@@ -5,9 +5,11 @@ if [ ! -f /data/in/main.py ]; then
     exit 1
 fi
 
-mkdir -p /tmp/in
-mkdir -p /tmp/out
+cp /data/in/*.py /tmp/in
+pyinstaller --onefile --distpath /tmp/out -n program /tmp/in/main.py 2> /tmp/out/comp.stderr.txt
+exit_code=$?
 
-cp /data/in/main.py /tmp/in/main.py
-pyinstaller --onefile /tmp/in/main.py 2> /tmp/out/comp.stderr.txt
-cp ./dist/main /data/out/program
+cp /tmp/out/* /data/out
+# cp ./dist/* /data/out
+
+exit $exit_code

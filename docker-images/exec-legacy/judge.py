@@ -10,12 +10,15 @@ def check_answer(answer_file: str) -> bool:
         for line in file:
             line_nr += 1
 
+            # logger.info(f"line nr.{line_nr} expected value:\t{line.strip()}")
+            
             try:
                 program_output_line = input()
             except EOFError:
                 logger.info(f"EOF in line {line_nr}")
                 return False
             
+            # logger.info(f"line nr.{line_nr} value:\t{program_output_line.strip()}")
             if line.strip() != program_output_line.strip():
                 logger.info(f"line {line_nr} is not correct")
                 return False
@@ -25,7 +28,7 @@ def main():
     name = sys.argv[1]
     logging.basicConfig(
         level=logging.DEBUG,
-        format="\t[%(name)s] %(asctime)s %(levelname)s %(message)s",
+        format="\t%(asctime)s %(levelname)s [%(name)s] %(message)s",
         handlers=[logging.StreamHandler(sys.stdout)] 
     )
     logger.info(f"test {name} is starting")

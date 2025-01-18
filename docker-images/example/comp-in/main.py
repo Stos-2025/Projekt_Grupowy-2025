@@ -1,11 +1,10 @@
-def sum(a, b):
-    return a + b
+from add import sum
 
 def main():
     n = int(input())
     total = 0
     for _ in range(n):
-        number = int(input())*2
+        number = int(input())
         total = sum(total, number)
     print(total)
 

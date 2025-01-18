@@ -1,10 +1,16 @@
-FROM rust:alpine
+# FROM alpine:latest
+FROM comp-cpp
 
-RUN addgroup -S compgroup
-RUN adduser -S compuser -G compgroup
-USER compuser
+# RUN apk add --no-cache g++ 
+# //build-base
+
+# RUN addgroup -S compgroup
+# RUN adduser -S compuser -G compgroup
+# USER compuser
 
 WORKDIR /app
 COPY comp.sh .
+RUN mkdir /tmp/out
+RUN mkdir /tmp/in
 
 ENTRYPOINT ["./comp.sh"]

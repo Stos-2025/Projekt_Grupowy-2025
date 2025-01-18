@@ -7,15 +7,15 @@
 - [ ] prekompilacja: ~~pyInstaller~~(pyInstaller nie kompiluje do natywnego mc) Cython
 - [ ] obsługa specyficznych błędów: runtime, compilation, other(process, contener)
 # ograniczenie zasobów  cgroups
-- [ ] implementacja cgroups
+- [ ] ~~implementacja cgroups~~
 - [ ] obsługa wyświetlania logów
 # izolacja na poziomie procesu
 - [ ] seccomp dla procesu
 - [ ] [opcjonalne, mało prawdopodobne] Chroot Jail dla zadan wymagających systemu plików
 - [ ] control groups do ograniczenia zasobów procesu (jest tez na poziomie kontenera)
-- [ ] zmiana użytkownika (UID) (kontener)
+- [x] zmiana użytkownika (UID) (kontener)
 # izoloacja na poziomie kontenera
-- [ ] dodanie użytkownika
+- [x] dodanie użytkownika
 - [x] read-only file-system: --read-only
 - [x] --security-opt jak seccomp
 - [x] dodatkowy limit zasobów: --memory --cpus

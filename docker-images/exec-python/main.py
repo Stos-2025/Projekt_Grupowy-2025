@@ -1,45 +1,46 @@
-from typing import List, Tuple
 import subprocess
-import os
 import sys
-import shutil
+import logging
 import time
 
+logger = logging.getLogger("MAIN")
+
 def run_program(name: str):
-    print("Running program: " + name)
+    start_time2 = time.time()
     program_process = subprocess.Popen(
         ["python", "exec.py", name],
-        stdout=subprocess.PIPE
+        stdout=subprocess.PIPE,
     )
-
-    print("Running judge: " + name)
     judge_process = subprocess.Popen(
         ["python", "judge.py", name],
         stdin=program_process.stdout,
         stdout=sys.stdout       
     )
-    
-
-    program_process.wait()
     judge_process.wait()
-
     program_process.stdout.close()
-
-    print("program: " + str(program_process.returncode))
-    print("judge: " + str(judge_process.returncode))
+    program_process.kill()
+    program_process.wait()
+    
+    logger.info("program -> " + str(program_process.returncode))
+    logger.info("judge -> " + str(judge_process.returncode))
+    logger.info(f"real time: {round(time.time() - start_time2, 2)}")
 
 def main():
+    logging.basicConfig(
+        level=logging.DEBUG,
+        format="[%(name)s] %(levelname)s %(message)s",
+        handlers=[logging.StreamHandler(sys.stdout)] 
+    )
     start_time = time.time()
-    os.makedirs("/tmp/in")
-    os.makedirs("/tmp/out")
-    shutil.copy("/data/in/program",  "/tmp/in")
+    subprocess.run('cp -r /data/in /tmp', shell=True, check=True)    
+    copy_time = round(time.time() - start_time, 2)
+
+    for name in range(20):
+        run_program(str(name))
     
-    for i in range(20): #todo
-        run_program(str(i))
-    
-    subprocess.run("/bin/sh -c 'cp /tmp/out/* /data/out'", shell=True, check=True)
-    # shutil.copytree("/tmp/out/",  "/data/out")
-    print(f"exec.py execution time: {round(time.time() - start_time, 2)}")
+    subprocess.run("cp /tmp/out/* /data/out", shell=True, check=True)
+    logger.info(f"copy time: {copy_time}")
+    logger.info(f"exec.py execution time: {round(time.time() - start_time, 2)}")
 
 if __name__ == "__main__":
     main()

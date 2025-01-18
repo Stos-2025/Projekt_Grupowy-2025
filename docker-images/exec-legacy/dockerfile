@@ -1,15 +1,17 @@
 FROM python-alpine
 
+RUN apk add --no-cache util-linux
+
 RUN addgroup -S execgroup
 RUN adduser -S execuser -G execgroup
 USER execuser
 
 WORKDIR /app
-COPY exec.py .
-COPY main.py .
+COPY exec.sh .
 COPY judge.py .
 RUN mkdir /tmp/out
 RUN mkdir /tmp/in
+# RUN apk add --no-cache python3
 
-
-ENTRYPOINT ["python3", "-u", "main.py"]
+# CMD [ "cp", "-r", "/data/in", "/tmp" ]
+ENTRYPOINT ["./exec.sh"]

@@ -1,13 +1,10 @@
-#!/bin/sh
+#!/bin/ash
 
-if [ ! -f /data/in/main.rs ]; then
-    echo "main.rs not found!"
-    exit 1
-fi
+cp -r /data/in /tmp
 
-mkdir -p /tmp/in
-mkdir -p /tmp/out
+g++ -Wall -o /tmp/out/program /tmp/in/*.cpp 2> /tmp/out/comp.stderr.txt
+exit_code=$?
 
-cp /data/in/main.rs /tmp/in/main.rs
-rustc -o /tmp/out/program /tmp/in/main.rs 2> /tmp/out/comp.stderr.txt
-cp /tmp/out/* /data/out/
+cp /tmp/out/* /data/out
+
+exit $exit_code
