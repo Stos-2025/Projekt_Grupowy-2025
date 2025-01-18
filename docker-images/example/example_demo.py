@@ -2,7 +2,7 @@ import subprocess
 import shutil
 import time
 
-def run_example(build = False, compile = True):
+def run_example(build = True, compile = True):
     exmp_path = r".\docker-images\example"
     # comp_path = r".\\docker-images\compilers\python-compiler"
     comp_path = r".\docker-images\compilers\cpp-compiler"
