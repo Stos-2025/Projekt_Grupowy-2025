@@ -4,7 +4,7 @@ import time
 import json
 
 def run_example(build = True, compile = True):
-    exmp_path = r".\docker-images/example"
+    exmp_path = r"./docker-images/example"
     # comp_path = r"./docker-images/compilers/python-compiler"
     comp_path = r"./docker-images/compilers/cpp-compiler"
     # comp_path = r"./docker-images/compilers/rust-compiler"
