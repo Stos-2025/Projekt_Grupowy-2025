@@ -13,7 +13,7 @@ def check_answer(answer_file: str) -> bool:
             try:
                 program_output_line = input()
             except EOFError:
-                logger.info(f"EOF in line {line_nr}")
+                logger.info(f"unexpected EOF in line {line_nr}")
                 return False
             
             if line.strip() != program_output_line.strip():

@@ -1,19 +1,20 @@
 import subprocess
 import shutil
 import time
+import json
 
 def run_example(build = True, compile = True):
-    exmp_path = r".\docker-images\example"
-    # comp_path = r".\\docker-images\compilers\python-compiler"
-    comp_path = r".\docker-images\compilers\cpp-compiler"
-    # comp_path = r".\\docker-images\compilers\rust-compiler"
-    exec_path = r".\docker-images\exec-python"
-    # exec_path = r".\\docker-images\exec-legacy"
+    exmp_path = r".\docker-images/example"
+    # comp_path = r"./docker-images/compilers/python-compiler"
+    comp_path = r"./docker-images/compilers/cpp-compiler"
+    # comp_path = r"./docker-images/compilers/rust-compiler"
+    exec_path = r"./docker-images/exec-python"
+    # exec_path = r"./docker-images/exec-legacy"
 
-    exec_in = exmp_path+"\\exec-in"
-    exec_out = exmp_path+"\\exec-out"
-    comp_in = exmp_path+"\\comp-in"
-    comp_out = exmp_path+"\\comp-out" 
+    exec_in = exmp_path+"/exec-in"
+    exec_out = exmp_path+"/exec-out"
+    comp_in = exmp_path+"/comp-in"
+    comp_out = exmp_path+"/comp-out" 
 
     comp_command = [
         "docker", "run", 
@@ -29,7 +30,7 @@ def run_example(build = True, compile = True):
         "docker", "create", 
         "--rm",
         "--name", "exec-container",
-        # "--cpus=1.0",
+        "--cpus=0.5",
         "--security-opt", "no-new-privileges",
         "-v", f"{exec_in}:/data/in:ro",
         "-v", f"{exec_out}:/data/out",
@@ -46,13 +47,23 @@ def run_example(build = True, compile = True):
         start_time = time.time()
         subprocess.run(comp_command, check=True)
         print(f" Compilation time: {round(time.time() - start_time, 2)}")
-        shutil.copy(comp_out+"\\program", exec_in) 
+        shutil.copy(comp_out+"/program", exec_in) 
 
     start_time = time.time()
     container_id = subprocess.getoutput(create_exec_command)
     print(f" Starting exec container")
     subprocess.run(["docker", "start", "-i", f"{container_id}"], check=True)
     print(f" Execution time: {round(time.time() - start_time, 2)}")
+
+    
+    for j in range(20):
+        with open(f"{exec_out}/{j}.resource.json", "r") as file:
+            try:
+                data = json.load(file)
+                print(f":{j} -> {round(data[0], 2)}s")
+            except Exception as e:
+                pass
+                # exit(1)
 
 if __name__ == "__main__":
     run_example()

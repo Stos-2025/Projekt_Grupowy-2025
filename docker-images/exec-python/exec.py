@@ -2,6 +2,7 @@ import sys
 import subprocess
 import resource
 import json
+import time
 # import psutil
 
 name = sys.argv[1]    
@@ -16,8 +17,10 @@ with open(input_file, "r") as infile, open(error_file, "w") as errfile, open(res
         stdin=infile,    
         stderr=errfile,
         stdout=sys.stdout,
-        preexec_fn=lambda: resource.setrlimit(resource.RLIMIT_CPU, (2, 2))
+        # preexec_fn=lambda: resource.setrlimit(resource.RLIMIT_CPU, (2, 2))
     )
+
+    resource.prlimit(program_process.pid, resource.RLIMIT_CPU, (2, 2))
     program_process.wait()
     return_code = program_process.returncode
     json.dump(resource.getrusage(resource.RUSAGE_CHILDREN), resfile)

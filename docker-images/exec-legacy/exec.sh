@@ -14,7 +14,6 @@ if [ ! -x /data/in/program ]; then
     exit 1
 fi
 
-mkdir -p /tmp/out
 cp -r /data/in /tmp
 
 for input_file in /tmp/in/*.in; do

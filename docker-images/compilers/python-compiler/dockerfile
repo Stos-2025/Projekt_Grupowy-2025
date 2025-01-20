@@ -7,8 +7,6 @@ RUN pip install pyinstaller
 
 RUN addgroup -S compgroup
 RUN adduser -S compuser -G compgroup
-RUN chown compuser .
-RUN chown compuser /data/out
 USER compuser
 
 COPY comp.sh .

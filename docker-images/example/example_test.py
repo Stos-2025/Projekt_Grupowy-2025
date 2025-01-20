@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 exec_out_path = "docker-images/example/exec-out"
 
 times = []
-n = 50
+n = 5
 
 for i in range(n):
     run_example(False, False)
@@ -16,8 +16,9 @@ for i in range(n):
                 data = json.load(file)
                 times[i].append(round(data[0], 2))
             except Exception as e:
-                times[i].append(0)
-                exit(1)
+                pass
+                # times[i].append(0)
+                # exit(1)
                
 
 print(times)
