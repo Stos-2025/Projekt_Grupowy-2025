@@ -1,5 +1,6 @@
 import subprocess
 import sys
+import os
 import logging
 import time
 
@@ -21,13 +22,13 @@ def run_program(name: str):
     program_process.kill()
     program_process.wait()
     
-    logger.info("program -> " + str(program_process.returncode))
-    logger.info("judge -> " + str(judge_process.returncode))
+    logger.info("program returned code: " + str(program_process.returncode))
+    logger.info("judge returned code: " + str(judge_process.returncode))
     logger.info(f"real time: {round(time.time() - start_time2, 2)}")
 
 def main():
     logging.basicConfig(
-        level=logging.DEBUG,
+        level=logging.DEBUG if os.environ.get("LOGS")=="on" else logging.ERROR,
         format="[%(name)s] %(levelname)s %(message)s",
         handlers=[logging.StreamHandler(sys.stdout)] 
     )

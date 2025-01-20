@@ -1,6 +1,7 @@
 #example python judge script
 import sys
 import logging
+import os
 
 logger = logging.getLogger("JUDGE")
 
@@ -24,7 +25,7 @@ def check_answer(answer_file: str) -> bool:
 def main():          
     name = sys.argv[1]
     logging.basicConfig(
-        level=logging.DEBUG,
+        level=logging.DEBUG if os.environ.get("LOGS")=="on" else logging.ERROR,
         format="\t[%(name)s] %(asctime)s %(levelname)s %(message)s",
         handlers=[logging.StreamHandler(sys.stdout)] 
     )

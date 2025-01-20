@@ -30,7 +30,7 @@ def run_example(build = True, compile = True):
         "docker", "create", 
         "--rm",
         "--name", "exec-container",
-        "--cpus=0.5",
+        # "--cpus=0.5",
         "--security-opt", "no-new-privileges",
         "-v", f"{exec_in}:/data/in:ro",
         "-v", f"{exec_out}:/data/out",
@@ -40,7 +40,7 @@ def run_example(build = True, compile = True):
 
     # exit(1)
     if build:
-        subprocess.run(["docker", "build", "-t", "exec", exec_path], check=True)
+        subprocess.run(["docker", "build", "--build-arg", "LOGS=off", "-t", "exec", exec_path], check=True)
         subprocess.run(["docker", "build", "-t", "comp", comp_path], check=True)
 
     if compile:
@@ -50,9 +50,9 @@ def run_example(build = True, compile = True):
         shutil.copy(comp_out+"/program", exec_in) 
 
     start_time = time.time()
-    container_id = subprocess.getoutput(create_exec_command)
+    container_id = subprocess.run(create_exec_command)
     print(f" Starting exec container")
-    subprocess.run(["docker", "start", "-i", f"{container_id}"], check=True)
+    subprocess.run(["docker", "start", "-i", "exec-container"], check=True)
     print(f" Execution time: {round(time.time() - start_time, 2)}")
 
     
