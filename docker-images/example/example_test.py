@@ -20,11 +20,6 @@ for i in range(n):
                 # times[i].append(0)
                 # exit(1)
                
-
-print(times)
-plt.plot([i[17] for i in times])
-plt.title('cpu user time test 17')
-plt.show()
 print(times)
 
 for i in range(15, 20):
