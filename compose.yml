@@ -1,0 +1,39 @@
+services:
+  db:
+    image: mysql:latest
+    volumes:
+      - db_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root 
+      MYSQL_DATABASE: stos
+      MYSQL_USER: stos
+      MYSQL_PASSWORD: stos
+  
+  phpmyadmin:
+    image: phpmyadmin:latest
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - 8081:80
+
+  master0:
+    image: master
+    ports:
+      - 5002:5000
+    volumes:
+      - volume0:/var/data
+      - /var/run/docker.sock:/var/run/docker.sock
+  master1:
+    image: master
+    ports:
+      - 5001:5001
+    volumes:
+      - volume1:/var/data
+      - /var/run/docker.sock:/var/run/docker.sock
+
+volumes:
+  volume0:
+  volume1:
+  db_data:
+    

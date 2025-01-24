@@ -1,0 +1,14 @@
+{
+    "defaultAction": "SCMP_ACT_ERRNO",
+    "syscalls": [
+      {
+        "names": ["clone", "execve"],
+        "action": "SCMP_ACT_ALLOW"
+      },
+      {
+        "names": ["ptrace"],
+        "action": "SCMP_ACT_ERRNO"
+      }
+    ]
+  }
+  
