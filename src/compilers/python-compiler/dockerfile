@@ -14,5 +14,7 @@ RUN chmod +x comp.sh
 RUN mkdir /tmp/out
 RUN mkdir /tmp/in
 
+ENV INPUT=/data/in
+ENV OUTPUT=/data/out
 
 ENTRYPOINT ["./comp.sh"]

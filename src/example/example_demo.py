@@ -4,6 +4,7 @@ import time
 import json
 
 def run_example(build = True, compile = True):
+    # build = False
     exmp_path = r"./src/example"
     # comp_path = r"./src/compilers/python-compiler"
     comp_path = r"./src/compilers/cpp-compiler"
@@ -40,7 +41,7 @@ def run_example(build = True, compile = True):
 
     # exit(1)
     if build:
-        subprocess.run(["docker", "build", "--build-arg", "LOGS=off", "-t", "exec", exec_path], check=True)
+        subprocess.run(["docker", "build", "--build-arg", "LOGS=on", "-t", "exec", exec_path], check=True)
         subprocess.run(["docker", "build", "-t", "comp", comp_path], check=True)
 
     if compile:

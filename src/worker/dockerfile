@@ -13,7 +13,6 @@ RUN mkdir -p "/data/comp-out"
 RUN mkdir -p "/data/exec-in"
 RUN mkdir -p "/data/exec-out" 
 
-ENTRYPOINT [ "python3", "worker.py" ]
+ENTRYPOINT [ "python3", "-u", "worker.py" ]
 
-#docker build -t master ./src/master-worker
-#docker run --rm --name "master-container" master
+#docker build -t master ./src/worker

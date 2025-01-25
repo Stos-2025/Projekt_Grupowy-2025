@@ -33,13 +33,13 @@ def main():
         handlers=[logging.StreamHandler(sys.stdout)] 
     )
     start_time = time.time()
-    subprocess.run('cp -r /data/in /tmp', shell=True, check=True)    
+    subprocess.run(r'cp "${INPUT}"/* /tmp/in', shell=True, check=True)    
     copy_time = round(time.time() - start_time, 2)
 
     for name in range(20):
         run_program(str(name))
     
-    subprocess.run("cp /tmp/out/* /data/out", shell=True, check=True)
+    subprocess.run(r"cp /tmp/out/* $OUTPUT", shell=True, check=True)
     logger.info(f"copy time: {copy_time}")
     logger.info(f"exec.py execution time: {round(time.time() - start_time, 2)}")
 

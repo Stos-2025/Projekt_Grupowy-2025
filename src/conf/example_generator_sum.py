@@ -1,9 +1,9 @@
 import os
 import shutil
 
-output_folder_path = "docker-images/example/exec-in/"
-comp_out_path = "docker-images/example/comp-out"
-exec_out_path = "docker-images/example/exec-out"
+output_folder_path = "src/example/exec-in/"
+comp_out_path = "src/example/comp-out"
+exec_out_path = "src/example/exec-out"
 
 if os.path.exists(comp_out_path):
     shutil.rmtree(comp_out_path)

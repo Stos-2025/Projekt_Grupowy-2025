@@ -5,11 +5,11 @@ if [ ! -f /data/in/main.py ]; then
     exit 1
 fi
 
-cp /data/in/*.py /tmp/in
+cp "${INPUT}/"* /tmp/in
+
 pyinstaller --onefile --distpath /tmp/out -n program /tmp/in/main.py 2> /tmp/out/comp.stderr.txt #todo change pyinstaller
 exit_code=$?
 
-cp /tmp/out/* /data/out
-# cp ./dist/* /data/out
+cp /tmp/out/* $OUTPUT
 
 exit $exit_code

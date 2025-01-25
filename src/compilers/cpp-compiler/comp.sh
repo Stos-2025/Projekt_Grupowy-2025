@@ -1,10 +1,10 @@
 #!/bin/ash
 
-cp -r /data/in /tmp
+cp "${INPUT}/"* /tmp/in
 
 g++ -Wall -o /tmp/out/program /tmp/in/*.cpp 2> /tmp/out/comp.stderr.txt
 exit_code=$?
 
-cp /tmp/out/* /data/out
+cp /tmp/out/* $OUTPUT
 
 exit $exit_code
