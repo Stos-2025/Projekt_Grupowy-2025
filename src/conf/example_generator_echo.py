@@ -27,7 +27,7 @@ for i in range(20):
     print(n)
 
     with open(in_file_name, 'a') as file:
-        file.write(f"{n}\n")
+        file.write(f"{n}\n") 
 
     with open(out_file_name, 'w') as file:
         for j in range(n):

@@ -19,7 +19,6 @@ def run_program(name: str):
     )
     judge_process.wait()
     program_process.stdout.close()
-    program_process.kill()
     program_process.wait()
     
     logger.info("program returned code: " + str(program_process.returncode))
