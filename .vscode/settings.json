@@ -1,8 +1,0 @@
-{
-    "files.associations": {
-        "*.tpl": "html",
-        "*.mdx": "sql",
-        "iostream": "cpp",
-        "ostream": "cpp"
-    }
-}
