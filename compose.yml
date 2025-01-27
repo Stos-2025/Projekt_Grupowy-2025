@@ -26,7 +26,8 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
       WORKER_SHARED_VOLUME: projektgrupowy_volume0
-  # master1:
+  
+      # master1:
   #   image: master
   #   ports:
   #     - 5001:5001

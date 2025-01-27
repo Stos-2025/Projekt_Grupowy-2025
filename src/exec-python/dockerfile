@@ -1,21 +1,23 @@
 FROM alpine:3.20
 
+WORKDIR /app
+
 ARG LOGS=on
-ENV LOGS=$LOGS
 
 RUN apk add --no-cache python3
-
 RUN addgroup -S execgroup
 RUN adduser -S execuser -G execgroup
+
 USER execuser
 
-WORKDIR /app
+RUN mkdir /tmp/in
+RUN mkdir /tmp/out
+
 COPY exec.py .
 COPY main.py .
 COPY judge.py .
-RUN mkdir /tmp/out
-RUN mkdir /tmp/in
 
+ENV LOGS=$LOGS
 ENV INPUT=/data/in
 ENV OUTPUT=/data/out
 

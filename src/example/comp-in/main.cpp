@@ -10,6 +10,8 @@ int main() {
     cin >> n;
     for(int i = 0; i < n; i++) {
         cin >> a;
+        if(i>212332)
+            sum++;
         sum = add(sum, a);
     }
     cout << sum << endl;

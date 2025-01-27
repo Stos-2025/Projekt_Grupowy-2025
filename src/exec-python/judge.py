@@ -2,10 +2,13 @@
 import sys
 import logging
 import os
+import json
 
 logger = logging.getLogger("JUDGE")
+info = "ok"
 
 def check_answer(answer_file: str) -> bool:
+    global info
     line_nr = 0
     with open(answer_file, "r") as file:
         for line in file:
@@ -14,11 +17,13 @@ def check_answer(answer_file: str) -> bool:
             try:
                 program_output_line = input()
             except EOFError:
-                logger.info(f"unexpected EOF in line {line_nr}")
+                info = f"unexpected EOF in line {line_nr}"
+                logger.info(info)
                 return False
             
             if line.strip() != program_output_line.strip():
-                logger.info(f"line {line_nr} is not correct")
+                info = f"line {line_nr} is not correct"
+                logger.info(info)
                 return False
     return True
 
@@ -31,9 +36,15 @@ def main():
     )
     logger.info(f"test {name} is starting")
     answer_file=f"/tmp/in/{name}.out"
-    code = 0 if check_answer(answer_file) else 1
-    logger.info(f"test {name} was successfully tested with return code {code}")
-    exit(code)
+    
+    output = {}
+    output["grade"] = 1 if check_answer(answer_file) else 0
+    output["info"] = info
+    
+    with open(f"/tmp/out/{name}.judge.json", "w") as judge_file:
+        json.dump(output, judge_file)
+
+    logger.info(f"test {name} was successfully tested")
 
 if __name__ == "__main__":
     main()
