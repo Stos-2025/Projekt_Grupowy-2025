@@ -4,3 +4,4 @@
 *.resource.json
 *.exec.json
 *.judge.json
+*.pyc
