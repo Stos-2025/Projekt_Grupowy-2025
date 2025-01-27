@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 exec_out_path = "src/example/exec-out"
 
 times = []
-n = 3
+n = 25
 
 for i in range(n):
     run_example(False, False, False)

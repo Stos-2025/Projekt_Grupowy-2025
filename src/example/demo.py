@@ -27,9 +27,9 @@ def print_resoults(path: str):
     print("| "+f"points: {points}".center(15)+" |")
     print("+----+------+-----+")
 
-def run_example(build: bool = False, compile: bool=True, logs: bool=False):
-    build = True
-    # logs = True
+def run_example(build: bool = True, compile: bool=True, logs: bool=True):
+    # build = False
+    # logs = False
     exmp_path = r"./src/example"
     comp_path = r"./src/compilers/cpp-compiler"
     exec_path = r"./src/exec-python"
