@@ -23,8 +23,8 @@ for i in range(20):
     
     in_test_data = ""
     out_test_data = ""
-    # n = 1000000//(20-i)
-    n = round(2**i)
+    n = 20000000//(20-i)
+    # n = round(2**i)
     print(n)
 
     with open(in_file_name, 'a') as file:
