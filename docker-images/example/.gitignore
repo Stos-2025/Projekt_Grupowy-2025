@@ -1,0 +1,4 @@
+*.out
+*.in
+*.stderr.txt
+*.resource.json
