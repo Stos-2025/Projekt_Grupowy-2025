@@ -1,9 +1,7 @@
-import subprocess
 import sys
 import os
 import logging
 import time
-import json
 import judge
 
 logger = logging.getLogger("JUDGE")
@@ -21,8 +19,7 @@ def main():
     
     for file in os.listdir(os.getenv('IN')):
         if file.endswith('.out'):
-            program_process = subprocess.Popen(["python", "judge.py", file.split('.')[0]])
-            program_process.wait()
+            judge.check(file.split('.')[0])
     
     # subprocess.run(f"cp /tmp/out/* {os.getenv('OUT')}", shell=True)
     

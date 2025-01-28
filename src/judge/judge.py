@@ -1,10 +1,6 @@
-#example python judge script
-import sys
-import logging
-import os
 import json
+import os
 from typing import Tuple
-
 
 def check_answer(answer_path: str, input_path: str) -> Tuple[bool, str]:
     info = "ok"
@@ -25,8 +21,7 @@ def check_answer(answer_path: str, input_path: str) -> Tuple[bool, str]:
         #probably the output can be longer than the answer but its only example 
     return (True, info)
 
-def main():          
-    name = sys.argv[1]
+def check(name: str):          
     answer_path = os.getenv('ANS')+f"/{name}.out"
     input_path = os.getenv('IN')+f"/{name}.stdout.out"
 
@@ -37,7 +32,4 @@ def main():
     
     with open(f"{os.getenv('OUT')}/{name}.judge.json", "w") as judge_file:
         json.dump(output, judge_file)
-
-
-if __name__ == "__main__":
-    main()
+        
