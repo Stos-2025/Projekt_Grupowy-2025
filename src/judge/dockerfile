@@ -1,0 +1,24 @@
+FROM alpine:3.20
+
+WORKDIR /app
+
+ARG LOGS=on
+
+RUN apk add --no-cache python3
+RUN addgroup -S execgroup
+RUN adduser -S execuser -G execgroup
+
+USER execuser
+
+RUN mkdir /tmp/in
+RUN mkdir /tmp/out
+
+COPY judge.py .
+COPY main.py .
+
+ENV LOGS=$LOGS
+ENV IN=/data/in
+ENV ANS=/data/answer
+ENV OUT=/data/out
+
+ENTRYPOINT ["python3", "-u", "main.py"]
