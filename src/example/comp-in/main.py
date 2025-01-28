@@ -1,6 +1,6 @@
 from add import sum
 
-def main():
+def tsum():
     n = int(input())
     total = 0
     for _ in range(n):
@@ -8,5 +8,10 @@ def main():
         total = sum(total, number)
     print(total)
 
+def echo():
+    n = int(input())
+    for _ in range(n):
+        print("1")
+
 if __name__ == "__main__":
-    main()
+    tsum()

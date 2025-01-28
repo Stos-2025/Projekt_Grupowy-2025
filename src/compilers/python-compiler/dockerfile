@@ -1,20 +1,21 @@
-FROM alipne:3.20
+FROM alpine:3.20
 
 WORKDIR /app
 
-RUN apk update && apk add --no-cache build-base musl-dev libffi-dev
-RUN pip install pyinstaller 
+RUN apk update && apk add --no-cache build-base musl-dev libffi-dev python3 py3-pip
+RUN pip install --break-system-packages pyinstaller 
 
 RUN addgroup -S compgroup
 RUN adduser -S compuser -G compgroup
+RUN chown -R compuser:compgroup /app
 USER compuser
 
+
 COPY comp.sh .
-RUN chmod +x comp.sh
 RUN mkdir /tmp/out
 RUN mkdir /tmp/in
 
-ENV INPUT=/data/in
-ENV OUTPUT=/data/out
+ENV IN=/data/in
+ENV OUT=/data/out
 
 ENTRYPOINT ["./comp.sh"]

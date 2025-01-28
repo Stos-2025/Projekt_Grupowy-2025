@@ -11,8 +11,8 @@ COPY comp.sh .
 RUN mkdir /tmp/out
 RUN mkdir /tmp/in
 
-ENV INPUT=/data/in
-ENV OUTPUT=/data/out
+ENV IN=/data/in
+ENV OUT=/data/out
 
 
 ENTRYPOINT ["./comp.sh"]

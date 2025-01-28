@@ -13,12 +13,12 @@ USER execuser
 RUN mkdir /tmp/in
 RUN mkdir /tmp/out
 
-COPY exec.py .
+COPY judge.py .
 COPY main.py .
 
 ENV LOGS=$LOGS
 ENV IN=/data/in
-ENV BIN=/data/bin
+ENV ANS=/data/answer
 ENV OUT=/data/out
 
 ENTRYPOINT ["python3", "-u", "main.py"]

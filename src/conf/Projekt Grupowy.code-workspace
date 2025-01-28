@@ -4,5 +4,11 @@
 			"path": "../.."
 		}
 	],
-	"settings": {}
+	"settings": {
+		"files.associations": {
+			"*.tpl": "html",
+			"*.mdx": "sql",
+			"iostream": "cpp"
+		}
+	}
 }

@@ -20,7 +20,7 @@ def print_resoults(path: str):
                 color = 65
             if exec["return_code"]!=0:
                 color = 173
-            print(f'|\033[48;5;{color}m\033[38;5;232m {j+1:>2} | {exec["user_time"]:.2f} | {exec["return_code"]:>3} \033[0m|', end=" ")
+            print(f'|\033[48;5;{color}m\033[38;5;232m {j:>2} | {exec["user_time"]:.2f} | {exec["return_code"]:>3} \033[0m|', end=" ")
             print(judge["info"])
     
     print("+----+------+-----+")
@@ -32,7 +32,9 @@ def run_example(build: bool = True, compile: bool=True, logs: bool=True):
     # logs = False
     exmp_path = r"./src/example"
     comp_path = r"./src/compilers/cpp-compiler"
+    # comp_path = r"./src/compilers/python-compiler"
     exec_path = r"./src/exec-python"
+    judge_path = r"./src/judge"
 
     exec_in = exmp_path+"/exec-in"
     exec_out = exmp_path+"/exec-out"
@@ -60,8 +62,23 @@ def run_example(build: bool = True, compile: bool=True, logs: bool=True):
         "-e",
         f"LOGS={'on' if logs else 'off'}",
         "-v", f"{exec_in}:/data/in:ro",
+        "-v", f"{comp_out}:/data/bin:ro",
         "-v", f"{exec_out}:/data/out",
         "exec"
+    ]
+    run_judge_command = [
+        "docker", "run", 
+        "--rm",
+        # "--cpus=0.5",
+        "--ulimit", "cpu=30:30",
+        "--network", "none",
+        "--security-opt", "no-new-privileges",
+        "-e",
+        f"LOGS={'on' if logs else 'off'}",
+        "-v", f"{exec_out}:/data/in:ro",
+        "-v", f"{exec_out}:/data/out",
+        "-v", f"{exec_in}:/data/answer:ro",
+        "judge"
     ]
 
 
@@ -69,6 +86,7 @@ def run_example(build: bool = True, compile: bool=True, logs: bool=True):
     
     if build:
         subprocess.run(["docker", "build", "--build-arg", f"LOGS={'on' if logs else 'off'}", "-t", "exec", exec_path], check=True)
+        subprocess.run(["docker", "build", "--build-arg", f"LOGS={'on' if logs else 'off'}", "-t", "judge", judge_path], check=True)
         subprocess.run(["docker", "build", "-t", "comp", comp_path], check=True)
 
 
@@ -84,7 +102,6 @@ def run_example(build: bool = True, compile: bool=True, logs: bool=True):
             return 1
 
         print(f">Compilation time: {round(time.time() - start_time, 2)}")
-        shutil.copy(comp_out+"/program", exec_in) 
 
 
 
@@ -100,6 +117,18 @@ def run_example(build: bool = True, compile: bool=True, logs: bool=True):
     
     print(f">Execution time: {round(time.time() - start_time, 2)}")
 
+
+    #judging
+
+    start_time = time.time()
+    
+    try:
+        subprocess.run(run_judge_command, check=True)
+    except Exception as e:
+        print(e)
+        return 1
+    
+    print(f">Judge time: {round(time.time() - start_time, 2)}")
 
     #printing resoults
     

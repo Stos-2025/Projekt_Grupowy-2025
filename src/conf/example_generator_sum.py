@@ -23,7 +23,8 @@ for i in range(20):
     
     in_test_data = ""
     out_test_data = ""
-    n = int(2.3**i)
+    # n = 1000000//(20-i)
+    n = round(2**i)
     print(n)
 
     with open(in_file_name, 'a') as file:
@@ -33,7 +34,7 @@ for i in range(20):
 
     out_test_data += f"{n}\n"
     with open(out_file_name, 'w') as file:
-        file.write(out_test_data)
+        file.write(out_test_data if i != 10 else "67")
     
     os.chmod(in_file_name, 0o777)
     os.chmod(out_file_name, 0o777)
