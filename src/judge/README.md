@@ -22,6 +22,6 @@ docker build -t judge .
 
 ## Środowisko uruchomieniowe
 
-System: Alpine Linux 3.20
+- System: Alpine Linux 3.20
 
-Język: Python 3
+- Język: Python 3
