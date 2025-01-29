@@ -20,7 +20,7 @@ docker build -t judge .
 
 2. Uruchomić kontener, montując odpowiednie katalogi.
 
-Środowisko uruchomieniowe
+Środowisko uruchomieniowe:
 
 System: Alpine Linux 3.20
 
