@@ -21,5 +21,7 @@ docker build -t judge .
 2. Uruchomić kontener, montując odpowiednie katalogi.
 
 Środowisko uruchomieniowe
+
 System: Alpine Linux 3.20
+
 Język: Python 3
