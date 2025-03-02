@@ -66,7 +66,7 @@ def run_example(build: bool = True, compile: bool=True, logs: bool=True):
         "-v", f"{exec_out}:/data/out",
         "exec"
     ]
-    run_judge_command = [
+    run_judge_command = [  
         "docker", "run", 
         "--rm",
         # "--cpus=0.5",
