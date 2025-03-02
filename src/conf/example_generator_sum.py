@@ -23,7 +23,8 @@ for i in range(20):
     
     in_test_data = ""
     out_test_data = ""
-    n = 20000000//(20-i)
+    # n = 20000000//(20-i)
+    n = i*1000000
     # n = round(2**i)
     print(n)
 

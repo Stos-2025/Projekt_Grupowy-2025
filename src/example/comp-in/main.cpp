@@ -24,6 +24,9 @@ void sum(){
 
 int main() {
     int neverUsed;
+    int tab[] = {1, 2, 3};
+    tab[3]=2;
+    neverUsed++;
     // echo();
     sum();
     return 0;
