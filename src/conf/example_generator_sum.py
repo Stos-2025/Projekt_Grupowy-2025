@@ -16,16 +16,18 @@ os.makedirs(exec_out_path)
 if os.path.exists(exec_in_path):
     shutil.rmtree(exec_in_path)
 os.makedirs(exec_in_path)
+os.makedirs(exec_in_path+"in")
+os.makedirs(exec_in_path+"out")
 
 for i in range(20):
-    in_file_name = f"{exec_in_path}{i}.in"
-    out_file_name = f"{exec_in_path}{i}.out"
+    in_file_name = f"{exec_in_path}in/{i}.in"
+    out_file_name = f"{exec_in_path}out/{i}.out"
     
     in_test_data = ""
     out_test_data = ""
     # n = 20000000//(20-i)
-    n = i*1000000
-    # n = round(2**i)
+    # n = i*1000000
+    n = round(2.3**i)
     print(n)
 
     with open(in_file_name, 'a') as file:

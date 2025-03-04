@@ -8,11 +8,14 @@ USER compuser
 
 WORKDIR /app
 COPY comp.sh .
-RUN mkdir /tmp/out
-RUN mkdir /tmp/in
 
-ENV IN=/data/in
+RUN mkdir /tmp/src
+RUN mkdir /tmp/out
+RUN mkdir /tmp/bin
+
+ENV SRC=/data/in
 ENV OUT=/data/out
+ENV BIN=/data/out
 
 
 ENTRYPOINT ["./comp.sh"]

@@ -10,9 +10,9 @@ name = sys.argv[1]
 binary_path = f"{os.getenv('BIN')}/program"
 input_path=f"{os.getenv('IN')}/{name}.in"
 
-output_path=f"{os.getenv('OUT')}/{name}.stdout.out"
+output_path=f"{os.getenv('STD')}/{name}.stdout.out"
 # output_path=f"/tmp/out/{name}.stdout.out"
-error_path=f"{os.getenv('OUT')}/{name}.stderr.out"
+error_path=f"{os.getenv('STD')}/{name}.stderr.out"
 # error_path=f"/tmp/out/{name}.stderr.out"
 exec_path=f"{os.getenv('OUT')}/{name}.exec.json"
 # exec_path=f"/tmp/out/{name}.exec.json"

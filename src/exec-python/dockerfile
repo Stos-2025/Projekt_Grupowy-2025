@@ -20,5 +20,6 @@ ENV LOGS=$LOGS
 ENV IN=/data/in
 ENV BIN=/data/bin
 ENV OUT=/data/out
+ENV STD=/data/out
 
 ENTRYPOINT ["python3", "-u", "main.py"]
