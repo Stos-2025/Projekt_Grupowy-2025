@@ -19,7 +19,7 @@ os.makedirs(exec_in_path)
 os.makedirs(exec_in_path+"in")
 os.makedirs(exec_in_path+"out")
 
-for i in range(20):
+for i in range(22):
     in_file_name = f"{exec_in_path}in/{i}.in"
     out_file_name = f"{exec_in_path}out/{i}.out"
     

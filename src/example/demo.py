@@ -1,17 +1,23 @@
 import subprocess
-import shutil
+import os
 import time
 import json
+from typing import Tuple
 
-def print_resoults(path: str):
-
-    print("+----+------+-----+")
-    print("| nr | time | ret |")
-    print("+----+------+-----+")
-
+def print_resoults(path: str) -> Tuple[int, str]:
+    ret = ""
+    ret += "+----+------+-----+\n"
+    ret += "| nr | time | ret |\n"
+    ret += "+----+------+-----+\n"
     points = 0
-    for j in range(20):
-        with open(f"{path}/{j}.exec.json", "r") as exec_file, open(f"{path}/{j}.judge.json", "r") as judge_file:
+
+    tests = []
+    for file in os.listdir("./src/example/exec-out"):
+        if file.endswith('.judge.json'):
+            tests.append(int(file.split('.')[0]))
+    tests.sort()
+    for test in tests:
+        with open(f"{path}/{test}.exec.json", "r") as exec_file, open(f"{path}/{test}.judge.json", "r") as judge_file:
             exec = json.load(exec_file)
             judge = json.load(judge_file)
             color = 131 
@@ -20,12 +26,11 @@ def print_resoults(path: str):
                 color = 65
             if exec["return_code"]!=0:
                 color = 173
-            print(f'|\033[48;5;{color}m\033[38;5;232m {j:>2} | {exec["user_time"]:.2f} | {exec["return_code"]:>3} \033[0m|', end=" ")
-            print(judge["info"])
-    
-    print("+----+------+-----+")
-    print("| "+f"points: {points}".center(15)+" |")
-    print("+----+------+-----+")
+            ret += f'|\033[48;5;{color}m\033[38;5;232m {test:>2} | {exec["user_time"]:.2f} | {exec["return_code"]:>3} \033[0m| {judge["info"]}\n'
+    ret += "+----+------+-----+\n"
+    ret += "| "+f"points: {points}".center(15)+" |\n"
+    ret += "+----+------+-----+"
+    return points, ret
 
 def run_example(build: bool = True, compile: bool=True, logs: bool=True):
     # build = False
@@ -132,7 +137,8 @@ def run_example(build: bool = True, compile: bool=True, logs: bool=True):
 
     #printing resoults
     
-    print_resoults(exec_out)
+    points, result = print_resoults(exec_out)
+    print(result)
 
 
 if __name__ == "__main__":
