@@ -1,10 +1,11 @@
 #!/bin/ash
 
-cp "${IN}/"* /tmp/in
+cp "${SRC}/"* /tmp/src
 
-g++ -Wall -o /tmp/out/program /tmp/in/*.cpp 2> /tmp/out/comp.stderr.txt
+g++ -Wall -o /tmp/bin/program /tmp/src/*.cpp 2> /tmp/out/comp.txt
 exit_code=$?
 
-cp /tmp/out/* $OUT
+cp -u /tmp/out/* "${OUT}"
+cp /tmp/bin/* "${BIN}"
 
 exit $exit_code

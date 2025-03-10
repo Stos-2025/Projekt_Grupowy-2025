@@ -61,7 +61,7 @@ def run_example(build: bool = True, compile: bool=True, logs: bool=True):
         "--security-opt", "no-new-privileges",
         "-e",
         f"LOGS={'on' if logs else 'off'}",
-        "-v", f"{exec_in}:/data/in:ro",
+        "-v", f"{exec_in}/in:/data/in:ro",
         "-v", f"{comp_out}:/data/bin:ro",
         "-v", f"{exec_out}:/data/out",
         "exec"
@@ -77,7 +77,7 @@ def run_example(build: bool = True, compile: bool=True, logs: bool=True):
         f"LOGS={'on' if logs else 'off'}",
         "-v", f"{exec_out}:/data/in:ro",
         "-v", f"{exec_out}:/data/out",
-        "-v", f"{exec_in}:/data/answer:ro",
+        "-v", f"{exec_in}/out:/data/answer:ro",
         "judge"
     ]
 
