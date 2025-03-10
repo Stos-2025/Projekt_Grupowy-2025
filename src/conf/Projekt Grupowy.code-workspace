@@ -2,6 +2,9 @@
 	"folders": [
 		{
 			"path": "../.."
+		},
+		{
+			"path": "../../../Projekt_Inzynierski-2025"
 		}
 	],
 	"settings": {
