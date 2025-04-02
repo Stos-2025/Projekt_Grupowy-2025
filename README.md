@@ -1,5 +1,7 @@
 # Projekt grupowy 2024/2025
 
+> [!IMPORTANT]
+> Work is still in progress. Things can change.
 
 ## Simplified process flowchart
 
