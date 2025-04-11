@@ -10,7 +10,7 @@ flowchart
   compiler
   exec
   judge
-  src[(sourceCode)]
+  src[(source-code)]
   testin[(test-in)]
   testout[(test-out)]
 
