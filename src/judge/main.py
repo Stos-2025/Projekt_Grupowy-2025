@@ -7,6 +7,7 @@ import judge
 logger = logging.getLogger("JUDGE")
 
 def main():
+    os.umask(0)
     #logging
     logging.basicConfig(
         level=logging.DEBUG if os.environ.get("LOGS")=="on" else logging.ERROR,

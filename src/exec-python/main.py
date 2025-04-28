@@ -13,6 +13,7 @@ def run_program(name: str):
     logger.info(f"test {name:>3} real time:  {round(time.time() - start_time2, 2):.2f}")
 
 def main():
+    os.umask(0)
     start_time = time.time()
     
     #logging
