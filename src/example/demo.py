@@ -53,6 +53,8 @@ def run_example(build: bool = True, compile: bool=True, logs: bool=True):
         "--ulimit", "cpu=30:30",
         "--network", "none",
         "--security-opt", "no-new-privileges",
+        "-e",
+        "BIN=/data/out",
         "-v", f"{comp_in}:/data/in:ro",
         "-v", f"{comp_out}:/data/out",
         "comp"

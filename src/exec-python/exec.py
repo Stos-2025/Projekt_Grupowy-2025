@@ -32,5 +32,6 @@ with open(input_path, "r") as input_file, open(error_path, "w") as error_file, o
     meta = {}
     resources = resource.getrusage(resource.RUSAGE_CHILDREN)
     meta["return_code"] = program_process.returncode
-    meta["user_time"] =  round(resources.ru_utime, 2)
+    meta["user_time"] =  round(resources.ru_utime, 10)
+    meta["memory"] =  round(resources.ru_maxrss, 10)
     json.dump(meta, exec_file)

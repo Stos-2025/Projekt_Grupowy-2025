@@ -1,13 +1,13 @@
 FROM alpine:3.20
 
-RUN apk add --no-cache build-base
+RUN apk add --no-cache build-base python3
 
-RUN addgroup -S compgroup
-RUN adduser -S compuser -G compgroup
-USER compuser
+RUN addgroup -S stos
+RUN adduser -S stos -G stos
+USER stos
 
 WORKDIR /app
-COPY comp.sh .
+COPY main.py .
 
 RUN mkdir /tmp/src
 RUN mkdir /tmp/out
@@ -15,7 +15,7 @@ RUN mkdir /tmp/bin
 
 ENV SRC=/data/in
 ENV OUT=/data/out
-ENV BIN=/data/out
+ENV BIN=/data/bin
 
 
-ENTRYPOINT ["./comp.sh"]
+ENTRYPOINT ["python3", "-u", "main.py"]
