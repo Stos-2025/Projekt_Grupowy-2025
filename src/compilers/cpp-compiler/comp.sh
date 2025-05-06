@@ -8,3 +8,4 @@ exit_code=$?
 cp -u /tmp/out/* "${OUT}"
 cp /tmp/bin/* "${BIN}"
 
+exit $exit_code
