@@ -4,6 +4,8 @@ import subprocess
 import os
 import time
 import json
+import dotenv
+import argparse
 from typing import Tuple
 
 def print_resoults(path: str) -> Tuple[int, str]:
@@ -34,12 +36,15 @@ def print_resoults(path: str) -> Tuple[int, str]:
     ret += "+----+------+-----+"
     return points, ret
 
-def run_example(build: bool = True, compile: bool=True, logs: bool=True):
+def run_example(build: bool = True, compile: bool=True, logs: bool=True, push: bool=False) -> int:
+    exec_image = os.getenv(r"EXEC_IMAGE_NAME") or "exec"
+    gpp_comp_image = os.getenv(r"COMP_IMAGE_NAME") or "comp"
+    judge_image = os.getenv(r"JUDGE_IMAGE_NAME") or "judge"
+    
     # build = False
     # logs = False
     exmp_path = r"./src/example"
-    comp_path = r"./src/compilers/cpp-compiler"
-    # comp_path = r"./src/compilers/python-compiler"
+    gpp_comp_path = r"./src/compilers/cpp-compiler"
     exec_path = r"./src/exec-python"
     judge_path = r"./src/judge"
 
@@ -59,7 +64,7 @@ def run_example(build: bool = True, compile: bool=True, logs: bool=True):
         "BIN=/data/out",
         "-v", f"{comp_in}:/data/in:ro",
         "-v", f"{comp_out}:/data/out",
-        "comp"
+        gpp_comp_image
     ]
     run_exec_command = [
         "docker", "run", 
@@ -73,7 +78,7 @@ def run_example(build: bool = True, compile: bool=True, logs: bool=True):
         "-v", f"{exec_in}/in:/data/in:ro",
         "-v", f"{comp_out}:/data/bin:ro",
         "-v", f"{exec_out}:/data/out",
-        "exec"
+        exec_image
     ]
     run_judge_command = [  
         "docker", "run", 
@@ -87,16 +92,58 @@ def run_example(build: bool = True, compile: bool=True, logs: bool=True):
         "-v", f"{exec_out}:/data/in:ro",
         "-v", f"{exec_out}:/data/out",
         "-v", f"{exec_in}/out:/data/answer:ro",
-        "judge"
+        judge_image
     ]
 
 
-    #building
+    #building for arm64 and x86_64
+    #docker buildx build --platform linux/amd64,linux/arm64 -t d4m14n/stos:cli-1.0.0 .
     
     if build:
-        subprocess.run(["docker", "build", "--build-arg", f"LOGS={'on' if logs else 'off'}", "-t", "exec", exec_path], check=True)
-        subprocess.run(["docker", "build", "--build-arg", f"LOGS={'on' if logs else 'off'}", "-t", "judge", judge_path], check=True)
-        subprocess.run(["docker", "build", "-t", "comp", comp_path], check=True)
+        subprocess.run(["docker", "build", "--build-arg", f"LOGS={'on' if logs else 'off'}", "-t", exec_image, exec_path], check=True)
+        subprocess.run(["docker", "build", "--build-arg", f"LOGS={'on' if logs else 'off'}", "-t", judge_image, judge_path], check=True)
+        subprocess.run(["docker", "build", "-t", gpp_comp_image, gpp_comp_path], check=True)
+
+
+    #pushing
+
+    if push:
+        platforms = "linux/amd64,linux/arm64"
+            # print("Creating a buildx builder with multiarch support...")
+            # subprocess.run(["docker", "buildx", "create", "--name", "multiarch-builder", "--use"], check=True)
+            # # Initializing the builder and enabling QEMU support
+            # print("Initializing the builder...")
+            # subprocess.run(["docker", "buildx", "inspect", "--bootstrap"], check=True)
+            # # Verifying available builders
+            # print("Verifying buildx:")
+            # subprocess.run(["docker", "buildx", "ls"], check=True)
+    
+        subprocess.run(["docker", "login"], check=True)
+        subprocess.run([
+            "docker", "buildx", "build",
+            "--platform", platforms,
+            "--build-arg", f"LOGS={'on' if logs else 'off'}",
+            "-t", exec_image,
+            exec_path,
+            "--push"
+        ], check=True)
+
+        subprocess.run([
+            "docker", "buildx", "build",
+            "--platform", platforms,
+            "--build-arg", f"LOGS={'on' if logs else 'off'}",
+            "-t", judge_image,
+            judge_path,
+            "--push"
+        ], check=True)
+
+        subprocess.run([
+            "docker", "buildx", "build",
+            "--platform", platforms,
+            "-t", gpp_comp_image,
+            gpp_comp_path,
+            "--push"
+        ], check=True)
 
 
     #compiling
@@ -114,7 +161,7 @@ def run_example(build: bool = True, compile: bool=True, logs: bool=True):
 
 
 
-    #running
+    #executing
     
     start_time = time.time()
     
@@ -146,7 +193,17 @@ def run_example(build: bool = True, compile: bool=True, logs: bool=True):
 
 
 if __name__ == "__main__":
+    #set working directory
     file_dir = os.path.dirname( os.path.abspath(__file__) )
     os.chdir(f"{file_dir}/../..")
-    os.system("ls")
-    run_example()
+    #load .env
+    dotenv.load_dotenv(dotenv_path="./src/conf/.env")
+    #parse args
+    parser = argparse.ArgumentParser(description="Run example")
+    parser.add_argument("-b", "--build", action="store_true", default=False, help="Build the docker images")
+    parser.add_argument("-l", "--logs", action="store_true", default=False, help="Enable logs")
+    parser.add_argument("-p", "--push", action="store_true", default=False, help="Push the docker images")
+    parser.add_argument("--no-compile", action="store_true", default=True, help="Disable compiling the code")
+    args = parser.parse_args()
+
+    run_example(build=args.build, compile=args.no_compile, logs=args.logs, push=args.push)
