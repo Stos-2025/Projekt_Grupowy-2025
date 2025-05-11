@@ -5,3 +5,5 @@
 *.exec.json
 *.judge.json
 *.pyc
+exec-out/*
+comp-out/*
