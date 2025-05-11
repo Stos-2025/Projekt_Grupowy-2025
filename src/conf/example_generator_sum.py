@@ -1,5 +1,10 @@
+#!/usr/bin/env python3
+
 import os
 import shutil
+
+file_dir = os.path.dirname( os.path.abspath(__file__) )
+os.chdir(f"{file_dir}/../..")
 
 exec_in_path = "src/example/exec-in/"
 comp_out_path = "src/example/comp-out"
