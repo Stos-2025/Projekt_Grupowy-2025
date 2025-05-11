@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import subprocess
 import os
 import time
@@ -144,4 +146,7 @@ def run_example(build: bool = True, compile: bool=True, logs: bool=True):
 
 
 if __name__ == "__main__":
+    file_dir = os.path.dirname( os.path.abspath(__file__) )
+    os.chdir(f"{file_dir}/../..")
+    os.system("ls")
     run_example()
