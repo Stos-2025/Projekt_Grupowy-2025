@@ -38,13 +38,13 @@ def print_resoults(path: str) -> Tuple[int, str]:
 
 def run_example(build: bool = True, compile: bool=True, logs: bool=True, push: bool=False) -> int:
     exec_image = os.getenv(r"EXEC_IMAGE_NAME") or "exec"
-    gpp_comp_image = os.getenv(r"COMP_IMAGE_NAME") or "comp"
+    comp_image = os.getenv(r"COMP_IMAGE_NAME") or "comp"
     judge_image = os.getenv(r"JUDGE_IMAGE_NAME") or "judge"
     
     # build = False
     # logs = False
     exmp_path = r"./src/example"
-    gpp_comp_path = r"./src/compilers/cpp-compiler"
+    comp_path = r"./src/compilers/cpp-compiler"
     exec_path = r"./src/exec-python"
     judge_path = r"./src/judge"
 
@@ -64,7 +64,7 @@ def run_example(build: bool = True, compile: bool=True, logs: bool=True, push: b
         "BIN=/data/out",
         "-v", f"{comp_in}:/data/in:ro",
         "-v", f"{comp_out}:/data/out",
-        gpp_comp_image
+        comp_image
     ]
     run_exec_command = [
         "docker", "run", 
@@ -102,7 +102,7 @@ def run_example(build: bool = True, compile: bool=True, logs: bool=True, push: b
     if build:
         subprocess.run(["docker", "build", "--build-arg", f"LOGS={'on' if logs else 'off'}", "-t", exec_image, exec_path], check=True)
         subprocess.run(["docker", "build", "--build-arg", f"LOGS={'on' if logs else 'off'}", "-t", judge_image, judge_path], check=True)
-        subprocess.run(["docker", "build", "-t", gpp_comp_image, gpp_comp_path], check=True)
+        subprocess.run(["docker", "build", "-t", comp_image, comp_path], check=True)
 
 
     #pushing
@@ -140,8 +140,8 @@ def run_example(build: bool = True, compile: bool=True, logs: bool=True, push: b
         subprocess.run([
             "docker", "buildx", "build",
             "--platform", platforms,
-            "-t", gpp_comp_image,
-            gpp_comp_path,
+            "-t", comp_image,
+            comp_path,
             "--push"
         ], check=True)
 
