@@ -48,4 +48,4 @@ with open(input_path, "r") as input_file, open(error_path, "w") as error_file, o
         # meta["page_faults"] = resources.ru_majflt + resources.ru_minflt
         # meta["voluntary_context_switches"] = resources.ru_nvcsw
         # meta["involuntary_context_switches"] = resources.ru_nivcsw
-    json.dump(meta, exec_file)
+        json.dump(meta, exec_file)
