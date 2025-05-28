@@ -1,20 +1,25 @@
+#!/usr/bin/env python3
+
 import json
 import os
 import shutil
 import subprocess
 import sys
 
-SRC = os.getenv("SRC")
-OUT = os.getenv("OUT")
-BIN = os.getenv("BIN")
-SRC_TMP = "/tmp/src"
-BIN_TMP = "/tmp/bin"
-OUT_TMP = "/tmp/out"
-DIAGNOSTIC_FILE = f"{OUT}/comp.txt"
-OUT_FILE = f"{OUT}/comp.json"
+SRC: str = os.environ["SRC"]
+OUT: str = os.environ["OUT"]
+BIN: str = os.environ["BIN"]
+
+SRC_TMP: str = "/tmp/src"
+BIN_TMP: str = "/tmp/bin"
+OUT_TMP: str = "/tmp/out"
+DIAGNOSTIC_FILE: str = f"{OUT}/comp.txt"
+OUT_FILE: str = f"{OUT}/comp.json"
 
 def copy_src_files():
     os.makedirs(SRC_TMP, exist_ok=True)
+    if not os.listdir(SRC):
+        raise FileNotFoundError(f"No source provided")
     for file_name in os.listdir(SRC):
         full_file_name = os.path.join(SRC, file_name)
         if os.path.isfile(full_file_name):
@@ -38,9 +43,22 @@ def copy_out_files():
         if os.path.isfile(full_file_name):
             shutil.copy(full_file_name, BIN)
 
-
 if __name__ == "__main__":
     os.umask(0)
-    copy_src_files()
-    compile()
-    copy_out_files()
+    try:
+        copy_src_files()
+    except Exception as e:
+        print(f"Error occurred while copying source files: {e}", file=sys.stderr)
+        sys.exit(1)
+
+    try:
+        compile()
+    except Exception as e:
+        print(f"Error occurred while compiling: {e}", file=sys.stderr)
+        sys.exit(1)
+
+    try:
+        copy_out_files()
+    except Exception as e:
+        print(f"Error occurred while copying output files: {e}", file=sys.stderr)
+        sys.exit(1)

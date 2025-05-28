@@ -36,7 +36,7 @@ def print_resoults(path: str) -> Tuple[int, str]:
     ret += "+----+------+-----+"
     return points, ret
 
-def run_example(build: bool = True, compile: bool=True, logs: bool=True, push: bool=False) -> int:
+def run_example(build: bool = True, compile: bool=True, logs: bool=True, push: bool=False) -> None:
     exec_image = os.getenv(r"EXEC_IMAGE_NAME") or "exec"
     comp_image = os.getenv(r"COMP_IMAGE_NAME") or "comp"
     judge_image = os.getenv(r"JUDGE_IMAGE_NAME") or "judge"
@@ -155,7 +155,7 @@ def run_example(build: bool = True, compile: bool=True, logs: bool=True, push: b
             subprocess.run(run_comp_command, check=True)
         except Exception as e:
             print(e)
-            return 1
+            return
 
         print(f">Compilation time: {round(time.time() - start_time, 2)}")
 
@@ -169,7 +169,7 @@ def run_example(build: bool = True, compile: bool=True, logs: bool=True, push: b
         subprocess.run(run_exec_command, check=True)
     except Exception as e:
         print(e)
-        return 1
+        return
     
     print(f">Execution time: {round(time.time() - start_time, 2)}")
 
@@ -182,8 +182,8 @@ def run_example(build: bool = True, compile: bool=True, logs: bool=True, push: b
         subprocess.run(run_judge_command, check=True)
     except Exception as e:
         print(e)
-        return 1
-    
+        return
+
     print(f">Judge time: {round(time.time() - start_time, 2)}")
 
     #printing resoults
@@ -203,7 +203,7 @@ if __name__ == "__main__":
     parser.add_argument("-b", "--build", action="store_true", default=False, help="Build the docker images")
     parser.add_argument("-l", "--logs", action="store_true", default=False, help="Enable logs")
     parser.add_argument("-p", "--push", action="store_true", default=False, help="Push the docker images")
-    parser.add_argument("--no-compile", action="store_true", default=True, help="Disable compiling the code")
+    parser.add_argument("--no-compile", action="store_false", default=True, help="Disable compiling the code")
     args = parser.parse_args()
 
     run_example(build=args.build, compile=args.no_compile, logs=args.logs, push=args.push)
