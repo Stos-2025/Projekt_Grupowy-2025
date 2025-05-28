@@ -17,5 +17,4 @@ ENV SRC=/data/in
 ENV OUT=/data/out
 ENV BIN=/data/bin
 
-
-ENTRYPOINT ["python3", "-u", "main.py"]
+ENTRYPOINT ["./main.py"]

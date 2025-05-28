@@ -9,6 +9,7 @@ import sys
 SRC: str = os.environ["SRC"]
 OUT: str = os.environ["OUT"]
 BIN: str = os.environ["BIN"]
+MAINFILE: str = os.environ["MAINFILE"]
 
 SRC_TMP: str = "/tmp/src"
 BIN_TMP: str = "/tmp/bin"
@@ -26,7 +27,7 @@ def copy_src_files():
             shutil.copy(full_file_name, SRC_TMP)
 
 def compile():
-    ret_code: int = os.system(f"g++ -Wextra -Wall -o {BIN_TMP}/program {SRC_TMP}/*.cpp 2> {DIAGNOSTIC_FILE}") #todo: add diagnostic file
+    ret_code: int = os.system(f"pyinstaller --onefile --distpath {BIN_TMP} -n program {SRC_TMP}/{MAINFILE} 2> {DIAGNOSTIC_FILE}")
     meta = {}
     meta["return_code"] = ret_code
     with open(OUT_FILE, "w") as out_file:

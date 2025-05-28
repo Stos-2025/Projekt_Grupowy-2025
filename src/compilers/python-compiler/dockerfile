@@ -1,21 +1,24 @@
 FROM alpine:3.21
 
-WORKDIR /app
-
-RUN apk update && apk add --no-cache build-base musl-dev libffi-dev python3 py3-pip
+RUN apk add --no-cache build-base musl-dev libffi-dev python3 py3-pip
 RUN pip install --break-system-packages pyinstaller 
 
-RUN addgroup -S compgroup
-RUN adduser -S compuser -G compgroup
-RUN chown -R compuser:compgroup /app
-USER compuser
+RUN addgroup -S stos
+RUN adduser -S stos -G stos
+USER stos
 
+WORKDIR /app
+COPY main.py .
 
-COPY comp.sh .
+RUN mkdir /tmp/src
 RUN mkdir /tmp/out
-RUN mkdir /tmp/in
+RUN mkdir /tmp/bin
 
-ENV IN=/data/in
+ENV SRC=/data/in
 ENV OUT=/data/out
+ENV BIN=/data/bin
+ENV MAINFILE=main.py
 
-ENTRYPOINT ["./comp.sh"]
+ENTRYPOINT ["./main.py"]
+
+
