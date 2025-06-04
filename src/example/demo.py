@@ -38,7 +38,7 @@ def print_resoults(path: str) -> Tuple[int, str]:
 
 def run_example(build: bool = True, compile: bool=True, logs: bool=True, push: bool=False) -> None:
     exec_image = os.getenv(r"EXEC_IMAGE_NAME") or "exec"
-    #comp_image = os.getenv(r"GPP_COMP_IMAGE_NAME") or "gpp_comp"
+    # comp_image = os.getenv(r"GPP_COMP_IMAGE_NAME") or "gpp_comp"
     comp_image = os.getenv(r"PY3_COMP_IMAGE_NAME") or "py3_comp"
     judge_image = os.getenv(r"JUDGE_IMAGE_NAME") or "judge"
     
@@ -54,6 +54,7 @@ def run_example(build: bool = True, compile: bool=True, logs: bool=True, push: b
     exec_out = exmp_path+"/exec-out"
     comp_in = exmp_path+"/comp-in"
     comp_out = exmp_path+"/comp-out" 
+    MAINFILE = "main.py"
 
     run_comp_command = [
         "docker", "run", 
@@ -64,6 +65,7 @@ def run_example(build: bool = True, compile: bool=True, logs: bool=True, push: b
         "--security-opt", "no-new-privileges",
         "-e",
         "BIN=/data/out",
+        '-e', f'MAINFILE={MAINFILE}',
         "-v", f"{comp_in}:/data/in:ro",
         "-v", f"{comp_out}:/data/out",
         comp_image
