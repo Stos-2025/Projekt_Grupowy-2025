@@ -1,51 +1,97 @@
-import sys
 import subprocess
 import resource
 import json
 import os
-# import psutil
+import argparse
+from typing import Tuple, Optional
 
-name = sys.argv[1]  
-  
-binary_path = f"{os.getenv('BIN')}/program"
-input_path=f"{os.getenv('IN')}/{name}.in"
+parser = argparse.ArgumentParser()
+parser.add_argument("--name", "-n", type=str, required=True, help="Name of the test case (without extension)")
+parser.add_argument("--time_limit", "-t", type=float, default=2, help="Time limit in seconds")
+parser.add_argument("--total_memory_limit", "-m", type=int, default=256 * 1024 * 1024, help="Total memory limit in bytes")
+parser.add_argument("--stack_limit", "-s", type=int, default=8 * 1024 * 1024, help="Stack limit in bytes")
+args = parser.parse_args()
 
-output_path=f"{os.getenv('STD')}/{name}.stdout.out"
-# output_path=f"/tmp/out/{name}.stdout.out"
-error_path=f"{os.getenv('STD')}/{name}.stderr.out"
-# error_path=f"/tmp/out/{name}.stderr.out"
-exec_path=f"{os.getenv('OUT')}/{name}.exec.json"
-# exec_path=f"/tmp/out/{name}.exec.json"
+name: str = args.name
+time_limit: float = args.time_limit
+memory_limit: int = args.total_memory_limit
+stack_limit: int = args.stack_limit
 
-with open(input_path, "r") as input_file, open(error_path, "w") as error_file, open(output_path, "w") as output_file:
-    try:
-        program_process = subprocess.Popen(
-            [binary_path],
-            stdin=input_file,    
-            stderr=error_file,
-            stdout=output_file,
-        )
-    except FileNotFoundError as e:
-        print("Compilation failed", flush=True)
-        exit(1)
-        
-    resource.prlimit(program_process.pid, resource.RLIMIT_CPU, (2, 2)) #todo change
-    program_process.wait()
+IN = os.environ["IN"]
+BIN = os.environ["BIN"]
+STD = os.environ["STD"]
+OUT = os.environ["OUT"]
 
-    resources = resource.getrusage(resource.RUSAGE_CHILDREN)
-    with open(exec_path, "w") as exec_file:
-        meta = {}
-        meta["return_code"] = program_process.returncode
-        meta["user_time"] =  round(resources.ru_utime, 10)
-        meta["memory"] =  round(resources.ru_maxrss, 10)
-        # meta["memory"] = round(psutil.Process(program_process.pid).memory_info().rss / 1024, 10)
-        # meta["user_time"] = round(psutil.Process(program_process.pid).cpu_times().user, 10)
-        # meta["return_code"] = program_process.returncode
-        # meta["memory"] = round(resources.ru_maxrss / 1024, 10)
-        # meta["user_time"] = round(resources.ru_utime, 10)
-        # meta["system_time"] = round(resources.ru_stime, 10)
-        # meta["max_memory"] = round(resources.ru_maxrss / 1024, 10)
-        # meta["page_faults"] = resources.ru_majflt + resources.ru_minflt
-        # meta["voluntary_context_switches"] = resources.ru_nvcsw
-        # meta["involuntary_context_switches"] = resources.ru_nivcsw
+BINARY_PATH = os.path.join(BIN, "program")
+INPUT_PATH = os.path.join(IN, f"{name}.in")
+OUTPUT_PATH = os.path.join(STD, f"{name}.stdout.out")
+ERROR_PATH = os.path.join(STD, f"{name}.stderr.out")
+EXEC_PATH = os.path.join(OUT, f"{name}.exec.json")
+
+
+def set_limits():
+    # CPU time limit (RLIMIT_CPU)
+    resource.setrlimit(resource.RLIMIT_CPU, (int(time_limit) + 1, int(time_limit) + 1))
+    # Virtual memory limit (RLIMIT_AS)
+    resource.setrlimit(resource.RLIMIT_AS, (memory_limit, memory_limit))
+    # Stack size limit (RLIMIT_STACK)
+    resource.setrlimit(resource.RLIMIT_STACK, (stack_limit, stack_limit))
+
+    # Output file size limit (RLIMIT_FSIZE)
+    # resource.setrlimit(resource.RLIMIT_FSIZE, (0, 0))
+    # Block creation of core dumps
+    resource.setrlimit(resource.RLIMIT_CORE, (0, 0))
+
+
+def run_binary() -> Tuple[int, resource.struct_rusage]:
+    # Check if the binary and input files exist
+    if not os.path.isfile(BINARY_PATH) or not os.access(BINARY_PATH, os.X_OK):
+        raise FileNotFoundError("Binary file does not exist or is not executable")
+    if not os.path.isfile(INPUT_PATH):
+        raise FileNotFoundError("Input file does not exist")
+
+    # running the program
+    with open(INPUT_PATH, "r") as input_file, open(ERROR_PATH, "w") as error_file, open(
+        OUTPUT_PATH, "w"
+    ) as output_file:
+        program_process = None
+        try:
+            program_process = subprocess.Popen(
+                [BINARY_PATH],
+                stdin=input_file,
+                stderr=error_file,
+                stdout=output_file,
+                preexec_fn=set_limits,
+            )
+            program_process.wait(timeout=2 * (time_limit+1))
+        except subprocess.TimeoutExpired:
+            if program_process is not None and program_process.poll() is None:  # Check if the process is still running
+                program_process.kill()
+                program_process.wait()
+            return 124, resource.getrusage(resource.RUSAGE_CHILDREN)
+
+    # reading resource usage
+    return program_process.returncode, resource.getrusage(resource.RUSAGE_CHILDREN)
+
+
+def save_program_results(
+    retcode: int, metrics: Optional[resource.struct_rusage]
+) -> None:
+    meta = {}
+    meta["return_code"] = retcode
+    meta["signal"] = abs(retcode) if retcode < 0 else None
+    if metrics is not None:
+        meta["user_time"] = round(metrics.ru_utime, 10)
+        meta["memory"] = round(metrics.ru_maxrss, 10)
+        # ...
+
+    with open(EXEC_PATH, "w") as exec_file:
         json.dump(meta, exec_file)
+
+
+if __name__ == "__main__":
+    try:
+        code, metrics = run_binary()
+        save_program_results(code, metrics)
+    except Exception as e:
+        save_program_results(2, None)

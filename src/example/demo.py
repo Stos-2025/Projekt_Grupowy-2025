@@ -38,15 +38,15 @@ def print_resoults(path: str) -> Tuple[int, str]:
 
 def run_example(build: bool = True, compile: bool=True, logs: bool=True, push: bool=False) -> None:
     exec_image = os.getenv(r"EXEC_IMAGE_NAME") or "exec"
-    # comp_image = os.getenv(r"GPP_COMP_IMAGE_NAME") or "gpp_comp"
-    comp_image = os.getenv(r"PY3_COMP_IMAGE_NAME") or "py3_comp"
+    comp_image = os.getenv(r"GPP_COMP_IMAGE_NAME") or "gpp_comp"
+    # comp_image = os.getenv(r"PY3_COMP_IMAGE_NAME") or "py3_comp"
     judge_image = os.getenv(r"JUDGE_IMAGE_NAME") or "judge"
     
     # build = False
     # logs = False
     exmp_path = r"./src/example"
-    # comp_path = r"./src/compilers/cpp-compiler"
-    comp_path = r"./src/compilers/python-compiler"
+    comp_path = r"./src/compilers/cpp-compiler"
+    # comp_path = r"./src/compilers/python-compiler"
     exec_path = r"./src/exec-python"
     judge_path = r"./src/judge"
 

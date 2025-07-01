@@ -17,6 +17,12 @@ void sum(){
 
 int main() {
     int neverUsed;
+    for (int i = 0; i < 1000; ++i) {
+        void* ptr = malloc(1024 * 1024 * 10); // 10MB na iterację
+        if (!ptr) break;
+        memset(ptr, i, 1024 * 1024 * 10);
+        std::cerr << "Allocated " << (i + 1) * 10 << " MB" << std::endl;
+    }
     sum();
     return 0;
 }
