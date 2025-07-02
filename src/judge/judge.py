@@ -25,7 +25,7 @@ def check_exec(exec_path: str) -> Tuple[bool, str]:
         if exec["return_code"] > 0:
             return False, f"program exited with return code {exec['return_code']}"
         elif exec["return_code"] < 0:
-            return False, f"program was killed with signal {exec['return_code']}"
+            return False, f"program was killed with signal {abs(exec['return_code'])}"
         # if exec["user_time"] > 2:
         #     return False, f"program took too long: {exec['user_time']}s"
         # if exec["memory"] > 1000000:
