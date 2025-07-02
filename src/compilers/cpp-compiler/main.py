@@ -9,9 +9,9 @@ SRC: str = os.environ["SRC"]
 OUT: str = os.environ["OUT"]
 BIN: str = os.environ["BIN"]
 
-SRC_TMP: str = "/tmp/src"
-BIN_TMP: str = "/tmp/bin"
-OUT_TMP: str = "/tmp/out"
+SRC_TMP: str = "/src"
+BIN_TMP: str = "/program"
+OUT_TMP: str = "/out"
 DIAGNOSTIC_FILE: str = f"{OUT}/comp.txt"
 OUT_FILE: str = f"{OUT}/comp.json"
 

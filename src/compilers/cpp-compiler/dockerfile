@@ -4,17 +4,17 @@ RUN apk add --no-cache build-base python3
 
 RUN addgroup -S stos
 RUN adduser -S stos -G stos
-USER stos
 
 WORKDIR /app
 COPY main.py .
 
-RUN mkdir /tmp/src
-RUN mkdir /tmp/out
-RUN mkdir /tmp/bin
+RUN mkdir /src && chown stos:stos /src
+RUN mkdir /out && chown stos:stos /out
+RUN mkdir /program && chown stos:stos /program
 
 ENV SRC=/data/in
 ENV OUT=/data/out
 ENV BIN=/data/bin
 
+USER stos:stos
 ENTRYPOINT ["./main.py"]
