@@ -25,7 +25,7 @@ def copy_src_files():
             shutil.copy(full_file_name, SRC_TMP)
 
 def compile():
-    ret_code: int = os.system(f"g++ -Wextra -Wall -o {BIN_TMP}/program {SRC_TMP}/*.cpp 2> {DIAGNOSTIC_FILE}") #todo: add diagnostic file
+    ret_code: int = os.system(f"g++ -Wall -Wextra -Wpedantic -fdiagnostics-color=always -std=c++17 -o {BIN_TMP}/program {SRC_TMP}/*.cpp 2> {DIAGNOSTIC_FILE}") #todo: add diagnostic file
     meta = {}
     meta["return_code"] = ret_code
     with open(OUT_FILE, "w") as out_file:
