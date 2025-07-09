@@ -84,3 +84,109 @@ def test_cpp_compiler_no_sources(tmp_path):
     with open(comp_json) as f:
         meta = json.load(f)
     assert meta["return_code"] != 0, "Kompilacja powinna się nie powieść na pustym katalogu"
+
+
+def run_pipeline(comp_in, comp_out, exec_in, exec_out, answer_out, build=False):
+    """Uruchamia pipeline dockerowy na podanych katalogach."""
+    # Kompilacja
+    comp_cmd = [
+        "docker", "run", "--rm",
+        "--ulimit", "cpu=30:30",
+        "--network", "none",
+        "--security-opt", "no-new-privileges",
+        "-e", "BIN=/data/out",
+        "-v", f"{comp_in}:/data/in:ro",
+        "-v", f"{comp_out}:/data/out",
+        "comp"
+    ]
+    exec_cmd = [
+        "docker", "run", "--rm",
+        "--ulimit", "cpu=30:30",
+        "--network", "none",
+        "--security-opt", "no-new-privileges",
+        "-e", "LOGS=on",
+        "-v", f"{exec_in}/in:/data/in:ro",
+        "-v", f"{comp_out}:/data/bin:ro",
+        "-v", f"{exec_out}:/data/out",
+        "exec"
+    ]
+    judge_cmd = [
+        "docker", "run", "--rm",
+        "--ulimit", "cpu=30:30",
+        "--network", "none",
+        "--security-opt", "no-new-privileges",
+        "-e", "LOGS=on",
+        "-v", f"{exec_out}:/data/in:ro",
+        "-v", f"{exec_out}:/data/out",
+        "-v", f"{exec_in}/out:/data/answer:ro",
+        "judge"
+    ]
+    subprocess.run(comp_cmd, check=False)
+    subprocess.run(exec_cmd, check=False)
+    subprocess.run(judge_cmd, check=False)
+
+
+def test_cpp_pipeline_infinite_loop(tmp_path):
+    # Przygotuj katalogi
+    comp_in = tmp_path / "comp-in"
+    comp_out = tmp_path / "comp-out"
+    exec_in = tmp_path / "exec-in"
+    exec_out = tmp_path / "exec-out"
+    for d in [comp_in, comp_out, exec_in, exec_out]:
+        d.mkdir()
+    (exec_in / "in").mkdir()
+    (exec_in / "out").mkdir()
+    # Złośliwy kod: nieskończona pętla
+    code = """
+    int main() {
+        while(1) {}
+        return 0;
+    }
+    """
+    with open(comp_in / "main.cpp", "w") as f:
+        f.write(code)
+    # Dane wejściowe i oczekiwane wyjście
+    with open(exec_in / "in" / "0.in", "w") as f:
+        f.write("1\n")
+    with open(exec_in / "out" / "0.out", "w") as f:
+        f.write("1\n")
+    # Uruchom pipeline
+    run_pipeline(str(comp_in), str(comp_out), str(exec_in), str(exec_out), str(exec_in / "out"))
+    # Sprawdź wynik wykonania
+    exec_json = exec_out / "0.exec.json"
+    assert exec_json.exists(), "Brak pliku exec.json (timeout?)"
+    with open(exec_json) as f:
+        meta = json.load(f)
+    # Oczekujemy return_code != 0 (timeout/kill)
+    assert meta["return_code"] != 0, f"Program nie został przerwany: {meta}"
+
+
+def test_cpp_pipeline_system_access(tmp_path):
+    # Przygotuj katalogi
+    comp_in = tmp_path / "comp-in"
+    comp_out = tmp_path / "comp-out"
+    exec_in = tmp_path / "exec-in"
+    exec_out = tmp_path / "exec-out"
+    for d in [comp_in, comp_out, exec_in, exec_out]:
+        d.mkdir()
+    (exec_in / "in").mkdir()
+    (exec_in / "out").mkdir()
+    # Złośliwy kod: próba zapisu do /etc/passwd
+    code = """
+    #include <fstream>\nint main() { std::ofstream f(\"/etc/passwd\"); f << \"hacked\"; return 0; }\n"""
+    with open(comp_in / "main.cpp", "w") as f:
+        f.write(code)
+    # Dane wejściowe i oczekiwane wyjście
+    with open(exec_in / "in" / "0.in", "w") as f:
+        f.write("1\n")
+    with open(exec_in / "out" / "0.out", "w") as f:
+        f.write("1\n")
+    # Uruchom pipeline
+    run_pipeline(str(comp_in), str(comp_out), str(exec_in), str(exec_out), str(exec_in / "out"))
+    # Sprawdź wynik wykonania
+    exec_json = exec_out / "0.exec.json"
+    assert exec_json.exists(), "Brak pliku exec.json (sandbox?)"
+    with open(exec_json) as f:
+        meta = json.load(f)
+    # Oczekujemy return_code != 0 (błąd dostępu)
+    assert meta["return_code"] != 0, f"Program nie został przerwany: {meta}"
