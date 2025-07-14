@@ -127,7 +127,6 @@ def run_pipeline(comp_in, comp_out, exec_in, exec_out, answer_out, build=False):
 
 
 def test_cpp_pipeline_infinite_loop(tmp_path):
-    # Przygotuj katalogi
     comp_in = tmp_path / "comp-in"
     comp_out = tmp_path / "comp-out"
     exec_in = tmp_path / "exec-in"
@@ -136,7 +135,7 @@ def test_cpp_pipeline_infinite_loop(tmp_path):
         d.mkdir()
     (exec_in / "in").mkdir()
     (exec_in / "out").mkdir()
-    # Złośliwy kod: nieskończona pętla
+    #nieskończona pętla
     code = """
     int main() {
         while(1) {}
@@ -150,7 +149,6 @@ def test_cpp_pipeline_infinite_loop(tmp_path):
         f.write("1\n")
     with open(exec_in / "out" / "0.out", "w") as f:
         f.write("1\n")
-    # Uruchom pipeline
     run_pipeline(str(comp_in), str(comp_out), str(exec_in), str(exec_out), str(exec_in / "out"))
     # Sprawdź wynik wykonania
     exec_json = exec_out / "0.exec.json"
@@ -162,7 +160,6 @@ def test_cpp_pipeline_infinite_loop(tmp_path):
 
 
 def test_cpp_pipeline_system_access(tmp_path):
-    # Przygotuj katalogi
     comp_in = tmp_path / "comp-in"
     comp_out = tmp_path / "comp-out"
     exec_in = tmp_path / "exec-in"
@@ -171,7 +168,7 @@ def test_cpp_pipeline_system_access(tmp_path):
         d.mkdir()
     (exec_in / "in").mkdir()
     (exec_in / "out").mkdir()
-    # Złośliwy kod: próba zapisu do /etc/passwd
+    # próba zapisu do /etc/passwd
     code = """
     #include <fstream>\nint main() { std::ofstream f(\"/etc/passwd\"); f << \"hacked\"; return 0; }\n"""
     with open(comp_in / "main.cpp", "w") as f:
@@ -181,12 +178,36 @@ def test_cpp_pipeline_system_access(tmp_path):
         f.write("1\n")
     with open(exec_in / "out" / "0.out", "w") as f:
         f.write("1\n")
-    # Uruchom pipeline
+
     run_pipeline(str(comp_in), str(comp_out), str(exec_in), str(exec_out), str(exec_in / "out"))
-    # Sprawdź wynik wykonania
-    exec_json = exec_out / "0.exec.json"
-    assert exec_json.exists(), "Brak pliku exec.json (sandbox?)"
-    with open(exec_json) as f:
-        meta = json.load(f)
-    # Oczekujemy return_code != 0 (błąd dostępu)
-    assert meta["return_code"] != 0, f"Program nie został przerwany: {meta}"
+    # sprawdzam stderr
+    stderr_file = exec_out / "0.stderr.out"
+    assert stderr_file.exists(), "Brak pliku stderr.out (sandbox?)"
+    with open(stderr_file) as f:
+        stderr_content = f.read()
+    assert ("Permission denied" in stderr_content or "permission denied" in stderr_content or "Operation not permitted" in stderr_content or "operation not permitted" in stderr_content), f"Brak komunikatu o odmowie dostępu: {stderr_content}"
+
+def test_cpp_pipeline_system_access_var_log(tmp_path):
+    comp_in = tmp_path / "comp-in"
+    comp_out = tmp_path / "comp-out"
+    exec_in = tmp_path / "exec-in"
+    exec_out = tmp_path / "exec-out"
+    for d in [comp_in, comp_out, exec_in, exec_out]:
+        d.mkdir()
+    (exec_in / "in").mkdir()
+    (exec_in / "out").mkdir()
+    # Próba zapisu do /var/log/hacked.log
+    code = """
+    #include <fstream>\nint main() { std::ofstream f(\"/var/log/hacked.log\"); f << \"hacked\"; return 0; }\n"""
+    with open(comp_in / "main.cpp", "w") as f:
+        f.write(code)
+    with open(exec_in / "in" / "0.in", "w") as f:
+        f.write("1\n")
+    with open(exec_in / "out" / "0.out", "w") as f:
+        f.write("1\n")
+    run_pipeline(str(comp_in), str(comp_out), str(exec_in), str(exec_out), str(exec_in / "out"))
+    stderr_file = exec_out / "0.stderr.out"
+    assert stderr_file.exists(), "Brak pliku stderr.out (/var/log)"
+    with open(stderr_file) as f:
+        stderr_content = f.read()
+    assert ("Permission denied" in stderr_content or "permission denied" in stderr_content or "Operation not permitted" in stderr_content or "operation not permitted" in stderr_content), f"Brak komunikatu o odmowie dostępu: {stderr_content}"
