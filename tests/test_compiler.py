@@ -155,6 +155,11 @@ class TestCopySrcFiles:
             # Set environment
             os.environ['SRC'] = src_dir
             
+            # Clean up any existing /tmp/src directory
+            import shutil
+            if os.path.exists('/tmp/src'):
+                shutil.rmtree('/tmp/src')
+            
             # Call function
             compiler_main.copy_src_files()
             
