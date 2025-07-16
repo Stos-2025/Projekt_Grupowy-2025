@@ -1,4 +1,32 @@
 #!/usr/bin/env python3
+"""
+Sum Test Data Generator for Competitive Programming Judge System.
+
+This script generates test data for sum problems where the task is to sum a series
+of numbers. It creates input files containing a number n followed by n lines of "1",
+and output files containing the expected sum (which equals n).
+
+The generator creates test cases with exponentially increasing input sizes using
+the formula n = round(2.3^i), creating challenging test cases for performance testing.
+
+Test Case Structure:
+- Input: First line contains n, followed by n lines each containing "1"
+- Output: Single line containing the sum (equals n)
+
+Special Cases:
+- Test case 10 has a deliberately wrong expected output ("67") for testing
+  the judge's ability to detect incorrect answers
+
+Directory Structure:
+- src/example/exec-in/in/: Input files (*.in)
+- src/example/exec-in/out/: Expected output files (*.out)
+- src/example/comp-out/: Compilation output directory
+- src/example/exec-out/: Execution output directory
+
+Usage:
+    python example_generator_sum.py
+    # Creates 22 test cases (0.in to 21.in and corresponding .out files)
+"""
 
 import os
 import shutil

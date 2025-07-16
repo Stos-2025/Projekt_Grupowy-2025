@@ -1,4 +1,29 @@
 #!/usr/bin/env python3
+"""
+Echo Test Data Generator for Competitive Programming Judge System.
+
+This script generates test data for echo problems where the task is to output
+a specified number of lines. It creates input files containing a number n,
+and output files containing n lines of "1".
+
+The generator creates test cases with linearly decreasing input sizes using
+the formula n = 1000000//(20-i), creating a variety of test cases for
+performance and correctness testing.
+
+Test Case Structure:
+- Input: Single line containing n
+- Output: n lines, each containing "1"
+
+Directory Structure:
+- src/example/exec-in/in/: Input files (*.in)
+- src/example/exec-in/out/: Expected output files (*.out)
+- src/example/comp-out/: Compilation output directory
+- src/example/exec-out/: Execution output directory
+
+Usage:
+    python example_generator_echo.py
+    # Creates 20 test cases (0.in to 19.in and corresponding .out files)
+"""
 
 import os
 import shutil
