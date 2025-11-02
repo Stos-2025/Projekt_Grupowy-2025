@@ -90,9 +90,9 @@ def run_example(build: bool = True, compile: bool=True, push: bool=False) -> Non
     
     # build = False
     exmp_path = r"./example"
-    comp_path = r"./src/compilers/cpp-compiler/dockerfile"
-    # comp_path = r"./src/compilers/python-compiler/dockerfile"
-    exec_path = r"./src/exec-python/dockerfile"
+    comp_path = r"./src/compilers/cpp/dockerfile"
+    # comp_path = r"./src/compilers/python/dockerfile"
+    exec_path = r"./src/exec/dockerfile"
     judge_path = r"./src/judge/dockerfile"
 
     build_path = r"./src"
@@ -106,7 +106,6 @@ def run_example(build: bool = True, compile: bool=True, push: bool=False) -> Non
     run_comp_command = [
         "docker", "run", 
         "--rm",
-        # "--cpus=1.0",
         "--ulimit", "cpu=30:30",
         "--network", "none",
         "--security-opt", "no-new-privileges",
@@ -120,7 +119,6 @@ def run_example(build: bool = True, compile: bool=True, push: bool=False) -> Non
     run_exec_command = [
         "docker", "run", 
         "--rm",
-        # "--cpus=0.5",
         "--ulimit", "cpu=30:30",
         "--network", "none",
         "--security-opt", "no-new-privileges",
@@ -132,7 +130,6 @@ def run_example(build: bool = True, compile: bool=True, push: bool=False) -> Non
     run_judge_command = [  
         "docker", "run", 
         "--rm",
-        # "--cpus=0.5",
         "--ulimit", "cpu=30:30",
         "--network", "none",
         "--security-opt", "no-new-privileges",

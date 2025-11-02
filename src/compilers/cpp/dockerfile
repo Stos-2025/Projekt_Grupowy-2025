@@ -8,7 +8,7 @@ RUN adduser -S stos -G stos
 WORKDIR /app
 
 # coping files
-COPY compilers/cpp-compiler/src/* .
+COPY compilers/cpp/src/* .
 COPY common/*.py ./common/
 
 RUN mkdir /src && chown stos:stos /src

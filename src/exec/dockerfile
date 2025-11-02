@@ -14,7 +14,7 @@ RUN mkdir /tmp/in
 RUN mkdir /tmp/out
 
 # coping files
-COPY exec-python/src/* .
+COPY exec/src/* .
 COPY common/*.py ./common/
 
 ENV LOGS=on

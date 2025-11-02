@@ -9,7 +9,7 @@ USER stos
 
 WORKDIR /app
 # coping files
-COPY compilers/python-compiler/src/* .
+COPY compilers/python/src/* .
 COPY common/*.py ./common/
 
 RUN mkdir /tmp/src
