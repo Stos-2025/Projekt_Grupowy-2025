@@ -4,23 +4,16 @@ import sys
 import time
 import logging
 import subprocess
-from pydantic import BaseModel
-from typing import List, Optional
+from typing import Optional
+from common.schemas import ProblemSpecificationSchema, TestSpecificationSchema
 
 
 logger = logging.getLogger("EXEC")
-class TestSpecification(BaseModel):
-    test_name: str = ""
-    time_limit: float = 2
-    total_memory_limit: int = 256*1024*1024  # 256 MB
-    stack_size_limit: Optional[int] = None
-class ProblemSpecification(BaseModel):
-    id: Optional[str]
-    tests: List[TestSpecification] = []
 
-def run_test(test_name: str, test: Optional[TestSpecification] = None):
+
+def run_test(test_name: str, test: Optional[TestSpecificationSchema] = None):
     if test is None:
-        test = TestSpecification(test_name=test_name)
+        test = TestSpecificationSchema(test_name=test_name)
     program_process = subprocess.Popen(
         [
             "python",
@@ -38,11 +31,11 @@ def main():
     os.umask(0)
     start_time = time.time()
 
-    problem_specification: Optional[ProblemSpecification] = None
+    problem_specification: Optional[ProblemSpecificationSchema] = None
     try:
         problem_specification_path = os.path.join(os.environ["CONF"], "problem_specification.json")
         with open(problem_specification_path, 'r') as file:
-            problem_specification = ProblemSpecification.model_validate(json.load(file))
+            problem_specification = ProblemSpecificationSchema.model_validate(json.load(file))
     except Exception:
         problem_specification = None
 

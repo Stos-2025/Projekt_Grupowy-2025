@@ -38,8 +38,8 @@ def set_limits():
     # Virtual memory limit (RLIMIT_AS)
     resource.setrlimit(resource.RLIMIT_AS, (memory_limit, memory_limit))
     # Stack size limit (RLIMIT_STACK)
-    if stack_limit > 0:
-        resource.setrlimit(resource.RLIMIT_STACK, (stack_limit, stack_limit))
+    # if stack_limit > 0:
+        # resource.setrlimit(resource.RLIMIT_STACK, (stack_limit, stack_limit))
 
     # Output file size limit (RLIMIT_FSIZE)
     # resource.setrlimit(resource.RLIMIT_FSIZE, (0, 0))
@@ -102,7 +102,7 @@ def save_program_results(
     meta["signal"] = abs(retcode) if retcode < 0 else None
     if metrics is not None:
         meta["user_time"] = round(metrics.ru_utime, 10)
-        meta["memory"] = round(metrics.ru_maxrss, 10)
+        meta["memory"] = round(metrics.ru_maxrss * 1024, 10)
         # ...
 
     with open(EXEC_PATH, "w") as exec_file:

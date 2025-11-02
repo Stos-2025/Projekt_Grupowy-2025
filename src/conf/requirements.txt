@@ -1,0 +1,7 @@
+natsort 
+requests 
+pydantic 
+fastapi 
+docker
+ansi2html
+dotenv

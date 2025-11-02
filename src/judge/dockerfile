@@ -2,7 +2,6 @@ FROM alpine:3.21
 
 WORKDIR /app
 
-ARG LOGS=on
 
 RUN apk add --no-cache python3
 RUN addgroup -S execgroup
@@ -13,10 +12,11 @@ USER execuser
 RUN mkdir /tmp/in
 RUN mkdir /tmp/out
 
-COPY judge.py .
-COPY main.py .
+# coping files
+COPY judge/src/* .
+COPY common/*.py ./common/
 
-ENV LOGS=$LOGS
+ENV LOGS=on
 ENV IN=/data/in
 ENV ANS=/data/answer
 ENV OUT=/data/out

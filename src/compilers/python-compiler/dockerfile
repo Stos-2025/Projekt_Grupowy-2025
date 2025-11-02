@@ -8,7 +8,9 @@ RUN adduser -S stos -G stos
 USER stos
 
 WORKDIR /app
-COPY main.py .
+# coping files
+COPY compilers/python-compiler/src/* .
+COPY common/*.py ./common/
 
 RUN mkdir /tmp/src
 RUN mkdir /tmp/out

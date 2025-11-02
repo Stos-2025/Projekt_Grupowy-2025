@@ -6,11 +6,15 @@ RUN addgroup -S stos
 RUN adduser -S stos -G stos
 
 WORKDIR /app
-COPY main.py .
+
+# coping files
+COPY compilers/cpp-compiler/src/* .
+COPY common/*.py ./common/
 
 RUN mkdir /src && chown stos:stos /src
 RUN mkdir /out && chown stos:stos /out
 RUN mkdir /program && chown stos:stos /program
+
 
 ENV SRC=/data/in
 ENV OUT=/data/out

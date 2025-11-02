@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import subprocess
 import json
 import os
 import shutil
@@ -13,6 +14,7 @@ SRC_TMP: str = "/src"
 BIN_TMP: str = "/program"
 OUT_TMP: str = "/out"
 DIAGNOSTIC_FILE: str = f"{OUT}/comp.txt"
+STYLE_FILE: str = f"{OUT}/comp.txt"
 OUT_FILE: str = f"{OUT}/comp.json"
 
 def copy_src_files():
@@ -24,10 +26,25 @@ def copy_src_files():
         if os.path.isfile(full_file_name):
             shutil.copy(full_file_name, SRC_TMP)
 
+
 def compile():
-    ret_code: int = os.system(f"g++ -Wall -Wextra -Wpedantic -fdiagnostics-color=always -std=c++17 -o {BIN_TMP}/program {SRC_TMP}/*.cpp 2> {DIAGNOSTIC_FILE}") #todo: add diagnostic file
-    meta = {}
-    meta["return_code"] = ret_code
+    cmd = [
+        "g++",
+        "-Wall", "-Wextra", "-Wpedantic",
+        "-fdiagnostics-color=always",
+        "-std=c++17",
+        "-o", f"{BIN_TMP}/program"
+    ] + [f"{SRC_TMP}/*.cpp"]
+
+    with open(DIAGNOSTIC_FILE, "w", encoding="utf-8") as diag_file:
+        result = subprocess.run(
+            " ".join(cmd),
+            shell=True,
+            stdout=subprocess.DEVNULL,
+            stderr=diag_file
+        )
+
+    meta = {"return_code": result.returncode}
     with open(OUT_FILE, "w") as out_file:
         json.dump(meta, out_file)
     

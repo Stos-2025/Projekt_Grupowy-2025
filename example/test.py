@@ -1,4 +1,4 @@
-from demo import run_example, print_resoults
+from demo import run_example, print_results
 import json
 import matplotlib.pyplot as plt
 

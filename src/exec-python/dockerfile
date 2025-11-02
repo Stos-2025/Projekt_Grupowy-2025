@@ -2,7 +2,7 @@ FROM alpine:3.21
 
 WORKDIR /app
 
-ARG LOGS=on
+
 
 RUN apk add --no-cache python3 py3-pydantic py3-psutil
 RUN addgroup -S execgroup
@@ -13,10 +13,11 @@ USER execuser
 RUN mkdir /tmp/in
 RUN mkdir /tmp/out
 
-COPY exec.py .
-COPY main.py .
+# coping files
+COPY exec-python/src/* .
+COPY common/*.py ./common/
 
-ENV LOGS=$LOGS
+ENV LOGS=on
 ENV IN=/data/in
 ENV CONF=/data/conf
 ENV BIN=/data/bin

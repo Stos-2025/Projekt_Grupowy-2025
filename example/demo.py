@@ -1,0 +1,216 @@
+#!/usr/bin/env python3
+
+import subprocess
+import os
+import sys
+import time
+import json
+import dotenv
+import argparse
+from natsort import natsorted
+from typing import List, Optional
+
+file_dir = os.path.dirname( os.path.abspath(__file__) )
+os.chdir(f"{file_dir}/..")
+sys.path.append(f"{file_dir}/../src/")
+from common.schemas import SubmissionResultSchema, TestResultSchema
+
+
+
+def get_results(path: str) -> SubmissionResultSchema:
+    def fetch_compilation_info(path: str) -> Optional[str]:
+        maximum_content_length = 2*5000
+        comp_file_path = os.path.join(path, "comp.txt")
+        try:
+            with open(comp_file_path, "r", encoding="utf-8", errors="ignore") as f:
+                content = ""
+                for line in f:
+                    if len(content) + len(line) > maximum_content_length:
+                        break
+                    content += line
+            
+        except Exception:
+            return None
+        return content if content else None
+
+
+    result = SubmissionResultSchema()
+    try:
+        result.info = fetch_compilation_info(path)
+    except Exception:
+        result.info = "No compilation info available."
+
+    points = 0
+    test_names: List[str] = []
+    for file in os.listdir(path):
+        if file.endswith(".judge.json"):
+            test_names.append(file.split(".")[0])
+
+    test_names = natsorted(test_names) # type: ignore
+    for test_name in test_names:
+        try:
+            exec_file_path = os.path.join(path, f"{test_name}.exec.json")
+            judge_file_path = os.path.join(path, f"{test_name}.judge.json")
+            test_result: TestResultSchema = TestResultSchema(test_name=test_name)
+
+            with open(exec_file_path, "r") as exec_file:
+                exec = json.load(exec_file)
+                test_result.ret_code = exec["return_code"]
+                test_result.time = float(exec["user_time"])
+                test_result.memory = float(exec["memory"])
+
+            with open(judge_file_path, "r") as judge_file:
+                judge = json.load(judge_file)
+                test_result.grade = True if judge["grade"] == 1 else False
+                test_result.info = judge["info"]
+                if judge["grade"]:
+                    points += 1
+
+            result.test_results.append(test_result)
+        except Exception:
+            test_result = TestResultSchema(test_name=test_name, grade=False, info="Error while running test.")
+            result.test_results.append(test_result)
+
+
+    result.points = points
+    try:
+        result.info = fetch_compilation_info(path)
+    except Exception:
+        result.info = "Error while running submission."
+        print("Error while fetching compilation info.")
+
+    return result
+
+
+def run_example(build: bool = True, compile: bool=True, push: bool=False) -> None:
+    exec_image_tag = os.getenv(r"EXEC_IMAGE_NAME") or "d4m14n/stos:exec-latest"
+    comp_image_tag = os.getenv(r"GPP_COMP_IMAGE_NAME") or "d4m14n/stos:gpp_comp-latest"
+    # comp_image = os.getenv(r"PY3_COMP_IMAGE_NAME") or "d4m14n/stos:python3_comp-lates"
+    judge_image_tag = os.getenv(r"JUDGE_IMAGE_NAME") or "d4m14n/stos:judge-latest"
+    
+    # build = False
+    exmp_path = r"./example"
+    comp_path = r"./src/compilers/cpp-compiler/dockerfile"
+    # comp_path = r"./src/compilers/python-compiler/dockerfile"
+    exec_path = r"./src/exec-python/dockerfile"
+    judge_path = r"./src/judge/dockerfile"
+
+    build_path = r"./src"
+
+    exec_in = exmp_path+"/exec-in"
+    exec_out = exmp_path+"/exec-out"
+    comp_in = exmp_path+"/comp-in"
+    comp_out = exmp_path+"/comp-out" 
+    MAINFILE = "main.py"
+
+    run_comp_command = [
+        "docker", "run", 
+        "--rm",
+        # "--cpus=1.0",
+        "--ulimit", "cpu=30:30",
+        "--network", "none",
+        "--security-opt", "no-new-privileges",
+        "-e",
+        "BIN=/data/out",
+        '-e', f'MAINFILE={MAINFILE}',
+        "-v", f"{comp_in}:/data/in:ro",
+        "-v", f"{comp_out}:/data/out",
+        comp_image_tag
+    ]
+    run_exec_command = [
+        "docker", "run", 
+        "--rm",
+        # "--cpus=0.5",
+        "--ulimit", "cpu=30:30",
+        "--network", "none",
+        "--security-opt", "no-new-privileges",
+        "-v", f"{exec_in}/in:/data/in:ro",
+        "-v", f"{comp_out}:/data/bin:ro",
+        "-v", f"{exec_out}:/data/out",
+        exec_image_tag
+    ]
+    run_judge_command = [  
+        "docker", "run", 
+        "--rm",
+        # "--cpus=0.5",
+        "--ulimit", "cpu=30:30",
+        "--network", "none",
+        "--security-opt", "no-new-privileges",
+        "-v", f"{exec_out}:/data/in:ro",
+        "-v", f"{exec_out}:/data/out",
+        "-v", f"{exec_in}/out:/data/answer:ro",
+        judge_image_tag
+    ]
+
+
+    
+    if build:
+        subprocess.run(["docker", "build", "-t", exec_image_tag, "-f", exec_path, build_path], check=True)
+        subprocess.run(["docker", "build", "-t", judge_image_tag, "-f", judge_path, build_path], check=True)
+        subprocess.run(["docker", "build", "-t", comp_image_tag, "-f", comp_path, build_path], check=True)
+
+
+
+    if push:
+        subprocess.run(["docker", "login"], check=True)
+
+        subprocess.run(["docker", "push", exec_image_tag], check=True)
+        subprocess.run(["docker", "push", judge_image_tag], check=True)
+        subprocess.run(["docker", "push", comp_image_tag], check=True)
+
+
+
+    if compile:
+        start_time = time.time()
+        
+        try:
+            subprocess.run(run_comp_command, check=True)
+        except Exception as e:
+            print(e)
+            return
+
+        print(f">Compilation time: {round(time.time() - start_time, 2)}")
+
+
+
+    
+    start_time = time.time()
+    
+    try:
+        subprocess.run(run_exec_command, check=True)
+    except Exception as e:
+        print(e)
+        return
+    
+    print(f">Execution time: {round(time.time() - start_time, 2)}")
+
+
+
+    start_time = time.time()
+    
+    try:
+        subprocess.run(run_judge_command, check=True)
+    except Exception as e:
+        print(e)
+        return
+
+    print(f">Judge time: {round(time.time() - start_time, 2)}")
+
+
+    result = get_results(exec_out)
+    print(result)
+
+
+if __name__ == "__main__":
+    #set working directory
+   
+    # load .env
+    dotenv.load_dotenv(dotenv_path="./src/conf/.env")
+    #parse args
+    parser = argparse.ArgumentParser(description="Run example")
+    parser.add_argument("-b", "--build", action="store_true", default=False, help="Build the docker images")
+    parser.add_argument("-p", "--push", action="store_true", default=False, help="Push the docker images")
+    parser.add_argument("--no-compile", action="store_false", default=True, help="Disable compiling the code")
+    args = parser.parse_args()
+
+    run_example(build=args.build, compile=args.no_compile, push=args.push)
