@@ -107,3 +107,14 @@ class VolumeMappingSchema(BaseModel):
             "mode": "ro" if self.read_only else "rw"
         }
 
+
+class ExecOutputSchema(BaseModel):
+    return_code: int
+    signal: Optional[int] = None
+    user_time: Optional[float] = None
+    total_memory: Optional[int] = None
+
+
+class JudgeOutputSchema(BaseModel):
+    grade: bool = False
+    info: Optional[str] = None

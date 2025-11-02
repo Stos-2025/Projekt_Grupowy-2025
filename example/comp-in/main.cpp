@@ -5,24 +5,27 @@
 using namespace std;
 
 
-void sum(){
-    int n, a, sum = 0;
-    cin >> n;
+void sum(int n){
+    int a, tsum = 0;
+    // for(int i = 0; i < n; i++);
     for(int i = 0; i < n; i++) {
         cin >> a;
-        sum +=a;
+        tsum +=a;
     }
-    cout << sum << endl;
+    cout << tsum << endl;
 }
 
 int main() {
     int neverUsed;
-    for (int i = 0; i < 1000; ++i) {
-        void* ptr = malloc(1024 * 1024 * 10); // 10MB na iterację
+    int n;
+    cin >> n;
+    for (int i = 0; i < n/5; ++i) {
+        void* ptr = malloc(1024 * 1024 * 20); // 10MB na iterację
         if (!ptr) break;
-        memset(ptr, i, 1024 * 1024 * 10);
+        memset(ptr, i, 1024 * 1024 * 20);
         std::cerr << "Allocated " << (i + 1) * 10 << " MB" << std::endl;
     }
-    sum();
+    sum(n);
+    // cin >> neverUsed;
     return 0;
 }

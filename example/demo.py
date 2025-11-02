@@ -4,7 +4,6 @@ import subprocess
 import os
 import sys
 import time
-import json
 import dotenv
 import argparse
 from natsort import natsorted
@@ -13,7 +12,7 @@ from typing import List, Optional
 file_dir = os.path.dirname( os.path.abspath(__file__) )
 os.chdir(f"{file_dir}/..")
 sys.path.append(f"{file_dir}/../src/")
-from common.schemas import SubmissionResultSchema, TestResultSchema
+from common.schemas import ExecOutputSchema, JudgeOutputSchema, SubmissionResultSchema, TestResultSchema
 
 
 
@@ -35,11 +34,6 @@ def get_results(path: str) -> SubmissionResultSchema:
 
 
     result = SubmissionResultSchema()
-    try:
-        result.info = fetch_compilation_info(path)
-    except Exception:
-        result.info = "No compilation info available."
-
     points = 0
     test_names: List[str] = []
     for file in os.listdir(path):
@@ -54,16 +48,16 @@ def get_results(path: str) -> SubmissionResultSchema:
             test_result: TestResultSchema = TestResultSchema(test_name=test_name)
 
             with open(exec_file_path, "r") as exec_file:
-                exec = json.load(exec_file)
-                test_result.ret_code = exec["return_code"]
-                test_result.time = float(exec["user_time"])
-                test_result.memory = float(exec["memory"])
+                exec_output = ExecOutputSchema.model_validate_json(json_data=exec_file.read())
+                test_result.ret_code = exec_output.return_code
+                test_result.time = exec_output.user_time
+                test_result.memory = exec_output.total_memory
 
             with open(judge_file_path, "r") as judge_file:
-                judge = json.load(judge_file)
-                test_result.grade = True if judge["grade"] == 1 else False
-                test_result.info = judge["info"]
-                if judge["grade"]:
+                judge_output = JudgeOutputSchema.model_validate_json(json_data=judge_file.read())
+                test_result.grade = judge_output.grade
+                test_result.info = judge_output.info
+                if judge_output.grade:
                     points += 1
 
             result.test_results.append(test_result)
@@ -98,9 +92,8 @@ def run_example(build: bool = True, compile: bool=True, push: bool=False) -> Non
     build_path = r"./src"
 
     exec_in = exmp_path+"/exec-in"
-    exec_out = exmp_path+"/exec-out"
+    out = exmp_path+"/out"
     comp_in = exmp_path+"/comp-in"
-    comp_out = exmp_path+"/comp-out" 
     MAINFILE = "main.py"
 
     run_comp_command = [
@@ -113,7 +106,7 @@ def run_example(build: bool = True, compile: bool=True, push: bool=False) -> Non
         "BIN=/data/out",
         '-e', f'MAINFILE={MAINFILE}',
         "-v", f"{comp_in}:/data/in:ro",
-        "-v", f"{comp_out}:/data/out",
+        "-v", f"{out}:/data/out",
         comp_image_tag
     ]
     run_exec_command = [
@@ -123,8 +116,8 @@ def run_example(build: bool = True, compile: bool=True, push: bool=False) -> Non
         "--network", "none",
         "--security-opt", "no-new-privileges",
         "-v", f"{exec_in}/in:/data/in:ro",
-        "-v", f"{comp_out}:/data/bin:ro",
-        "-v", f"{exec_out}:/data/out",
+        "-v", f"{out}:/data/bin:ro",
+        "-v", f"{out}:/data/out",
         exec_image_tag
     ]
     run_judge_command = [  
@@ -133,8 +126,8 @@ def run_example(build: bool = True, compile: bool=True, push: bool=False) -> Non
         "--ulimit", "cpu=30:30",
         "--network", "none",
         "--security-opt", "no-new-privileges",
-        "-v", f"{exec_out}:/data/in:ro",
-        "-v", f"{exec_out}:/data/out",
+        "-v", f"{out}:/data/in:ro",
+        "-v", f"{out}:/data/out",
         "-v", f"{exec_in}/out:/data/answer:ro",
         judge_image_tag
     ]
@@ -194,8 +187,9 @@ def run_example(build: bool = True, compile: bool=True, push: bool=False) -> Non
     print(f">Judge time: {round(time.time() - start_time, 2)}")
 
 
-    result = get_results(exec_out)
+    result = get_results(out)
     print(result)
+
 
 
 if __name__ == "__main__":

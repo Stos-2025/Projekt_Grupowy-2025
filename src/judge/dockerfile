@@ -3,7 +3,7 @@ FROM alpine:3.21
 WORKDIR /app
 
 
-RUN apk add --no-cache python3
+RUN apk add --no-cache python3 py3-pydantic
 RUN addgroup -S execgroup
 RUN adduser -S execuser -G execgroup
 
@@ -20,5 +20,6 @@ ENV LOGS=on
 ENV IN=/data/in
 ENV ANS=/data/answer
 ENV OUT=/data/out
+ENV CONF=/data/conf
 
 ENTRYPOINT ["python3", "-u", "main.py"]

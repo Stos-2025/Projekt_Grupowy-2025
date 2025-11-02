@@ -1,0 +1,4 @@
+[01m[K/src/main.cpp:[m[K In function '[01m[Kint[01;32m[K main[m[K()[m[K':
+[01m[K/src/main.cpp:19:9:[m[K [01;35m[Kwarning: [m[Kunused variable '[01m[KneverUsed[m[K' [[01;35m[K-Wunused-variable[m[K]
+   19 |     int [01;35m[KneverUsed[m[K;
+      |         [01;35m[K^~~~~~~~~[m[K
