@@ -62,7 +62,7 @@ def get_results(path: str) -> SubmissionResultSchema:
 
             result.test_results.append(test_result)
         except Exception:
-            test_result = TestResultSchema(test_name=test_name, grade=False, info="Error while running test.")
+            test_result = TestResultSchema(test_name=test_name, grade=False, info="error while running test")
             result.test_results.append(test_result)
 
 

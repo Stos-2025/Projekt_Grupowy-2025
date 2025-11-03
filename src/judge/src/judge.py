@@ -36,8 +36,8 @@ def check_exec(exec_path: str, time_limit: float, memory_limit: int) -> TestResu
     if exec_output.total_memory is not None and exec_output.total_memory >= memory_limit:
         return TestResult(False, "memory limit exceeded")
 
-    if rc == -9:
-        return TestResult(False, "process killed (unknown reason)")
+    # if rc == -9:
+        # return TestResult(False, "process killed (unknown reason)")
 
     # Segmentation fault
     if rc == -11:
@@ -45,7 +45,7 @@ def check_exec(exec_path: str, time_limit: float, memory_limit: int) -> TestResu
 
     # Positive return code → program error
     if rc > 0:
-        return TestResult(False, f"program exited with return code {rc}")
+        return TestResult(False, f"program exited with {rc}")
 
     # Negative code (other signals than -9/-11)
     if rc < 0:
@@ -89,6 +89,8 @@ def check(name: str, time_limit: float, memory_limit: int) -> None:
 
     output = JudgeOutputSchema()
     res = check_comp(comp_path)
+    if not res.grade:
+        return
     if res.grade:
         res = check_exec(exec_path, time_limit, memory_limit)
     if res.grade:
@@ -97,5 +99,5 @@ def check(name: str, time_limit: float, memory_limit: int) -> None:
     output.grade = res.grade
     output.info = res.info
     with open(f"{os.getenv('OUT')}/{name}.judge.json", "w") as judge_file:
-        json.dump(output.model_dump_json(), judge_file)
+        json.dump(output.model_dump(), judge_file, indent=2)
         
