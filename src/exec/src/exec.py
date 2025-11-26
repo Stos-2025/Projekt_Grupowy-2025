@@ -6,13 +6,12 @@ import argparse
 import resource
 import psutil
 import subprocess
+import envs
+from logger import logger 
 from typing import Dict, Tuple, Optional, Any
 from common.schemas import ExecOutputSchema
 
 
-# ===========================
-#       ARGUMENT PARSING
-# ===========================
 def parse_arguments() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Run a sandboxed binary with resource limits.")
     parser.add_argument("--name", "-n", type=str, required=True, help="Name of the test case (without extension).")
@@ -22,32 +21,24 @@ def parse_arguments() -> argparse.Namespace:
     return parser.parse_args()
 
 
-# ===========================
-#          PATH SETUP
-# ===========================
 def build_paths(name: str) -> Dict[str, str]:
-    """Build and return all necessary file paths."""
     base_paths: Dict[str, str] = {
-        "IN": os.getenv("IN", "/data/in"),
-        "BIN": os.getenv("BIN", "/data/bin"),
-        "STD": os.getenv("STD", "/data/std"),
-        "OUT": os.getenv("OUT", "/data/out"),
+        "IN": envs.IN,
+        "BIN": envs.BIN,
+        "STD": envs.STD,
+        "OUT": envs.OUT,
     }
 
     return {
         "BINARY": os.path.join(base_paths["BIN"], "program"),
         "INPUT": os.path.join(base_paths["IN"], f"{name}.in"),
-        "EXEC": os.path.join(base_paths["OUT"], f"{name}.exec.json"),
+        "RESULT": os.path.join(base_paths["OUT"], f"{name}.exec.json"),
         "STDERR": os.path.join(base_paths["STD"], f"{name}.stderr.out"),
         "STDOUT": os.path.join(base_paths["STD"], f"{name}.stdout.out"),
     }
 
 
-# ===========================
-#         PSUTIL HELPERS
-# ===========================
 def safe_psutil_call(pid: int, func: Any) -> float | int:
-    """Safely execute a psutil-based function for a given PID."""
     try:
         process = psutil.Process(pid)
         return func(process)
@@ -56,23 +47,14 @@ def safe_psutil_call(pid: int, func: Any) -> float | int:
 
 
 def get_user_time(pid: int) -> float:
-    """Return the user CPU time used by the process."""
     return float(safe_psutil_call(pid, lambda p: p.cpu_times().user)) # type: ignore
 
 
 def get_memory_usage(pid: int) -> int:
-    """Return the resident memory usage (RSS) in bytes."""
     return int(safe_psutil_call(pid, lambda p: p.memory_info().rss)) # type: ignore
 
 
-# ===========================
-#       LIMIT CONFIGURATION
-# ===========================
 def configure_resource_limits(time_limit: float, memory_limit: int, stack_limit: int) -> None:
-    """
-    Apply resource limits before running the target binary.
-    This function is used as a preexec_fn for subprocess.Popen.
-    """
     time_limit_sec = int(time_limit) + 1
     memory_limit_bytes = memory_limit * 2  # Overcommit safety margin
     stack_limit_bytes = stack_limit if stack_limit > 0 else 256 * 1024 * 1024  # 256 MB default
@@ -92,14 +74,7 @@ def configure_resource_limits(time_limit: float, memory_limit: int, stack_limit:
     os.setsid()
 
 
-# ===========================
-#        BINARY EXECUTION
-# ===========================
 def run_binary(paths: Dict[str, str], time_limit: float, memory_limit: int, stack_limit: int) -> Tuple[int, resource.struct_rusage]:
-    """
-    Execute the sandboxed binary, monitoring CPU and memory usage.
-    Kills the process group if resource limits are exceeded.
-    """
     binary_path = paths["BINARY"]
     input_path = paths["INPUT"]
 
@@ -137,11 +112,7 @@ def run_binary(paths: Dict[str, str], time_limit: float, memory_limit: int, stac
     return process.returncode, usage
 
 
-# ===========================
-#        RESULT SAVING
-# ===========================
 def save_results(exec_path: str, retcode: int, usage: Optional[resource.struct_rusage]) -> None:
-    """Save execution metrics to a JSON file."""
     result: ExecOutputSchema = ExecOutputSchema(
         return_code=retcode,
         signal=abs(retcode) if retcode < 0 else None,
@@ -153,19 +124,20 @@ def save_results(exec_path: str, retcode: int, usage: Optional[resource.struct_r
         json.dump(result.model_dump(), file, indent=2)
 
 
-# ===========================
-#            MAIN
-# ===========================
 def main() -> None:
-    """Main entry point for the sandbox runner."""
     args: argparse.Namespace = parse_arguments()
     paths = build_paths(args.name)
 
+    logger.info(f"Running test '{args.name}' with time limit {args.time_limit}s, memory limit {args.total_memory_limit}B, stack limit {args.stack_limit}B")
     try:
         retcode, usage = run_binary(paths, args.time_limit, args.total_memory_limit, args.stack_limit)
-        save_results(paths["EXEC"], retcode, usage)
-    except Exception:
-        save_results(paths["EXEC"], 1, None)
+        
+        logger.info(f"Test '{args.name}' finished with return code {retcode}, user time {usage.ru_utime if usage else 'N/A'}, total memory {usage.ru_maxrss * 1024 if usage else 'N/A'}")
+
+        save_results(paths["RESULT"], retcode, usage)
+    except Exception as e:
+        logger.exception(f"An error occurred while running test '{args.name}': {e}")
+        save_results(paths["RESULT"], 1, None)
 
 
 if __name__ == "__main__":

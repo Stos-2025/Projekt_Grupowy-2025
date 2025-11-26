@@ -77,11 +77,13 @@ def get_results(path: str) -> SubmissionResultSchema:
 
 
 def run_example(build: bool = True, compile: bool=True, push: bool=False) -> None:
-    exec_image_tag = os.getenv(r"EXEC_IMAGE_NAME") or "d4m14n/stos:exec-latest"
-    comp_image_tag = os.getenv(r"GPP_COMP_IMAGE_NAME") or "d4m14n/stos:gpp_comp-latest"
-    # comp_image = os.getenv(r"PY3_COMP_IMAGE_NAME") or "d4m14n/stos:python3_comp-lates"
-    judge_image_tag = os.getenv(r"JUDGE_IMAGE_NAME") or "d4m14n/stos:judge-latest"
-    
+    version = "1.0.2"
+    # version = "latest"
+    exec_image_tag = f"d4m14n/stos_exec:{version}"
+    comp_image_tag = f"d4m14n/stos:gpp_comp-{version}"
+    # comp_image_tag = f"d4m14n/stos:python3_comp-{version}"
+    judge_image_tag = f"d4m14n/stos:judge-{version}"
+
     # build = False
     exmp_path = r"./example"
     comp_path = r"./src/compilers/cpp/dockerfile"
@@ -114,10 +116,12 @@ def run_example(build: bool = True, compile: bool=True, push: bool=False) -> Non
         "--rm",
         "--ulimit", "cpu=30:30",
         "--network", "none",
+        "-e", "LOG=/data/logs/exec.log",
         "--security-opt", "no-new-privileges",
         "-v", f"{exec_in}/in:/data/in:ro",
         "-v", f"{out}:/data/bin:ro",
         "-v", f"{out}:/data/out",
+        "-v", f"{exmp_path}/logs:/data/logs",
         exec_image_tag
     ]
     run_judge_command = [  

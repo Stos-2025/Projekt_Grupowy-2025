@@ -1,8 +1,8 @@
 import json
 import os
 import signal
-from typing import NamedTuple
-from common.schemas import ExecOutputSchema, JudgeOutputSchema
+from typing import NamedTuple, Optional
+from common.schemas import ExecOutputSchema
 
 class TestResult(NamedTuple):
     grade: bool = False
@@ -14,10 +14,10 @@ def check_comp(comp_path: str) -> TestResult:
         with open(comp_path, "r") as comp_file:
             comp = json.load(comp_file)
             if comp["return_code"] != 0:
-                return TestResult(False, f"compilation failed with return code {comp['return_code']}")
+                return TestResult(False, f"compilation error")
     except Exception:
         pass
-    return TestResult(True, "ok c")
+    return TestResult(True, "ok")
 
 
 def check_exec(exec_path: str, time_limit: float, memory_limit: int) -> TestResult:
@@ -74,6 +74,10 @@ def judge(answer_path: str, input_path: str) -> TestResult:
             except EOFError:
                 info = f"unexpected EOF in line {line_nr}"
                 return TestResult(False, info)
+            except Exception:
+                info = f"error reading output line {line_nr}"
+                return TestResult(False, info)
+
             if line.strip() != output_line.strip():
                 info = f"line {line_nr} is not correct"
                 return TestResult(False, info)
@@ -81,23 +85,39 @@ def judge(answer_path: str, input_path: str) -> TestResult:
 
 
 
-def check(name: str, time_limit: float, memory_limit: int) -> None:          
+def judge_test(name: str, time_limit: float, memory_limit: int) -> Optional[TestResult]:          
     answer_path = os.path.join(os.getenv('ANS', '/data/answer'), f"{name}.out")
     input_path = os.path.join(os.getenv('IN', '/data/in'), f"{name}.stdout.out")
     comp_path = os.path.join(os.getenv('OUT', '/data/out'), "comp.json")
     exec_path = os.path.join(os.getenv('OUT', '/data/out'), f"{name}.exec.json")
 
-    output = JudgeOutputSchema()
-    res = check_comp(comp_path)
-    if not res.grade:
-        return
-    if res.grade:
-        res = check_exec(exec_path, time_limit, memory_limit)
-    if res.grade:
-        res = judge(answer_path, input_path)
+    
+    # Check compilation
+    try:
+        result = check_comp(comp_path)
+    except Exception:
+        return None
+        # result = TestResult(False, f"compilation error")
+    if not result.grade:
+        return None
+        # return result
 
-    output.grade = res.grade
-    output.info = res.info
-    with open(f"{os.getenv('OUT')}/{name}.judge.json", "w") as judge_file:
-        json.dump(output.model_dump(), judge_file, indent=2)
+
+    # Check execution
+    try:
+        result = check_exec(exec_path, time_limit, memory_limit)
+    except Exception:
+        result = TestResult(False, f"execution error")
+    if not result.grade:
+        return result
+
+
+    # Check answer
+    try:
+        result = judge(answer_path, input_path)
+    except Exception:
+        result = TestResult(False, f"judging failed")
+    return result
+
+    
         

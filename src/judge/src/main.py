@@ -1,7 +1,7 @@
 import os
 import json
-from judge import check # type: ignore
-from common.schemas import ProblemSpecificationSchema, TestSpecificationSchema
+import judge # type: ignore
+from common.schemas import JudgeOutputSchema, ProblemSpecificationSchema, TestSpecificationSchema
 
 
 def get_default_problem_specification() -> ProblemSpecificationSchema:
@@ -27,7 +27,15 @@ def main():
 
     os.umask(0)
     for test in problem_specification.tests:
-        check(test.test_name, test.time_limit, test.total_memory_limit)
+        test_result = judge.judge_test(test.test_name, test.time_limit, test.total_memory_limit)
+        output = JudgeOutputSchema()
+        if test_result is None:
+            continue
+        output.grade = test_result.grade
+        output.info = test_result.info
+        with open(f"{os.getenv('OUT')}/{test.test_name}.judge.json", "w") as judge_file:
+            json.dump(output.model_dump(), judge_file, indent=2)
+   
     
    
 if __name__ == "__main__":
