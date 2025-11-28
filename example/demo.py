@@ -77,7 +77,7 @@ def get_results(path: str) -> SubmissionResultSchema:
 
 
 def run_example(build: bool = True, compile: bool=True, push: bool=False) -> None:
-    version = "1.0.2"
+    version = "1.0.3"
     # version = "latest"
     exec_image_tag = f"d4m14n/stos_exec:{version}"
     comp_image_tag = f"d4m14n/stos:gpp_comp-{version}"
@@ -149,8 +149,8 @@ def run_example(build: bool = True, compile: bool=True, push: bool=False) -> Non
         subprocess.run(["docker", "login"], check=True)
 
         subprocess.run(["docker", "push", exec_image_tag], check=True)
-        subprocess.run(["docker", "push", judge_image_tag], check=True)
-        subprocess.run(["docker", "push", comp_image_tag], check=True)
+        # subprocess.run(["docker", "push", judge_image_tag], check=True)
+        # subprocess.run(["docker", "push", comp_image_tag], check=True)
 
 
 

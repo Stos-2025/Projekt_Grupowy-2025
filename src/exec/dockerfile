@@ -4,7 +4,8 @@ WORKDIR /app
 
 
 
-RUN apk add --no-cache python3 py3-pydantic py3-psutil
+RUN apk add --no-cache python3 py3-pydantic py3-psutil libc6-compat
+
 RUN addgroup -S execgroup
 RUN adduser -S execuser -G execgroup
 

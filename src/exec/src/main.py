@@ -47,6 +47,7 @@ def load_problem_specification() -> ProblemSpecificationSchema:
 
 
 def main() -> None:
+    logger.info("Starting test execution environment setup.")
     os.umask(0)  # ustawienie domyślnego maskowania plików
     problem_spec = load_problem_specification()
     logger.info(f"Loaded problem specification for problem ID: {problem_spec.id}")
@@ -58,6 +59,8 @@ def main() -> None:
             logger.info(f"Test {test.test_name} completed successfully.")
         except Exception as e:
             logger.error(f"Error running test {test.test_name}: {e}")
+
+    logger.info("All tests executed.")
 
 if __name__ == "__main__":
     main()

@@ -6,7 +6,7 @@ from logging.handlers import RotatingFileHandler
 logger = logging.getLogger("exec_logger")
 logger.setLevel(logging.DEBUG) 
 
-open(envs.LOG, "w").close()
+open(envs.LOG, "a").close()
 file_handler = RotatingFileHandler(envs.LOG, maxBytes=envs.LOG_MAX_SIZE)
 file_handler.setLevel(logging.DEBUG)
 
