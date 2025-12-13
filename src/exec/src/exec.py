@@ -18,10 +18,12 @@ def parse_arguments() -> argparse.Namespace:
     parser.add_argument("--time_limit", "-t", type=float, default=2.0, help="Time limit in seconds.")
     parser.add_argument("--total_memory_limit", "-m", type=int, default=256 * 1024 * 1024, help="Total memory limit in bytes.")
     parser.add_argument("--stack_limit", "-s", type=int, default=0, help="Stack limit in bytes (0 = default 128MB).")
+    parser.add_argument("--input_file", "-i", type=str, help="Path to the input file.")
+    parser.add_argument("--output_file", "-o", type=str, help="Path to the output file.")
     return parser.parse_args()
 
 
-def build_paths(name: str) -> Dict[str, str]:
+def build_paths(name: str, input_file: str, output_file: str) -> Dict[str, str]:
     base_paths: Dict[str, str] = {
         "IN": envs.IN,
         "BIN": envs.BIN,
@@ -31,7 +33,8 @@ def build_paths(name: str) -> Dict[str, str]:
 
     return {
         "BINARY": os.path.join(base_paths["BIN"], "program"),
-        "INPUT": os.path.join(base_paths["IN"], f"{name}.in"),
+        "INPUT": os.path.join(base_paths["IN"], input_file),
+        "ANSWER": os.path.join(base_paths["IN"], output_file),
         "RESULT": os.path.join(base_paths["OUT"], f"{name}.exec.json"),
         "STDERR": os.path.join(base_paths["STD"], f"{name}.stderr.out"),
         "STDOUT": os.path.join(base_paths["STD"], f"{name}.stdout.out"),
@@ -74,7 +77,12 @@ def configure_resource_limits(time_limit: float, memory_limit: int, stack_limit:
     os.setsid()
 
 
-def run_binary(paths: Dict[str, str], time_limit: float, memory_limit: int, stack_limit: int) -> Tuple[int, resource.struct_rusage]:
+def run_binary(
+        paths: Dict[str, str], 
+        time_limit: float, 
+        memory_limit: int, 
+        stack_limit: int
+    ) -> Tuple[int, resource.struct_rusage]:
     binary_path = paths["BINARY"]
     input_path = paths["INPUT"]
 
@@ -126,7 +134,7 @@ def save_results(exec_path: str, retcode: int, usage: Optional[resource.struct_r
 
 def main() -> None:
     args: argparse.Namespace = parse_arguments()
-    paths = build_paths(args.name)
+    paths = build_paths(args.name, args.input_file, args.output_file)
 
     logger.info(f"Running test '{args.name}' with time limit {args.time_limit}s, memory limit {args.total_memory_limit}B, stack limit {args.stack_limit}B")
     try:

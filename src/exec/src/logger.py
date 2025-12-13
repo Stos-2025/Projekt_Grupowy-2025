@@ -1,4 +1,5 @@
 import logging
+import os
 import envs
 from logging.handlers import RotatingFileHandler
 
@@ -6,6 +7,7 @@ from logging.handlers import RotatingFileHandler
 logger = logging.getLogger("exec_logger")
 logger.setLevel(logging.DEBUG) 
 
+os.umask(0) 
 open(envs.LOG, "a").close()
 file_handler = RotatingFileHandler(envs.LOG, maxBytes=envs.LOG_MAX_SIZE)
 file_handler.setLevel(logging.DEBUG)

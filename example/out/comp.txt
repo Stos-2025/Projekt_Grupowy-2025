@@ -1,4 +1,10 @@
 [01m[K/src/main.cpp:[m[K In function '[01m[Kint[01;32m[K main[m[K()[m[K':
-[01m[K/src/main.cpp:19:9:[m[K [01;35m[Kwarning: [m[Kunused variable '[01m[KneverUsed[m[K' [[01;35m[K-Wunused-variable[m[K]
-   19 |     int [01;35m[KneverUsed[m[K;
-      |         [01;35m[K^~~~~~~~~[m[K
+[01m[K/src/main.cpp:13:19:[m[K [01;35m[Kwarning: [m[Ksuggest braces around empty body in an '[01m[Kif[m[K' statement [[01;35m[K-Wempty-body[m[K]
+   13 |     if (wsk==NULL)[01;35m[K;[m[K
+      |                   [01;35m[K^[m[K
+[01m[K/src/main.cpp:7:9:[m[K [01;35m[Kwarning: [m[Kunused variable '[01m[Kc[m[K' [[01;35m[K-Wunused-variable[m[K]
+    7 |     int [01;35m[Kc[m[K=0b110;
+      |         [01;35m[K^[m[K
+[01m[K/src/main.cpp:11:13:[m[K [01;35m[Kwarning: [m[Kunused variable '[01m[Kz[m[K' [[01;35m[K-Wunused-variable[m[K]
+   11 |         int [01;35m[Kz[m[K;
+      |             [01;35m[K^[m[K

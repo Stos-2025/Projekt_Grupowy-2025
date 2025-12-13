@@ -1,3 +1,841 @@
-2025-11-26 18:38:32 | INFO | exec_logger | Running test '2' with time limit 2.0s, memory limit 268435456B, stack limit 0B
-2025-11-26 18:38:32 | INFO | exec_logger | Test '2' finished with return code 0, user time 0.00307, total memory 23965696
-2025-11-26 18:38:32 | INFO | exec_logger | Test 2 completed successfully.
+2025-12-09 12:12:21 | INFO | exec_logger | Starting test execution environment setup.
+2025-12-09 12:27:41 | INFO | exec_logger | Starting test execution environment setup.
+2025-12-09 12:29:04 | INFO | exec_logger | Starting test execution environment setup.
+2025-12-09 12:29:04 | INFO | exec_logger | Loaded problem specification for problem ID: 3
+2025-12-09 12:29:04 | INFO | exec_logger | Running test: 0
+2025-12-09 12:29:04 | INFO | exec_logger | Running test '0' with time limit 0.5s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:29:04 | ERROR | exec_logger | An error occurred while running test '0': Input file missing: /data/in/0.in
+Traceback (most recent call last):
+  File "/app/exec.py", line 133, in main
+    retcode, usage = run_binary(paths, args.time_limit, args.total_memory_limit, args.stack_limit)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/exec.py", line 84, in run_binary
+    raise FileNotFoundError(f"Input file missing: {input_path}")
+FileNotFoundError: Input file missing: /data/in/0.in
+2025-12-09 12:29:04 | INFO | exec_logger | Test 0 completed successfully.
+2025-12-09 12:29:04 | INFO | exec_logger | Running test: 1
+2025-12-09 12:29:05 | INFO | exec_logger | Running test '1' with time limit 0.5s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:29:05 | ERROR | exec_logger | An error occurred while running test '1': Input file missing: /data/in/1.in
+Traceback (most recent call last):
+  File "/app/exec.py", line 133, in main
+    retcode, usage = run_binary(paths, args.time_limit, args.total_memory_limit, args.stack_limit)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/exec.py", line 84, in run_binary
+    raise FileNotFoundError(f"Input file missing: {input_path}")
+FileNotFoundError: Input file missing: /data/in/1.in
+2025-12-09 12:29:05 | INFO | exec_logger | Test 1 completed successfully.
+2025-12-09 12:29:05 | INFO | exec_logger | Running test: 2
+2025-12-09 12:29:05 | INFO | exec_logger | Running test '2' with time limit 0.5s, memory limit 217235456B, stack limit 0B
+2025-12-09 12:29:05 | ERROR | exec_logger | An error occurred while running test '2': Input file missing: /data/in/2.in
+Traceback (most recent call last):
+  File "/app/exec.py", line 133, in main
+    retcode, usage = run_binary(paths, args.time_limit, args.total_memory_limit, args.stack_limit)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/exec.py", line 84, in run_binary
+    raise FileNotFoundError(f"Input file missing: {input_path}")
+FileNotFoundError: Input file missing: /data/in/2.in
+2025-12-09 12:29:05 | INFO | exec_logger | Test 2 completed successfully.
+2025-12-09 12:29:05 | INFO | exec_logger | Running test: 3
+2025-12-09 12:29:05 | INFO | exec_logger | Running test '3' with time limit 0.5s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:29:05 | ERROR | exec_logger | An error occurred while running test '3': Input file missing: /data/in/3.in
+Traceback (most recent call last):
+  File "/app/exec.py", line 133, in main
+    retcode, usage = run_binary(paths, args.time_limit, args.total_memory_limit, args.stack_limit)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/exec.py", line 84, in run_binary
+    raise FileNotFoundError(f"Input file missing: {input_path}")
+FileNotFoundError: Input file missing: /data/in/3.in
+2025-12-09 12:29:05 | INFO | exec_logger | Test 3 completed successfully.
+2025-12-09 12:29:05 | INFO | exec_logger | Running test: 4
+2025-12-09 12:29:05 | INFO | exec_logger | Running test '4' with time limit 1.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:29:05 | ERROR | exec_logger | An error occurred while running test '4': Input file missing: /data/in/4.in
+Traceback (most recent call last):
+  File "/app/exec.py", line 133, in main
+    retcode, usage = run_binary(paths, args.time_limit, args.total_memory_limit, args.stack_limit)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/exec.py", line 84, in run_binary
+    raise FileNotFoundError(f"Input file missing: {input_path}")
+FileNotFoundError: Input file missing: /data/in/4.in
+2025-12-09 12:29:05 | INFO | exec_logger | Test 4 completed successfully.
+2025-12-09 12:29:05 | INFO | exec_logger | Running test: 5
+2025-12-09 12:29:05 | INFO | exec_logger | Running test '5' with time limit 2.0s, memory limit 227475456B, stack limit 0B
+2025-12-09 12:29:05 | ERROR | exec_logger | An error occurred while running test '5': Input file missing: /data/in/5.in
+Traceback (most recent call last):
+  File "/app/exec.py", line 133, in main
+    retcode, usage = run_binary(paths, args.time_limit, args.total_memory_limit, args.stack_limit)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/exec.py", line 84, in run_binary
+    raise FileNotFoundError(f"Input file missing: {input_path}")
+FileNotFoundError: Input file missing: /data/in/5.in
+2025-12-09 12:29:05 | INFO | exec_logger | Test 5 completed successfully.
+2025-12-09 12:29:05 | INFO | exec_logger | Running test: 6
+2025-12-09 12:29:05 | INFO | exec_logger | Running test '6' with time limit 3.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:29:05 | ERROR | exec_logger | An error occurred while running test '6': Input file missing: /data/in/6.in
+Traceback (most recent call last):
+  File "/app/exec.py", line 133, in main
+    retcode, usage = run_binary(paths, args.time_limit, args.total_memory_limit, args.stack_limit)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/exec.py", line 84, in run_binary
+    raise FileNotFoundError(f"Input file missing: {input_path}")
+FileNotFoundError: Input file missing: /data/in/6.in
+2025-12-09 12:29:05 | INFO | exec_logger | Test 6 completed successfully.
+2025-12-09 12:29:05 | INFO | exec_logger | Running test: 7
+2025-12-09 12:29:05 | INFO | exec_logger | Running test '7' with time limit 3.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:29:05 | ERROR | exec_logger | An error occurred while running test '7': Input file missing: /data/in/7.in
+Traceback (most recent call last):
+  File "/app/exec.py", line 133, in main
+    retcode, usage = run_binary(paths, args.time_limit, args.total_memory_limit, args.stack_limit)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/exec.py", line 84, in run_binary
+    raise FileNotFoundError(f"Input file missing: {input_path}")
+FileNotFoundError: Input file missing: /data/in/7.in
+2025-12-09 12:29:05 | INFO | exec_logger | Test 7 completed successfully.
+2025-12-09 12:29:05 | INFO | exec_logger | Running test: 8
+2025-12-09 12:29:05 | INFO | exec_logger | Running test '8' with time limit 3.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:29:05 | ERROR | exec_logger | An error occurred while running test '8': Input file missing: /data/in/8.in
+Traceback (most recent call last):
+  File "/app/exec.py", line 133, in main
+    retcode, usage = run_binary(paths, args.time_limit, args.total_memory_limit, args.stack_limit)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/exec.py", line 84, in run_binary
+    raise FileNotFoundError(f"Input file missing: {input_path}")
+FileNotFoundError: Input file missing: /data/in/8.in
+2025-12-09 12:29:05 | INFO | exec_logger | Test 8 completed successfully.
+2025-12-09 12:29:05 | INFO | exec_logger | Running test: 9
+2025-12-09 12:29:06 | INFO | exec_logger | Running test '9' with time limit 3.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:29:06 | ERROR | exec_logger | An error occurred while running test '9': Input file missing: /data/in/9.in
+Traceback (most recent call last):
+  File "/app/exec.py", line 133, in main
+    retcode, usage = run_binary(paths, args.time_limit, args.total_memory_limit, args.stack_limit)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/exec.py", line 84, in run_binary
+    raise FileNotFoundError(f"Input file missing: {input_path}")
+FileNotFoundError: Input file missing: /data/in/9.in
+2025-12-09 12:29:06 | INFO | exec_logger | Test 9 completed successfully.
+2025-12-09 12:29:06 | INFO | exec_logger | All tests executed.
+2025-12-09 12:35:50 | INFO | exec_logger | Starting test execution environment setup.
+2025-12-09 12:35:50 | INFO | exec_logger | Loaded problem specification for problem ID: 3
+2025-12-09 12:35:50 | INFO | exec_logger | Running test: 0
+2025-12-09 12:35:50 | INFO | exec_logger | Running test '0' with time limit 0.5s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:35:50 | ERROR | exec_logger | An error occurred while running test '0': Input file missing: /data/in/wsp0.in
+Traceback (most recent call last):
+  File "/app/exec.py", line 141, in main
+    retcode, usage = run_binary(paths, args.time_limit, args.total_memory_limit, args.stack_limit)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/exec.py", line 92, in run_binary
+    raise FileNotFoundError(f"Input file missing: {input_path}")
+FileNotFoundError: Input file missing: /data/in/wsp0.in
+2025-12-09 12:35:50 | INFO | exec_logger | Test 0 completed successfully.
+2025-12-09 12:35:50 | INFO | exec_logger | Running test: 1
+2025-12-09 12:35:50 | INFO | exec_logger | Running test '1' with time limit 0.5s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:35:50 | ERROR | exec_logger | An error occurred while running test '1': Input file missing: /data/in/wsp1.in
+Traceback (most recent call last):
+  File "/app/exec.py", line 141, in main
+    retcode, usage = run_binary(paths, args.time_limit, args.total_memory_limit, args.stack_limit)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/exec.py", line 92, in run_binary
+    raise FileNotFoundError(f"Input file missing: {input_path}")
+FileNotFoundError: Input file missing: /data/in/wsp1.in
+2025-12-09 12:35:50 | INFO | exec_logger | Test 1 completed successfully.
+2025-12-09 12:35:50 | INFO | exec_logger | Running test: 2
+2025-12-09 12:35:50 | INFO | exec_logger | Running test '2' with time limit 0.5s, memory limit 217235456B, stack limit 0B
+2025-12-09 12:35:50 | ERROR | exec_logger | An error occurred while running test '2': Input file missing: /data/in/wsp2.in
+Traceback (most recent call last):
+  File "/app/exec.py", line 141, in main
+    retcode, usage = run_binary(paths, args.time_limit, args.total_memory_limit, args.stack_limit)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/exec.py", line 92, in run_binary
+    raise FileNotFoundError(f"Input file missing: {input_path}")
+FileNotFoundError: Input file missing: /data/in/wsp2.in
+2025-12-09 12:35:50 | INFO | exec_logger | Test 2 completed successfully.
+2025-12-09 12:35:50 | INFO | exec_logger | Running test: 3
+2025-12-09 12:35:50 | INFO | exec_logger | Running test '3' with time limit 0.5s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:35:50 | ERROR | exec_logger | An error occurred while running test '3': Input file missing: /data/in/wsp3.in
+Traceback (most recent call last):
+  File "/app/exec.py", line 141, in main
+    retcode, usage = run_binary(paths, args.time_limit, args.total_memory_limit, args.stack_limit)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/exec.py", line 92, in run_binary
+    raise FileNotFoundError(f"Input file missing: {input_path}")
+FileNotFoundError: Input file missing: /data/in/wsp3.in
+2025-12-09 12:35:50 | INFO | exec_logger | Test 3 completed successfully.
+2025-12-09 12:35:50 | INFO | exec_logger | Running test: 4
+2025-12-09 12:35:50 | INFO | exec_logger | Running test '4' with time limit 1.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:35:50 | ERROR | exec_logger | An error occurred while running test '4': Input file missing: /data/in/wsp4.in
+Traceback (most recent call last):
+  File "/app/exec.py", line 141, in main
+    retcode, usage = run_binary(paths, args.time_limit, args.total_memory_limit, args.stack_limit)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/exec.py", line 92, in run_binary
+    raise FileNotFoundError(f"Input file missing: {input_path}")
+FileNotFoundError: Input file missing: /data/in/wsp4.in
+2025-12-09 12:35:50 | INFO | exec_logger | Test 4 completed successfully.
+2025-12-09 12:35:50 | INFO | exec_logger | Running test: 5
+2025-12-09 12:35:51 | INFO | exec_logger | Running test '5' with time limit 2.0s, memory limit 227475456B, stack limit 0B
+2025-12-09 12:35:51 | ERROR | exec_logger | An error occurred while running test '5': Input file missing: /data/in/wsp5.in
+Traceback (most recent call last):
+  File "/app/exec.py", line 141, in main
+    retcode, usage = run_binary(paths, args.time_limit, args.total_memory_limit, args.stack_limit)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/exec.py", line 92, in run_binary
+    raise FileNotFoundError(f"Input file missing: {input_path}")
+FileNotFoundError: Input file missing: /data/in/wsp5.in
+2025-12-09 12:35:51 | INFO | exec_logger | Test 5 completed successfully.
+2025-12-09 12:35:51 | INFO | exec_logger | Running test: 6
+2025-12-09 12:35:51 | INFO | exec_logger | Running test '6' with time limit 3.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:35:51 | ERROR | exec_logger | An error occurred while running test '6': Input file missing: /data/in/wsp6.in
+Traceback (most recent call last):
+  File "/app/exec.py", line 141, in main
+    retcode, usage = run_binary(paths, args.time_limit, args.total_memory_limit, args.stack_limit)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/exec.py", line 92, in run_binary
+    raise FileNotFoundError(f"Input file missing: {input_path}")
+FileNotFoundError: Input file missing: /data/in/wsp6.in
+2025-12-09 12:35:51 | INFO | exec_logger | Test 6 completed successfully.
+2025-12-09 12:35:51 | INFO | exec_logger | Running test: 7
+2025-12-09 12:35:51 | INFO | exec_logger | Running test '7' with time limit 3.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:35:51 | ERROR | exec_logger | An error occurred while running test '7': Input file missing: /data/in/wsp7.in
+Traceback (most recent call last):
+  File "/app/exec.py", line 141, in main
+    retcode, usage = run_binary(paths, args.time_limit, args.total_memory_limit, args.stack_limit)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/exec.py", line 92, in run_binary
+    raise FileNotFoundError(f"Input file missing: {input_path}")
+FileNotFoundError: Input file missing: /data/in/wsp7.in
+2025-12-09 12:35:51 | INFO | exec_logger | Test 7 completed successfully.
+2025-12-09 12:35:51 | INFO | exec_logger | Running test: 8
+2025-12-09 12:35:51 | INFO | exec_logger | Running test '8' with time limit 3.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:35:51 | ERROR | exec_logger | An error occurred while running test '8': Input file missing: /data/in/wsp8.in
+Traceback (most recent call last):
+  File "/app/exec.py", line 141, in main
+    retcode, usage = run_binary(paths, args.time_limit, args.total_memory_limit, args.stack_limit)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/exec.py", line 92, in run_binary
+    raise FileNotFoundError(f"Input file missing: {input_path}")
+FileNotFoundError: Input file missing: /data/in/wsp8.in
+2025-12-09 12:35:51 | INFO | exec_logger | Test 8 completed successfully.
+2025-12-09 12:35:51 | INFO | exec_logger | Running test: 9
+2025-12-09 12:35:51 | INFO | exec_logger | Running test '9' with time limit 3.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:35:51 | ERROR | exec_logger | An error occurred while running test '9': Input file missing: /data/in/wsp9.in
+Traceback (most recent call last):
+  File "/app/exec.py", line 141, in main
+    retcode, usage = run_binary(paths, args.time_limit, args.total_memory_limit, args.stack_limit)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/exec.py", line 92, in run_binary
+    raise FileNotFoundError(f"Input file missing: {input_path}")
+FileNotFoundError: Input file missing: /data/in/wsp9.in
+2025-12-09 12:35:51 | INFO | exec_logger | Test 9 completed successfully.
+2025-12-09 12:35:51 | INFO | exec_logger | All tests executed.
+2025-12-09 12:41:44 | INFO | exec_logger | Starting test execution environment setup.
+2025-12-09 12:41:44 | INFO | exec_logger | Loaded problem specification for problem ID: 3
+2025-12-09 12:41:44 | INFO | exec_logger | Running test: 0
+2025-12-09 12:41:44 | INFO | exec_logger | Running test '0' with time limit 0.5s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:41:44 | ERROR | exec_logger | An error occurred while running test '0': Input file missing: /data/in/wsp0.in
+Traceback (most recent call last):
+  File "/app/exec.py", line 141, in main
+    retcode, usage = run_binary(paths, args.time_limit, args.total_memory_limit, args.stack_limit)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/exec.py", line 92, in run_binary
+    raise FileNotFoundError(f"Input file missing: {input_path}")
+FileNotFoundError: Input file missing: /data/in/wsp0.in
+2025-12-09 12:41:44 | INFO | exec_logger | Test 0 completed successfully.
+2025-12-09 12:41:44 | INFO | exec_logger | Running test: 1
+2025-12-09 12:41:44 | INFO | exec_logger | Running test '1' with time limit 0.5s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:41:44 | ERROR | exec_logger | An error occurred while running test '1': Input file missing: /data/in/wsp1.in
+Traceback (most recent call last):
+  File "/app/exec.py", line 141, in main
+    retcode, usage = run_binary(paths, args.time_limit, args.total_memory_limit, args.stack_limit)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/exec.py", line 92, in run_binary
+    raise FileNotFoundError(f"Input file missing: {input_path}")
+FileNotFoundError: Input file missing: /data/in/wsp1.in
+2025-12-09 12:41:44 | INFO | exec_logger | Test 1 completed successfully.
+2025-12-09 12:41:44 | INFO | exec_logger | Running test: 2
+2025-12-09 12:41:44 | INFO | exec_logger | Running test '2' with time limit 0.5s, memory limit 217235456B, stack limit 0B
+2025-12-09 12:41:44 | ERROR | exec_logger | An error occurred while running test '2': Input file missing: /data/in/wsp2.in
+Traceback (most recent call last):
+  File "/app/exec.py", line 141, in main
+    retcode, usage = run_binary(paths, args.time_limit, args.total_memory_limit, args.stack_limit)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/exec.py", line 92, in run_binary
+    raise FileNotFoundError(f"Input file missing: {input_path}")
+FileNotFoundError: Input file missing: /data/in/wsp2.in
+2025-12-09 12:41:44 | INFO | exec_logger | Test 2 completed successfully.
+2025-12-09 12:41:44 | INFO | exec_logger | Running test: 3
+2025-12-09 12:41:44 | INFO | exec_logger | Running test '3' with time limit 0.5s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:41:44 | ERROR | exec_logger | An error occurred while running test '3': Input file missing: /data/in/wsp3.in
+Traceback (most recent call last):
+  File "/app/exec.py", line 141, in main
+    retcode, usage = run_binary(paths, args.time_limit, args.total_memory_limit, args.stack_limit)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/exec.py", line 92, in run_binary
+    raise FileNotFoundError(f"Input file missing: {input_path}")
+FileNotFoundError: Input file missing: /data/in/wsp3.in
+2025-12-09 12:41:44 | INFO | exec_logger | Test 3 completed successfully.
+2025-12-09 12:41:44 | INFO | exec_logger | Running test: 4
+2025-12-09 12:41:44 | INFO | exec_logger | Running test '4' with time limit 1.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:41:44 | ERROR | exec_logger | An error occurred while running test '4': Input file missing: /data/in/wsp4.in
+Traceback (most recent call last):
+  File "/app/exec.py", line 141, in main
+    retcode, usage = run_binary(paths, args.time_limit, args.total_memory_limit, args.stack_limit)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/exec.py", line 92, in run_binary
+    raise FileNotFoundError(f"Input file missing: {input_path}")
+FileNotFoundError: Input file missing: /data/in/wsp4.in
+2025-12-09 12:41:44 | INFO | exec_logger | Test 4 completed successfully.
+2025-12-09 12:41:44 | INFO | exec_logger | Running test: 5
+2025-12-09 12:41:45 | INFO | exec_logger | Running test '5' with time limit 2.0s, memory limit 227475456B, stack limit 0B
+2025-12-09 12:41:45 | ERROR | exec_logger | An error occurred while running test '5': Input file missing: /data/in/wsp5.in
+Traceback (most recent call last):
+  File "/app/exec.py", line 141, in main
+    retcode, usage = run_binary(paths, args.time_limit, args.total_memory_limit, args.stack_limit)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/exec.py", line 92, in run_binary
+    raise FileNotFoundError(f"Input file missing: {input_path}")
+FileNotFoundError: Input file missing: /data/in/wsp5.in
+2025-12-09 12:41:45 | INFO | exec_logger | Test 5 completed successfully.
+2025-12-09 12:41:45 | INFO | exec_logger | Running test: 6
+2025-12-09 12:41:45 | INFO | exec_logger | Running test '6' with time limit 3.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:41:45 | ERROR | exec_logger | An error occurred while running test '6': Input file missing: /data/in/wsp6.in
+Traceback (most recent call last):
+  File "/app/exec.py", line 141, in main
+    retcode, usage = run_binary(paths, args.time_limit, args.total_memory_limit, args.stack_limit)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/exec.py", line 92, in run_binary
+    raise FileNotFoundError(f"Input file missing: {input_path}")
+FileNotFoundError: Input file missing: /data/in/wsp6.in
+2025-12-09 12:41:45 | INFO | exec_logger | Test 6 completed successfully.
+2025-12-09 12:41:45 | INFO | exec_logger | Running test: 7
+2025-12-09 12:41:45 | INFO | exec_logger | Running test '7' with time limit 3.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:41:45 | ERROR | exec_logger | An error occurred while running test '7': Input file missing: /data/in/wsp7.in
+Traceback (most recent call last):
+  File "/app/exec.py", line 141, in main
+    retcode, usage = run_binary(paths, args.time_limit, args.total_memory_limit, args.stack_limit)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/exec.py", line 92, in run_binary
+    raise FileNotFoundError(f"Input file missing: {input_path}")
+FileNotFoundError: Input file missing: /data/in/wsp7.in
+2025-12-09 12:41:45 | INFO | exec_logger | Test 7 completed successfully.
+2025-12-09 12:41:45 | INFO | exec_logger | Running test: 8
+2025-12-09 12:41:45 | INFO | exec_logger | Running test '8' with time limit 3.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:41:45 | ERROR | exec_logger | An error occurred while running test '8': Input file missing: /data/in/wsp8.in
+Traceback (most recent call last):
+  File "/app/exec.py", line 141, in main
+    retcode, usage = run_binary(paths, args.time_limit, args.total_memory_limit, args.stack_limit)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/exec.py", line 92, in run_binary
+    raise FileNotFoundError(f"Input file missing: {input_path}")
+FileNotFoundError: Input file missing: /data/in/wsp8.in
+2025-12-09 12:41:45 | INFO | exec_logger | Test 8 completed successfully.
+2025-12-09 12:41:45 | INFO | exec_logger | Running test: 9
+2025-12-09 12:41:45 | INFO | exec_logger | Running test '9' with time limit 3.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:41:45 | ERROR | exec_logger | An error occurred while running test '9': Input file missing: /data/in/wsp9.in
+Traceback (most recent call last):
+  File "/app/exec.py", line 141, in main
+    retcode, usage = run_binary(paths, args.time_limit, args.total_memory_limit, args.stack_limit)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/exec.py", line 92, in run_binary
+    raise FileNotFoundError(f"Input file missing: {input_path}")
+FileNotFoundError: Input file missing: /data/in/wsp9.in
+2025-12-09 12:41:45 | INFO | exec_logger | Test 9 completed successfully.
+2025-12-09 12:41:45 | INFO | exec_logger | All tests executed.
+2025-12-09 12:42:37 | INFO | exec_logger | Starting test execution environment setup.
+2025-12-09 12:42:37 | INFO | exec_logger | Loaded problem specification for problem ID: 3
+2025-12-09 12:42:37 | INFO | exec_logger | Running test: 0
+2025-12-09 12:42:37 | INFO | exec_logger | Running test '0' with time limit 0.5s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:42:37 | ERROR | exec_logger | An error occurred while running test '0': Input file missing: /data/in/wsp0.in
+Traceback (most recent call last):
+  File "/app/exec.py", line 141, in main
+    retcode, usage = run_binary(paths, args.time_limit, args.total_memory_limit, args.stack_limit)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/exec.py", line 92, in run_binary
+    raise FileNotFoundError(f"Input file missing: {input_path}")
+FileNotFoundError: Input file missing: /data/in/wsp0.in
+2025-12-09 12:42:37 | INFO | exec_logger | Test 0 completed successfully.
+2025-12-09 12:42:37 | INFO | exec_logger | Running test: 1
+2025-12-09 12:42:37 | INFO | exec_logger | Running test '1' with time limit 0.5s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:42:37 | ERROR | exec_logger | An error occurred while running test '1': Input file missing: /data/in/wsp1.in
+Traceback (most recent call last):
+  File "/app/exec.py", line 141, in main
+    retcode, usage = run_binary(paths, args.time_limit, args.total_memory_limit, args.stack_limit)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/exec.py", line 92, in run_binary
+    raise FileNotFoundError(f"Input file missing: {input_path}")
+FileNotFoundError: Input file missing: /data/in/wsp1.in
+2025-12-09 12:42:37 | INFO | exec_logger | Test 1 completed successfully.
+2025-12-09 12:42:37 | INFO | exec_logger | Running test: 2
+2025-12-09 12:42:37 | INFO | exec_logger | Running test '2' with time limit 0.5s, memory limit 217235456B, stack limit 0B
+2025-12-09 12:42:37 | ERROR | exec_logger | An error occurred while running test '2': Input file missing: /data/in/wsp2.in
+Traceback (most recent call last):
+  File "/app/exec.py", line 141, in main
+    retcode, usage = run_binary(paths, args.time_limit, args.total_memory_limit, args.stack_limit)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/exec.py", line 92, in run_binary
+    raise FileNotFoundError(f"Input file missing: {input_path}")
+FileNotFoundError: Input file missing: /data/in/wsp2.in
+2025-12-09 12:42:37 | INFO | exec_logger | Test 2 completed successfully.
+2025-12-09 12:42:37 | INFO | exec_logger | Running test: 3
+2025-12-09 12:42:37 | INFO | exec_logger | Running test '3' with time limit 0.5s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:42:37 | ERROR | exec_logger | An error occurred while running test '3': Input file missing: /data/in/wsp3.in
+Traceback (most recent call last):
+  File "/app/exec.py", line 141, in main
+    retcode, usage = run_binary(paths, args.time_limit, args.total_memory_limit, args.stack_limit)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/exec.py", line 92, in run_binary
+    raise FileNotFoundError(f"Input file missing: {input_path}")
+FileNotFoundError: Input file missing: /data/in/wsp3.in
+2025-12-09 12:42:37 | INFO | exec_logger | Test 3 completed successfully.
+2025-12-09 12:42:37 | INFO | exec_logger | Running test: 4
+2025-12-09 12:42:37 | INFO | exec_logger | Running test '4' with time limit 1.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:42:37 | ERROR | exec_logger | An error occurred while running test '4': Input file missing: /data/in/wsp4.in
+Traceback (most recent call last):
+  File "/app/exec.py", line 141, in main
+    retcode, usage = run_binary(paths, args.time_limit, args.total_memory_limit, args.stack_limit)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/exec.py", line 92, in run_binary
+    raise FileNotFoundError(f"Input file missing: {input_path}")
+FileNotFoundError: Input file missing: /data/in/wsp4.in
+2025-12-09 12:42:37 | INFO | exec_logger | Test 4 completed successfully.
+2025-12-09 12:42:37 | INFO | exec_logger | Running test: 5
+2025-12-09 12:42:37 | INFO | exec_logger | Running test '5' with time limit 2.0s, memory limit 227475456B, stack limit 0B
+2025-12-09 12:42:37 | ERROR | exec_logger | An error occurred while running test '5': Input file missing: /data/in/wsp5.in
+Traceback (most recent call last):
+  File "/app/exec.py", line 141, in main
+    retcode, usage = run_binary(paths, args.time_limit, args.total_memory_limit, args.stack_limit)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/exec.py", line 92, in run_binary
+    raise FileNotFoundError(f"Input file missing: {input_path}")
+FileNotFoundError: Input file missing: /data/in/wsp5.in
+2025-12-09 12:42:37 | INFO | exec_logger | Test 5 completed successfully.
+2025-12-09 12:42:37 | INFO | exec_logger | Running test: 6
+2025-12-09 12:42:38 | INFO | exec_logger | Running test '6' with time limit 3.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:42:38 | ERROR | exec_logger | An error occurred while running test '6': Input file missing: /data/in/wsp6.in
+Traceback (most recent call last):
+  File "/app/exec.py", line 141, in main
+    retcode, usage = run_binary(paths, args.time_limit, args.total_memory_limit, args.stack_limit)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/exec.py", line 92, in run_binary
+    raise FileNotFoundError(f"Input file missing: {input_path}")
+FileNotFoundError: Input file missing: /data/in/wsp6.in
+2025-12-09 12:42:38 | INFO | exec_logger | Test 6 completed successfully.
+2025-12-09 12:42:38 | INFO | exec_logger | Running test: 7
+2025-12-09 12:42:38 | INFO | exec_logger | Running test '7' with time limit 3.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:42:38 | ERROR | exec_logger | An error occurred while running test '7': Input file missing: /data/in/wsp7.in
+Traceback (most recent call last):
+  File "/app/exec.py", line 141, in main
+    retcode, usage = run_binary(paths, args.time_limit, args.total_memory_limit, args.stack_limit)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/exec.py", line 92, in run_binary
+    raise FileNotFoundError(f"Input file missing: {input_path}")
+FileNotFoundError: Input file missing: /data/in/wsp7.in
+2025-12-09 12:42:38 | INFO | exec_logger | Test 7 completed successfully.
+2025-12-09 12:42:38 | INFO | exec_logger | Running test: 8
+2025-12-09 12:42:38 | INFO | exec_logger | Running test '8' with time limit 3.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:42:38 | ERROR | exec_logger | An error occurred while running test '8': Input file missing: /data/in/wsp8.in
+Traceback (most recent call last):
+  File "/app/exec.py", line 141, in main
+    retcode, usage = run_binary(paths, args.time_limit, args.total_memory_limit, args.stack_limit)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/exec.py", line 92, in run_binary
+    raise FileNotFoundError(f"Input file missing: {input_path}")
+FileNotFoundError: Input file missing: /data/in/wsp8.in
+2025-12-09 12:42:38 | INFO | exec_logger | Test 8 completed successfully.
+2025-12-09 12:42:38 | INFO | exec_logger | Running test: 9
+2025-12-09 12:42:38 | INFO | exec_logger | Running test '9' with time limit 3.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:42:38 | ERROR | exec_logger | An error occurred while running test '9': Input file missing: /data/in/wsp9.in
+Traceback (most recent call last):
+  File "/app/exec.py", line 141, in main
+    retcode, usage = run_binary(paths, args.time_limit, args.total_memory_limit, args.stack_limit)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/exec.py", line 92, in run_binary
+    raise FileNotFoundError(f"Input file missing: {input_path}")
+FileNotFoundError: Input file missing: /data/in/wsp9.in
+2025-12-09 12:42:38 | INFO | exec_logger | Test 9 completed successfully.
+2025-12-09 12:42:38 | INFO | exec_logger | All tests executed.
+2025-12-09 12:44:57 | INFO | exec_logger | Starting test execution environment setup.
+2025-12-09 12:44:57 | INFO | exec_logger | Loaded problem specification for problem ID: 3
+2025-12-09 12:44:57 | INFO | exec_logger | Running test: 0
+2025-12-09 12:44:57 | INFO | exec_logger | Running test '0' with time limit 0.5s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:44:57 | INFO | exec_logger | Test '0' finished with return code 0, user time 0.001916, total memory 24002560
+2025-12-09 12:44:57 | INFO | exec_logger | Test 0 completed successfully.
+2025-12-09 12:44:57 | INFO | exec_logger | Running test: 1
+2025-12-09 12:44:57 | INFO | exec_logger | Running test '1' with time limit 0.5s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:44:57 | INFO | exec_logger | Test '1' finished with return code 0, user time 0.0, total memory 23977984
+2025-12-09 12:44:57 | INFO | exec_logger | Test 1 completed successfully.
+2025-12-09 12:44:57 | INFO | exec_logger | Running test: 2
+2025-12-09 12:44:57 | INFO | exec_logger | Running test '2' with time limit 0.5s, memory limit 217235456B, stack limit 0B
+2025-12-09 12:44:57 | INFO | exec_logger | Test '2' finished with return code 0, user time 0.0, total memory 24006656
+2025-12-09 12:44:57 | INFO | exec_logger | Test 2 completed successfully.
+2025-12-09 12:44:57 | INFO | exec_logger | Running test: 3
+2025-12-09 12:44:57 | INFO | exec_logger | Running test '3' with time limit 0.5s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:44:57 | INFO | exec_logger | Test '3' finished with return code 0, user time 0.0, total memory 23904256
+2025-12-09 12:44:57 | INFO | exec_logger | Test 3 completed successfully.
+2025-12-09 12:44:57 | INFO | exec_logger | Running test: 4
+2025-12-09 12:44:57 | INFO | exec_logger | Running test '4' with time limit 1.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:44:57 | INFO | exec_logger | Test '4' finished with return code 0, user time 0.000731, total memory 23900160
+2025-12-09 12:44:57 | INFO | exec_logger | Test 4 completed successfully.
+2025-12-09 12:44:57 | INFO | exec_logger | Running test: 5
+2025-12-09 12:44:57 | INFO | exec_logger | Running test '5' with time limit 2.0s, memory limit 227475456B, stack limit 0B
+2025-12-09 12:44:57 | INFO | exec_logger | Test '5' finished with return code 0, user time 0.018477999999999998, total memory 23883776
+2025-12-09 12:44:58 | INFO | exec_logger | Test 5 completed successfully.
+2025-12-09 12:44:58 | INFO | exec_logger | Running test: 6
+2025-12-09 12:44:58 | INFO | exec_logger | Running test '6' with time limit 3.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:44:58 | INFO | exec_logger | Test '6' finished with return code 0, user time 0.070981, total memory 23953408
+2025-12-09 12:44:58 | INFO | exec_logger | Test 6 completed successfully.
+2025-12-09 12:44:58 | INFO | exec_logger | Running test: 7
+2025-12-09 12:44:58 | INFO | exec_logger | Running test '7' with time limit 3.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:44:58 | INFO | exec_logger | Test '7' finished with return code 0, user time 0.072853, total memory 23822336
+2025-12-09 12:44:58 | INFO | exec_logger | Test 7 completed successfully.
+2025-12-09 12:44:58 | INFO | exec_logger | Running test: 8
+2025-12-09 12:44:58 | INFO | exec_logger | Running test '8' with time limit 3.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:44:58 | INFO | exec_logger | Test '8' finished with return code 0, user time 0.113146, total memory 23826432
+2025-12-09 12:44:58 | INFO | exec_logger | Test 8 completed successfully.
+2025-12-09 12:44:58 | INFO | exec_logger | Running test: 9
+2025-12-09 12:44:58 | INFO | exec_logger | Running test '9' with time limit 3.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:44:58 | INFO | exec_logger | Test '9' finished with return code 0, user time 0.11264199999999999, total memory 24018944
+2025-12-09 12:44:58 | INFO | exec_logger | Test 9 completed successfully.
+2025-12-09 12:44:58 | INFO | exec_logger | All tests executed.
+2025-12-09 12:48:56 | INFO | exec_logger | Starting test execution environment setup.
+2025-12-09 12:48:56 | INFO | exec_logger | Loaded problem specification for problem ID: 3
+2025-12-09 12:48:56 | INFO | exec_logger | Running test: 0
+2025-12-09 12:48:56 | INFO | exec_logger | Running test '0' with time limit 0.5s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:48:56 | INFO | exec_logger | Test '0' finished with return code 0, user time 0.0, total memory 24002560
+2025-12-09 12:48:56 | INFO | exec_logger | Test 0 completed successfully.
+2025-12-09 12:48:56 | INFO | exec_logger | Running test: 1
+2025-12-09 12:48:56 | INFO | exec_logger | Running test '1' with time limit 0.5s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:48:56 | INFO | exec_logger | Test '1' finished with return code 0, user time 0.0, total memory 23982080
+2025-12-09 12:48:56 | INFO | exec_logger | Test 1 completed successfully.
+2025-12-09 12:48:56 | INFO | exec_logger | Running test: 2
+2025-12-09 12:48:56 | INFO | exec_logger | Running test '2' with time limit 0.5s, memory limit 217235456B, stack limit 0B
+2025-12-09 12:48:56 | INFO | exec_logger | Test '2' finished with return code 0, user time 0.0, total memory 23912448
+2025-12-09 12:48:57 | INFO | exec_logger | Test 2 completed successfully.
+2025-12-09 12:48:57 | INFO | exec_logger | Running test: 3
+2025-12-09 12:48:57 | INFO | exec_logger | Running test '3' with time limit 0.5s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:48:57 | INFO | exec_logger | Test '3' finished with return code 0, user time 0.000762, total memory 23904256
+2025-12-09 12:48:57 | INFO | exec_logger | Test 3 completed successfully.
+2025-12-09 12:48:57 | INFO | exec_logger | Running test: 4
+2025-12-09 12:48:57 | INFO | exec_logger | Running test '4' with time limit 1.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:48:57 | INFO | exec_logger | Test '4' finished with return code 0, user time 0.000716, total memory 23977984
+2025-12-09 12:48:57 | INFO | exec_logger | Test 4 completed successfully.
+2025-12-09 12:48:57 | INFO | exec_logger | Running test: 5
+2025-12-09 12:48:57 | INFO | exec_logger | Running test '5' with time limit 2.0s, memory limit 227475456B, stack limit 0B
+2025-12-09 12:48:57 | INFO | exec_logger | Test '5' finished with return code 0, user time 0.018498, total memory 23916544
+2025-12-09 12:48:57 | INFO | exec_logger | Test 5 completed successfully.
+2025-12-09 12:48:57 | INFO | exec_logger | Running test: 6
+2025-12-09 12:48:57 | INFO | exec_logger | Running test '6' with time limit 3.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:48:57 | INFO | exec_logger | Test '6' finished with return code 0, user time 0.054188999999999994, total memory 23973888
+2025-12-09 12:48:57 | INFO | exec_logger | Test 6 completed successfully.
+2025-12-09 12:48:57 | INFO | exec_logger | Running test: 7
+2025-12-09 12:48:57 | INFO | exec_logger | Running test '7' with time limit 3.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:48:57 | INFO | exec_logger | Test '7' finished with return code 0, user time 0.085357, total memory 23883776
+2025-12-09 12:48:57 | INFO | exec_logger | Test 7 completed successfully.
+2025-12-09 12:48:57 | INFO | exec_logger | Running test: 8
+2025-12-09 12:48:58 | INFO | exec_logger | Running test '8' with time limit 3.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:48:58 | INFO | exec_logger | Test '8' finished with return code 0, user time 0.098926, total memory 23879680
+2025-12-09 12:48:58 | INFO | exec_logger | Test 8 completed successfully.
+2025-12-09 12:48:58 | INFO | exec_logger | Running test: 9
+2025-12-09 12:48:58 | INFO | exec_logger | Running test '9' with time limit 3.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:48:58 | INFO | exec_logger | Test '9' finished with return code 0, user time 0.106722, total memory 23904256
+2025-12-09 12:48:58 | INFO | exec_logger | Test 9 completed successfully.
+2025-12-09 12:48:58 | INFO | exec_logger | All tests executed.
+2025-12-09 12:53:07 | INFO | exec_logger | Starting test execution environment setup.
+2025-12-09 12:53:07 | INFO | exec_logger | Loaded problem specification for problem ID: 3
+2025-12-09 12:53:07 | INFO | exec_logger | Running test: 0
+2025-12-09 12:53:07 | INFO | exec_logger | Running test '0' with time limit 0.5s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:53:07 | INFO | exec_logger | Test '0' finished with return code 0, user time 0.0, total memory 23904256
+2025-12-09 12:53:07 | INFO | exec_logger | Test 0 completed successfully.
+2025-12-09 12:53:07 | INFO | exec_logger | Running test: 1
+2025-12-09 12:53:07 | INFO | exec_logger | Running test '1' with time limit 0.5s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:53:07 | INFO | exec_logger | Test '1' finished with return code 0, user time 0.0, total memory 23990272
+2025-12-09 12:53:07 | INFO | exec_logger | Test 1 completed successfully.
+2025-12-09 12:53:07 | INFO | exec_logger | Running test: 2
+2025-12-09 12:53:07 | INFO | exec_logger | Running test '2' with time limit 0.5s, memory limit 217235456B, stack limit 0B
+2025-12-09 12:53:07 | INFO | exec_logger | Test '2' finished with return code 0, user time 0.0, total memory 23900160
+2025-12-09 12:53:07 | INFO | exec_logger | Test 2 completed successfully.
+2025-12-09 12:53:07 | INFO | exec_logger | Running test: 3
+2025-12-09 12:53:07 | INFO | exec_logger | Running test '3' with time limit 0.5s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:53:07 | INFO | exec_logger | Test '3' finished with return code 0, user time 0.000725, total memory 23896064
+2025-12-09 12:53:07 | INFO | exec_logger | Test 3 completed successfully.
+2025-12-09 12:53:07 | INFO | exec_logger | Running test: 4
+2025-12-09 12:53:07 | INFO | exec_logger | Running test '4' with time limit 1.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:53:07 | INFO | exec_logger | Test '4' finished with return code 0, user time 0.002735, total memory 23900160
+2025-12-09 12:53:07 | INFO | exec_logger | Test 4 completed successfully.
+2025-12-09 12:53:07 | INFO | exec_logger | Running test: 5
+2025-12-09 12:53:08 | INFO | exec_logger | Running test '5' with time limit 2.0s, memory limit 227475456B, stack limit 0B
+2025-12-09 12:53:08 | INFO | exec_logger | Test '5' finished with return code 0, user time 0.024076999999999998, total memory 23826432
+2025-12-09 12:53:08 | INFO | exec_logger | Test 5 completed successfully.
+2025-12-09 12:53:08 | INFO | exec_logger | Running test: 6
+2025-12-09 12:53:08 | INFO | exec_logger | Running test '6' with time limit 3.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:53:08 | INFO | exec_logger | Test '6' finished with return code 0, user time 0.07088599999999999, total memory 23896064
+2025-12-09 12:53:08 | INFO | exec_logger | Test 6 completed successfully.
+2025-12-09 12:53:08 | INFO | exec_logger | Running test: 7
+2025-12-09 12:53:08 | INFO | exec_logger | Running test '7' with time limit 3.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:53:08 | INFO | exec_logger | Test '7' finished with return code 0, user time 0.075462, total memory 23973888
+2025-12-09 12:53:08 | INFO | exec_logger | Test 7 completed successfully.
+2025-12-09 12:53:08 | INFO | exec_logger | Running test: 8
+2025-12-09 12:53:08 | INFO | exec_logger | Running test '8' with time limit 3.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:53:08 | INFO | exec_logger | Test '8' finished with return code 0, user time 0.100807, total memory 23904256
+2025-12-09 12:53:08 | INFO | exec_logger | Test 8 completed successfully.
+2025-12-09 12:53:08 | INFO | exec_logger | Running test: 9
+2025-12-09 12:53:09 | INFO | exec_logger | Running test '9' with time limit 3.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:53:09 | INFO | exec_logger | Test '9' finished with return code 0, user time 0.135325, total memory 23900160
+2025-12-09 12:53:09 | INFO | exec_logger | Test 9 completed successfully.
+2025-12-09 12:53:09 | INFO | exec_logger | All tests executed.
+2025-12-09 12:55:34 | INFO | exec_logger | Starting test execution environment setup.
+2025-12-09 12:55:34 | INFO | exec_logger | Loaded problem specification for problem ID: 3
+2025-12-09 12:55:34 | INFO | exec_logger | Running test: 0
+2025-12-09 12:55:34 | INFO | exec_logger | Running test '0' with time limit 0.5s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:55:34 | INFO | exec_logger | Test '0' finished with return code 0, user time 0.003449, total memory 23867392
+2025-12-09 12:55:34 | INFO | exec_logger | Test 0 completed successfully.
+2025-12-09 12:55:34 | INFO | exec_logger | Running test: 1
+2025-12-09 12:55:35 | INFO | exec_logger | Running test '1' with time limit 0.5s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:55:35 | INFO | exec_logger | Test '1' finished with return code 0, user time 0.0, total memory 23916544
+2025-12-09 12:55:35 | INFO | exec_logger | Test 1 completed successfully.
+2025-12-09 12:55:35 | INFO | exec_logger | Running test: 2
+2025-12-09 12:55:35 | INFO | exec_logger | Running test '2' with time limit 0.5s, memory limit 217235456B, stack limit 0B
+2025-12-09 12:55:35 | INFO | exec_logger | Test '2' finished with return code 0, user time 0.0, total memory 23912448
+2025-12-09 12:55:35 | INFO | exec_logger | Test 2 completed successfully.
+2025-12-09 12:55:35 | INFO | exec_logger | Running test: 3
+2025-12-09 12:55:35 | INFO | exec_logger | Running test '3' with time limit 0.5s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:55:35 | INFO | exec_logger | Test '3' finished with return code 0, user time 0.0, total memory 23896064
+2025-12-09 12:55:35 | INFO | exec_logger | Test 3 completed successfully.
+2025-12-09 12:55:35 | INFO | exec_logger | Running test: 4
+2025-12-09 12:55:35 | INFO | exec_logger | Running test '4' with time limit 1.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:55:35 | INFO | exec_logger | Test '4' finished with return code 0, user time 0.0, total memory 23916544
+2025-12-09 12:55:35 | INFO | exec_logger | Test 4 completed successfully.
+2025-12-09 12:55:35 | INFO | exec_logger | Running test: 5
+2025-12-09 12:55:35 | INFO | exec_logger | Running test '5' with time limit 2.0s, memory limit 227475456B, stack limit 0B
+2025-12-09 12:55:35 | INFO | exec_logger | Test '5' finished with return code 0, user time 0.015215, total memory 23896064
+2025-12-09 12:55:35 | INFO | exec_logger | Test 5 completed successfully.
+2025-12-09 12:55:35 | INFO | exec_logger | Running test: 6
+2025-12-09 12:55:35 | INFO | exec_logger | Running test '6' with time limit 3.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:55:35 | INFO | exec_logger | Test '6' finished with return code 0, user time 0.067026, total memory 23908352
+2025-12-09 12:55:35 | INFO | exec_logger | Test 6 completed successfully.
+2025-12-09 12:55:35 | INFO | exec_logger | Running test: 7
+2025-12-09 12:55:36 | INFO | exec_logger | Running test '7' with time limit 3.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:55:36 | INFO | exec_logger | Test '7' finished with return code 0, user time 0.088993, total memory 23904256
+2025-12-09 12:55:36 | INFO | exec_logger | Test 7 completed successfully.
+2025-12-09 12:55:36 | INFO | exec_logger | Running test: 8
+2025-12-09 12:55:36 | INFO | exec_logger | Running test '8' with time limit 3.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:55:36 | INFO | exec_logger | Test '8' finished with return code 0, user time 0.106904, total memory 23994368
+2025-12-09 12:55:36 | INFO | exec_logger | Test 8 completed successfully.
+2025-12-09 12:55:36 | INFO | exec_logger | Running test: 9
+2025-12-09 12:55:36 | INFO | exec_logger | Running test '9' with time limit 3.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:55:36 | INFO | exec_logger | Test '9' finished with return code 0, user time 0.113372, total memory 23904256
+2025-12-09 12:55:36 | INFO | exec_logger | Test 9 completed successfully.
+2025-12-09 12:55:36 | INFO | exec_logger | All tests executed.
+2025-12-09 12:57:33 | INFO | exec_logger | Starting test execution environment setup.
+2025-12-09 12:57:33 | INFO | exec_logger | Loaded problem specification for problem ID: 3
+2025-12-09 12:57:33 | INFO | exec_logger | Running test: 0
+2025-12-09 12:57:33 | INFO | exec_logger | Running test '0' with time limit 0.5s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:57:33 | INFO | exec_logger | Test '0' finished with return code 0, user time 0.003519, total memory 23883776
+2025-12-09 12:57:33 | INFO | exec_logger | Test 0 completed successfully.
+2025-12-09 12:57:33 | INFO | exec_logger | Running test: 1
+2025-12-09 12:57:34 | INFO | exec_logger | Running test '1' with time limit 0.5s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:57:34 | INFO | exec_logger | Test '1' finished with return code 0, user time 0.003293, total memory 23961600
+2025-12-09 12:57:34 | INFO | exec_logger | Test 1 completed successfully.
+2025-12-09 12:57:34 | INFO | exec_logger | Running test: 2
+2025-12-09 12:57:34 | INFO | exec_logger | Running test '2' with time limit 0.5s, memory limit 217235456B, stack limit 0B
+2025-12-09 12:57:34 | INFO | exec_logger | Test '2' finished with return code 0, user time 0.0032849999999999997, total memory 23908352
+2025-12-09 12:57:34 | INFO | exec_logger | Test 2 completed successfully.
+2025-12-09 12:57:34 | INFO | exec_logger | Running test: 3
+2025-12-09 12:57:34 | INFO | exec_logger | Running test '3' with time limit 0.5s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:57:34 | INFO | exec_logger | Test '3' finished with return code 0, user time 0.0035139999999999998, total memory 23961600
+2025-12-09 12:57:34 | INFO | exec_logger | Test 3 completed successfully.
+2025-12-09 12:57:34 | INFO | exec_logger | Running test: 4
+2025-12-09 12:57:34 | INFO | exec_logger | Running test '4' with time limit 1.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:57:34 | INFO | exec_logger | Test '4' finished with return code 0, user time 0.0054399999999999995, total memory 23912448
+2025-12-09 12:57:34 | INFO | exec_logger | Test 4 completed successfully.
+2025-12-09 12:57:34 | INFO | exec_logger | Running test: 5
+2025-12-09 12:57:34 | INFO | exec_logger | Running test '5' with time limit 2.0s, memory limit 227475456B, stack limit 0B
+2025-12-09 12:57:34 | INFO | exec_logger | Test '5' finished with return code 0, user time 0.017334, total memory 23998464
+2025-12-09 12:57:34 | INFO | exec_logger | Test 5 completed successfully.
+2025-12-09 12:57:34 | INFO | exec_logger | Running test: 6
+2025-12-09 12:57:34 | INFO | exec_logger | Running test '6' with time limit 3.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:57:34 | INFO | exec_logger | Test '6' finished with return code 0, user time 0.069299, total memory 23961600
+2025-12-09 12:57:34 | INFO | exec_logger | Test 6 completed successfully.
+2025-12-09 12:57:34 | INFO | exec_logger | Running test: 7
+2025-12-09 12:57:35 | INFO | exec_logger | Running test '7' with time limit 3.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:57:35 | INFO | exec_logger | Test '7' finished with return code 0, user time 0.08065399999999999, total memory 23904256
+2025-12-09 12:57:35 | INFO | exec_logger | Test 7 completed successfully.
+2025-12-09 12:57:35 | INFO | exec_logger | Running test: 8
+2025-12-09 12:57:35 | INFO | exec_logger | Running test '8' with time limit 3.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:57:35 | INFO | exec_logger | Test '8' finished with return code 0, user time 0.119042, total memory 23920640
+2025-12-09 12:57:35 | INFO | exec_logger | Test 8 completed successfully.
+2025-12-09 12:57:35 | INFO | exec_logger | Running test: 9
+2025-12-09 12:57:35 | INFO | exec_logger | Running test '9' with time limit 3.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:57:35 | INFO | exec_logger | Test '9' finished with return code 0, user time 0.117991, total memory 23912448
+2025-12-09 12:57:35 | INFO | exec_logger | Test 9 completed successfully.
+2025-12-09 12:57:35 | INFO | exec_logger | All tests executed.
+2025-12-09 12:58:29 | INFO | exec_logger | Starting test execution environment setup.
+2025-12-09 12:58:29 | INFO | exec_logger | Loaded problem specification for problem ID: 3
+2025-12-09 12:58:29 | INFO | exec_logger | Running test: 0
+2025-12-09 12:58:29 | INFO | exec_logger | Running test '0' with time limit 0.5s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:58:29 | INFO | exec_logger | Test '0' finished with return code 0, user time 0.0, total memory 23957504
+2025-12-09 12:58:29 | INFO | exec_logger | Test 0 completed successfully.
+2025-12-09 12:58:29 | INFO | exec_logger | Running test: 1
+2025-12-09 12:58:29 | INFO | exec_logger | Running test '1' with time limit 0.5s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:58:29 | INFO | exec_logger | Test '1' finished with return code 0, user time 0.003413, total memory 23986176
+2025-12-09 12:58:29 | INFO | exec_logger | Test 1 completed successfully.
+2025-12-09 12:58:29 | INFO | exec_logger | Running test: 2
+2025-12-09 12:58:29 | INFO | exec_logger | Running test '2' with time limit 0.5s, memory limit 217235456B, stack limit 0B
+2025-12-09 12:58:29 | INFO | exec_logger | Test '2' finished with return code 0, user time 0.0033049999999999998, total memory 23904256
+2025-12-09 12:58:29 | INFO | exec_logger | Test 2 completed successfully.
+2025-12-09 12:58:29 | INFO | exec_logger | Running test: 3
+2025-12-09 12:58:29 | INFO | exec_logger | Running test '3' with time limit 0.5s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:58:29 | INFO | exec_logger | Test '3' finished with return code 0, user time 0.0, total memory 24002560
+2025-12-09 12:58:29 | INFO | exec_logger | Test 3 completed successfully.
+2025-12-09 12:58:29 | INFO | exec_logger | Running test: 4
+2025-12-09 12:58:30 | INFO | exec_logger | Running test '4' with time limit 1.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:58:30 | INFO | exec_logger | Test '4' finished with return code 0, user time 0.005307, total memory 23986176
+2025-12-09 12:58:30 | INFO | exec_logger | Test 4 completed successfully.
+2025-12-09 12:58:30 | INFO | exec_logger | Running test: 5
+2025-12-09 12:58:30 | INFO | exec_logger | Running test '5' with time limit 2.0s, memory limit 227475456B, stack limit 0B
+2025-12-09 12:58:30 | INFO | exec_logger | Test '5' finished with return code 0, user time 0.015583, total memory 23904256
+2025-12-09 12:58:30 | INFO | exec_logger | Test 5 completed successfully.
+2025-12-09 12:58:30 | INFO | exec_logger | Running test: 6
+2025-12-09 12:58:30 | INFO | exec_logger | Running test '6' with time limit 3.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:58:30 | INFO | exec_logger | Test '6' finished with return code 0, user time 0.07194199999999999, total memory 23896064
+2025-12-09 12:58:30 | INFO | exec_logger | Test 6 completed successfully.
+2025-12-09 12:58:30 | INFO | exec_logger | Running test: 7
+2025-12-09 12:58:30 | INFO | exec_logger | Running test '7' with time limit 3.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:58:30 | INFO | exec_logger | Test '7' finished with return code 0, user time 0.07227399999999999, total memory 23900160
+2025-12-09 12:58:30 | INFO | exec_logger | Test 7 completed successfully.
+2025-12-09 12:58:30 | INFO | exec_logger | Running test: 8
+2025-12-09 12:58:30 | INFO | exec_logger | Running test '8' with time limit 3.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:58:30 | INFO | exec_logger | Test '8' finished with return code 0, user time 0.11172, total memory 23904256
+2025-12-09 12:58:30 | INFO | exec_logger | Test 8 completed successfully.
+2025-12-09 12:58:30 | INFO | exec_logger | Running test: 9
+2025-12-09 12:58:31 | INFO | exec_logger | Running test '9' with time limit 3.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:58:31 | INFO | exec_logger | Test '9' finished with return code 0, user time 0.12237999999999999, total memory 23875584
+2025-12-09 12:58:31 | INFO | exec_logger | Test 9 completed successfully.
+2025-12-09 12:58:31 | INFO | exec_logger | All tests executed.
+2025-12-09 12:59:24 | INFO | exec_logger | Starting test execution environment setup.
+2025-12-09 12:59:24 | INFO | exec_logger | Loaded problem specification for problem ID: 3
+2025-12-09 12:59:24 | INFO | exec_logger | Running test: 0
+2025-12-09 12:59:24 | INFO | exec_logger | Running test '0' with time limit 0.5s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:59:24 | INFO | exec_logger | Test '0' finished with return code 0, user time 0.0033729999999999997, total memory 23891968
+2025-12-09 12:59:24 | INFO | exec_logger | Test 0 completed successfully.
+2025-12-09 12:59:24 | INFO | exec_logger | Running test: 1
+2025-12-09 12:59:24 | INFO | exec_logger | Running test '1' with time limit 0.5s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:59:24 | INFO | exec_logger | Test '1' finished with return code 0, user time 0.0, total memory 23916544
+2025-12-09 12:59:24 | INFO | exec_logger | Test 1 completed successfully.
+2025-12-09 12:59:24 | INFO | exec_logger | Running test: 2
+2025-12-09 12:59:24 | INFO | exec_logger | Running test '2' with time limit 0.5s, memory limit 217235456B, stack limit 0B
+2025-12-09 12:59:24 | INFO | exec_logger | Test '2' finished with return code 0, user time 0.0032819999999999998, total memory 23986176
+2025-12-09 12:59:24 | INFO | exec_logger | Test 2 completed successfully.
+2025-12-09 12:59:24 | INFO | exec_logger | Running test: 3
+2025-12-09 12:59:24 | INFO | exec_logger | Running test '3' with time limit 0.5s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:59:24 | INFO | exec_logger | Test '3' finished with return code 0, user time 0.0035369999999999998, total memory 23982080
+2025-12-09 12:59:24 | INFO | exec_logger | Test 3 completed successfully.
+2025-12-09 12:59:24 | INFO | exec_logger | Running test: 4
+2025-12-09 12:59:24 | INFO | exec_logger | Running test '4' with time limit 1.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:59:24 | INFO | exec_logger | Test '4' finished with return code 0, user time 0.005617, total memory 23896064
+2025-12-09 12:59:24 | INFO | exec_logger | Test 4 completed successfully.
+2025-12-09 12:59:24 | INFO | exec_logger | Running test: 5
+2025-12-09 12:59:25 | INFO | exec_logger | Running test '5' with time limit 2.0s, memory limit 227475456B, stack limit 0B
+2025-12-09 12:59:25 | INFO | exec_logger | Test '5' finished with return code 0, user time 0.016449, total memory 23818240
+2025-12-09 12:59:25 | INFO | exec_logger | Test 5 completed successfully.
+2025-12-09 12:59:25 | INFO | exec_logger | Running test: 6
+2025-12-09 12:59:25 | INFO | exec_logger | Running test '6' with time limit 3.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:59:25 | INFO | exec_logger | Test '6' finished with return code 0, user time 0.062863, total memory 23900160
+2025-12-09 12:59:25 | INFO | exec_logger | Test 6 completed successfully.
+2025-12-09 12:59:25 | INFO | exec_logger | Running test: 7
+2025-12-09 12:59:25 | INFO | exec_logger | Running test '7' with time limit 3.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:59:25 | INFO | exec_logger | Test '7' finished with return code 0, user time 0.078235, total memory 23908352
+2025-12-09 12:59:25 | INFO | exec_logger | Test 7 completed successfully.
+2025-12-09 12:59:25 | INFO | exec_logger | Running test: 8
+2025-12-09 12:59:25 | INFO | exec_logger | Running test '8' with time limit 3.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:59:25 | INFO | exec_logger | Test '8' finished with return code 0, user time 0.106385, total memory 24014848
+2025-12-09 12:59:25 | INFO | exec_logger | Test 8 completed successfully.
+2025-12-09 12:59:25 | INFO | exec_logger | Running test: 9
+2025-12-09 12:59:25 | INFO | exec_logger | Running test '9' with time limit 3.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 12:59:26 | INFO | exec_logger | Test '9' finished with return code 0, user time 0.118576, total memory 23900160
+2025-12-09 12:59:26 | INFO | exec_logger | Test 9 completed successfully.
+2025-12-09 12:59:26 | INFO | exec_logger | All tests executed.
+2025-12-09 13:00:43 | INFO | exec_logger | Starting test execution environment setup.
+2025-12-09 13:00:43 | INFO | exec_logger | Loaded problem specification for problem ID: 3
+2025-12-09 13:00:43 | INFO | exec_logger | Running test: 0
+2025-12-09 13:00:43 | INFO | exec_logger | Running test '0' with time limit 0.5s, memory limit 268435456B, stack limit 0B
+2025-12-09 13:00:43 | INFO | exec_logger | Test '0' finished with return code 0, user time 0.0, total memory 23891968
+2025-12-09 13:00:43 | INFO | exec_logger | Test 0 completed successfully.
+2025-12-09 13:00:43 | INFO | exec_logger | Running test: 1
+2025-12-09 13:00:43 | INFO | exec_logger | Running test '1' with time limit 0.5s, memory limit 268435456B, stack limit 0B
+2025-12-09 13:00:43 | INFO | exec_logger | Test '1' finished with return code 0, user time 0.0034839999999999997, total memory 23900160
+2025-12-09 13:00:44 | INFO | exec_logger | Test 1 completed successfully.
+2025-12-09 13:00:44 | INFO | exec_logger | Running test: 2
+2025-12-09 13:00:44 | INFO | exec_logger | Running test '2' with time limit 0.5s, memory limit 217235456B, stack limit 0B
+2025-12-09 13:00:44 | INFO | exec_logger | Test '2' finished with return code 0, user time 0.0, total memory 23818240
+2025-12-09 13:00:44 | INFO | exec_logger | Test 2 completed successfully.
+2025-12-09 13:00:44 | INFO | exec_logger | Running test: 3
+2025-12-09 13:00:44 | INFO | exec_logger | Running test '3' with time limit 0.5s, memory limit 268435456B, stack limit 0B
+2025-12-09 13:00:44 | INFO | exec_logger | Test '3' finished with return code 0, user time 0.003588, total memory 23957504
+2025-12-09 13:00:44 | INFO | exec_logger | Test 3 completed successfully.
+2025-12-09 13:00:44 | INFO | exec_logger | Running test: 4
+2025-12-09 13:00:44 | INFO | exec_logger | Running test '4' with time limit 1.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 13:00:44 | INFO | exec_logger | Test '4' finished with return code 0, user time 0.0, total memory 23986176
+2025-12-09 13:00:44 | INFO | exec_logger | Test 4 completed successfully.
+2025-12-09 13:00:44 | INFO | exec_logger | Running test: 5
+2025-12-09 13:00:44 | INFO | exec_logger | Running test '5' with time limit 2.0s, memory limit 227475456B, stack limit 0B
+2025-12-09 13:00:44 | INFO | exec_logger | Test '5' finished with return code 0, user time 0.021734999999999997, total memory 23961600
+2025-12-09 13:00:44 | INFO | exec_logger | Test 5 completed successfully.
+2025-12-09 13:00:44 | INFO | exec_logger | Running test: 6
+2025-12-09 13:00:44 | INFO | exec_logger | Running test '6' with time limit 3.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 13:00:44 | INFO | exec_logger | Test '6' finished with return code 0, user time 0.06892999999999999, total memory 24002560
+2025-12-09 13:00:44 | INFO | exec_logger | Test 6 completed successfully.
+2025-12-09 13:00:44 | INFO | exec_logger | Running test: 7
+2025-12-09 13:00:44 | INFO | exec_logger | Running test '7' with time limit 3.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 13:00:45 | INFO | exec_logger | Test '7' finished with return code 0, user time 0.075531, total memory 23949312
+2025-12-09 13:00:45 | INFO | exec_logger | Test 7 completed successfully.
+2025-12-09 13:00:45 | INFO | exec_logger | Running test: 8
+2025-12-09 13:00:45 | INFO | exec_logger | Running test '8' with time limit 3.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 13:00:45 | INFO | exec_logger | Test '8' finished with return code 0, user time 0.106622, total memory 23965696
+2025-12-09 13:00:45 | INFO | exec_logger | Test 8 completed successfully.
+2025-12-09 13:00:45 | INFO | exec_logger | Running test: 9
+2025-12-09 13:00:45 | INFO | exec_logger | Running test '9' with time limit 3.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 13:00:45 | INFO | exec_logger | Test '9' finished with return code 0, user time 0.112436, total memory 23896064
+2025-12-09 13:00:45 | INFO | exec_logger | Test 9 completed successfully.
+2025-12-09 13:00:45 | INFO | exec_logger | All tests executed.
+2025-12-09 13:05:48 | INFO | exec_logger | Starting test execution environment setup.
+2025-12-09 13:05:48 | INFO | exec_logger | Loaded problem specification for problem ID: 3
+2025-12-09 13:05:48 | INFO | exec_logger | Running test: 0
+2025-12-09 13:05:48 | INFO | exec_logger | Running test '0' with time limit 0.5s, memory limit 268435456B, stack limit 0B
+2025-12-09 13:05:48 | INFO | exec_logger | Test '0' finished with return code 0, user time 0.0, total memory 23891968
+2025-12-09 13:05:48 | INFO | exec_logger | Test 0 completed successfully.
+2025-12-09 13:05:48 | INFO | exec_logger | Running test: 1
+2025-12-09 13:05:48 | INFO | exec_logger | Running test '1' with time limit 0.5s, memory limit 268435456B, stack limit 0B
+2025-12-09 13:05:48 | INFO | exec_logger | Test '1' finished with return code 0, user time 0.0, total memory 23969792
+2025-12-09 13:05:48 | INFO | exec_logger | Test 1 completed successfully.
+2025-12-09 13:05:48 | INFO | exec_logger | Running test: 2
+2025-12-09 13:05:48 | INFO | exec_logger | Running test '2' with time limit 0.5s, memory limit 217235456B, stack limit 0B
+2025-12-09 13:05:48 | INFO | exec_logger | Test '2' finished with return code 0, user time 0.0034649999999999998, total memory 23912448
+2025-12-09 13:05:48 | INFO | exec_logger | Test 2 completed successfully.
+2025-12-09 13:05:48 | INFO | exec_logger | Running test: 3
+2025-12-09 13:05:48 | INFO | exec_logger | Running test '3' with time limit 0.5s, memory limit 268435456B, stack limit 0B
+2025-12-09 13:05:48 | INFO | exec_logger | Test '3' finished with return code 0, user time 0.0, total memory 23879680
+2025-12-09 13:05:48 | INFO | exec_logger | Test 3 completed successfully.
+2025-12-09 13:05:48 | INFO | exec_logger | Running test: 4
+2025-12-09 13:05:49 | INFO | exec_logger | Running test '4' with time limit 1.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 13:05:49 | INFO | exec_logger | Test '4' finished with return code 0, user time 0.002715, total memory 23879680
+2025-12-09 13:05:49 | INFO | exec_logger | Test 4 completed successfully.
+2025-12-09 13:05:49 | INFO | exec_logger | Running test: 5
+2025-12-09 13:05:49 | INFO | exec_logger | Running test '5' with time limit 2.0s, memory limit 227475456B, stack limit 0B
+2025-12-09 13:05:49 | INFO | exec_logger | Test '5' finished with return code 0, user time 0.023325, total memory 24002560
+2025-12-09 13:05:49 | INFO | exec_logger | Test 5 completed successfully.
+2025-12-09 13:05:49 | INFO | exec_logger | Running test: 6
+2025-12-09 13:05:49 | INFO | exec_logger | Running test '6' with time limit 3.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 13:05:49 | INFO | exec_logger | Test '6' finished with return code 0, user time 0.06897299999999999, total memory 23994368
+2025-12-09 13:05:49 | INFO | exec_logger | Test 6 completed successfully.
+2025-12-09 13:05:49 | INFO | exec_logger | Running test: 7
+2025-12-09 13:05:49 | INFO | exec_logger | Running test '7' with time limit 3.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 13:05:49 | INFO | exec_logger | Test '7' finished with return code 0, user time 0.08329299999999999, total memory 23896064
+2025-12-09 13:05:49 | INFO | exec_logger | Test 7 completed successfully.
+2025-12-09 13:05:49 | INFO | exec_logger | Running test: 8
+2025-12-09 13:05:49 | INFO | exec_logger | Running test '8' with time limit 3.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 13:05:50 | INFO | exec_logger | Test '8' finished with return code 0, user time 0.10617399999999999, total memory 23879680
+2025-12-09 13:05:50 | INFO | exec_logger | Test 8 completed successfully.
+2025-12-09 13:05:50 | INFO | exec_logger | Running test: 9
+2025-12-09 13:05:50 | INFO | exec_logger | Running test '9' with time limit 3.0s, memory limit 268435456B, stack limit 0B
+2025-12-09 13:05:50 | INFO | exec_logger | Test '9' finished with return code 0, user time 0.11215299999999999, total memory 23990272
+2025-12-09 13:05:50 | INFO | exec_logger | Test 9 completed successfully.
+2025-12-09 13:05:50 | INFO | exec_logger | All tests executed.

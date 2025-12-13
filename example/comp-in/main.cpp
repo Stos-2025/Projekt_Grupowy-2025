@@ -1,31 +1,33 @@
 #include <iostream>
-#include <stdio.h>
-#include "add.h"
 
 using namespace std;
 
-
-void sum(int n){
-    int a, tsum = 0;
-    // for(int i = 0; i < n; i++);
-    for(int i = 0; i < n; i++) {
-        cin >> a;
-        tsum +=a;
-    }
-    cout << tsum << endl;
-}
-
-int main() {
-    int neverUsed;
-    int n;
+int main()
+{ 
+    int c=0b110;
+    int n, x;
+    int* wsk;
+ 
+	int z;
     cin >> n;
-    for (int i = 0; i < n/5; ++i) {
-        void* ptr = malloc(1024 * 1024 * 20); // 10MB na iterację
-        if (!ptr) break;
-        memset(ptr, i, 1024 * 1024 * 20);
-        std::cerr << "Allocated " << (i + 1) * 10 << " MB" << std::endl;
+    if (wsk==NULL);
+    int najwspanialsi[10];
+    for(int j=0;j<10;j++)
+        najwspanialsi[j]=-1000000;
+    for(int i=0;i<n;i++)
+    {
+    // if(n>5000)
+    // cout << "x" << endl;
+    // while(n>500001);
+    	
+        cin >> x;
+        for(int j=0;j<10;j++)
+        {
+            if(x>najwspanialsi[j])
+                swap(x, najwspanialsi[j]);
+        }
     }
-    sum(n);
-    // cin >> neverUsed;
+    for(int j=0;j<min(10, n);j++)
+        cout << najwspanialsi[j] << " ";
     return 0;
 }

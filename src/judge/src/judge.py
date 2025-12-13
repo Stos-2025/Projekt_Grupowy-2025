@@ -56,12 +56,14 @@ def check_exec(exec_path: str, time_limit: float, memory_limit: int) -> TestResu
 
 
 
-def judge(answer_path: str, input_path: str) -> TestResult:
+def judge(answer_path: str, input_path: str) -> TestResult: 
     # check files exist and are readable and answer is not too big
     if not os.path.exists(answer_path) or not os.path.exists(input_path):
         return TestResult(False, "")
-    if os.path.getsize(answer_path) > 5 * 1024 * 1024:  # 5 GiB limit
+    if os.path.getsize(answer_path) > 100 * 1024 * 1024:  # 100 MiB limit
         return TestResult(False, "answer file is too big")
+    if os.path.getsize(input_path) > 100 * 1024 * 1024:  # 100 MiB limit
+        return TestResult(False, "program output is too big")
 
 
     info = "ok"
@@ -85,13 +87,13 @@ def judge(answer_path: str, input_path: str) -> TestResult:
 
 
 
-def judge_test(name: str, time_limit: float, memory_limit: int) -> Optional[TestResult]:          
-    answer_path = os.path.join(os.getenv('ANS', '/data/answer'), f"{name}.out")
+def judge_test(name: str, answer_file: str, time_limit: float, memory_limit: int) -> Optional[TestResult]:          
+    answer_path = os.path.join(os.getenv('ANS', '/data/answer'), answer_file)
     input_path = os.path.join(os.getenv('IN', '/data/in'), f"{name}.stdout.out")
     comp_path = os.path.join(os.getenv('OUT', '/data/out'), "comp.json")
     exec_path = os.path.join(os.getenv('OUT', '/data/out'), f"{name}.exec.json")
 
-    
+    print(f"Judging test {name} with input {input_path} and answer {answer_path}")
     # Check compilation
     try:
         result = check_comp(comp_path)

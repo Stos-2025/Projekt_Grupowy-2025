@@ -77,12 +77,12 @@ def get_results(path: str) -> SubmissionResultSchema:
 
 
 def run_example(build: bool = True, compile: bool=True, push: bool=False) -> None:
-    version = "1.0.3"
+    version = "1.1.0"
     # version = "latest"
     exec_image_tag = f"d4m14n/stos_exec:{version}"
     comp_image_tag = f"d4m14n/stos:gpp_comp-{version}"
     # comp_image_tag = f"d4m14n/stos:python3_comp-{version}"
-    judge_image_tag = f"d4m14n/stos:judge-{version}"
+    judge_image_tag = f"d4m14n/stos_judge:{version}"
 
     # build = False
     exmp_path = r"./example"
@@ -94,6 +94,7 @@ def run_example(build: bool = True, compile: bool=True, push: bool=False) -> Non
     build_path = r"./src"
 
     exec_in = exmp_path+"/exec-in"
+    conf = exmp_path+"/conf"
     out = exmp_path+"/out"
     comp_in = exmp_path+"/comp-in"
     MAINFILE = "main.py"
@@ -118,7 +119,8 @@ def run_example(build: bool = True, compile: bool=True, push: bool=False) -> Non
         "--network", "none",
         "-e", "LOG=/data/logs/exec.log",
         "--security-opt", "no-new-privileges",
-        "-v", f"{exec_in}/in:/data/in:ro",
+        "-v", f"{conf}:/data/conf:ro",
+        "-v", f"{exec_in}:/data/in:ro",
         "-v", f"{out}:/data/bin:ro",
         "-v", f"{out}:/data/out",
         "-v", f"{exmp_path}/logs:/data/logs",
@@ -130,9 +132,10 @@ def run_example(build: bool = True, compile: bool=True, push: bool=False) -> Non
         "--ulimit", "cpu=30:30",
         "--network", "none",
         "--security-opt", "no-new-privileges",
+        "-v", f"{conf}:/data/conf:ro",
         "-v", f"{out}:/data/in:ro",
         "-v", f"{out}:/data/out",
-        "-v", f"{exec_in}/out:/data/answer:ro",
+        "-v", f"{exec_in}:/data/answer:ro",
         judge_image_tag
     ]
 
@@ -149,7 +152,7 @@ def run_example(build: bool = True, compile: bool=True, push: bool=False) -> Non
         subprocess.run(["docker", "login"], check=True)
 
         subprocess.run(["docker", "push", exec_image_tag], check=True)
-        # subprocess.run(["docker", "push", judge_image_tag], check=True)
+        subprocess.run(["docker", "push", judge_image_tag], check=True)
         # subprocess.run(["docker", "push", comp_image_tag], check=True)
 
 

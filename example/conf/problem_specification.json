@@ -1,0 +1,85 @@
+{
+    "id": "3",
+    "tests": [
+        {
+            "test_id": "0",
+            "input_file": "wsp0.in",
+            "output_file": "wsp0.out",
+            "time_limit": 0.5,
+            "total_memory_limit": 268435456,
+            "stack_size_limit": null
+        },
+        {
+            "test_id": "1",
+            "input_file": "wsp1.in",
+            "output_file": "wsp1.out",
+            "time_limit": 0.5,
+            "total_memory_limit": 268435456,
+            "stack_size_limit": null
+        },
+        {
+            "test_id": "2",
+            "input_file": "wsp2.in",
+            "output_file": "wsp2.out",
+            "time_limit": 0.5,
+            "total_memory_limit": 217235456,
+            "stack_size_limit": null
+        },
+        {
+            "test_id": "3",
+            "input_file": "wsp3.in",
+            "output_file": "wsp3.out",
+            "time_limit": 0.5,
+            "total_memory_limit": 268435456,
+            "stack_size_limit": null
+        },
+        {
+            "test_id": "4",
+            "input_file": "wsp4.in",
+            "output_file": "wsp4.out",
+            "time_limit": 1.0,
+            "total_memory_limit": 268435456,
+            "stack_size_limit": null
+        },
+        {
+            "test_id": "5",
+            "input_file": "wsp5.in",
+            "output_file": "wsp5.out",
+            "time_limit": 2.0,
+            "total_memory_limit": 227475456,
+            "stack_size_limit": null
+        },
+        {
+            "test_id": "6",
+            "input_file": "wsp6.in",
+            "output_file": "wsp6.out",
+            "time_limit": 3.0,
+            "total_memory_limit": 268435456,
+            "stack_size_limit": null
+        },
+        {
+            "test_id": "7",
+            "input_file": "wsp7.in",
+            "output_file": "wsp7.out",
+            "time_limit": 3.0,
+            "total_memory_limit": 268435456,
+            "stack_size_limit": null
+        },
+        {
+            "test_id": "8",
+            "input_file": "wsp8.in",
+            "output_file": "wsp8.out",
+            "time_limit": 3.0,
+            "total_memory_limit": 268435456,
+            "stack_size_limit": null
+        },
+        {
+            "test_id": "9",
+            "input_file": "wsp9.in",
+            "output_file": "wsp9.out",
+            "time_limit": 3.0,
+            "total_memory_limit": 268435456,
+            "stack_size_limit": null
+        }
+    ]
+}
